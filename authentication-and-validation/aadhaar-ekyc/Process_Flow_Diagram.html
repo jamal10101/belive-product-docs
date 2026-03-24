@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Process Flow — Aadhaar eKYC</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#0B0B10;color:#E8E8F0;padding:30px;min-height:100vh}.hdr{text-align:center;margin-bottom:30px}.hdr h1{font-size:28px;font-weight:700}.hdr p{color:#7878A0;font-size:13px;margin-top:4px}.tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:600;margin:2px;background:#E9456020;color:#E94560}.flow-wrap{max-width:900px;margin:0 auto}.node{background:#1C1C28;border:1.5px solid #2A2A3A;border-radius:12px;padding:14px 20px;margin:6px auto;max-width:500px;text-align:center;font-size:13px;position:relative}.node .title{font-weight:700;font-size:14px;margin-bottom:4px}.node .sub{font-size:11px;color:#7878A0}.node.start{background:#059669;border-color:#059669;color:#FFF;border-radius:24px}.node.end-green{background:#059669;border-color:#059669;color:#FFF;border-radius:24px}.node.end-red{background:#DC2626;border-color:#DC2626;color:#FFF;border-radius:24px}.node.decision{border-color:#7C3AED;background:#7C3AED15}.node.api{border-color:#D97706;background:#D9770615;border-radius:6px 6px 24px 24px}.node.process-blue{border-color:#2563EB;background:#2563EB10}.node.process-teal{border-color:#0F9B8E;background:#0F9B8E10}.arr{text-align:center;font-size:20px;color:#4A4A68;margin:2px 0;font-weight:700}.arr-label{text-align:center;font-size:10px;color:#7878A0;margin:-2px 0 2px}.split{display:flex;gap:20px;justify-content:center;margin:10px 0}.split-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}.split-label{font-size:11px;font-weight:700;padding:3px 12px;border-radius:10px;margin-bottom:4px}.note{background:#1E293B;border:1px dashed #3A3A48;border-radius:8px;padding:10px 16px;font-size:11px;color:#7878A0;margin:16px auto;max-width:600px;text-align:center}hr{border:none;border-top:1px solid #2A2A3A;margin:30px 0}h2{font-size:20px;font-weight:700;margin-bottom:16px;color:#E94560}h3{font-size:16px;font-weight:600;margin:20px 0 10px;color:#2563EB}</style></head><body>
+<div class="hdr"><div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;margin-bottom:6px">BELIVE APP · AUTHENTICATION & VERIFICATION</div><h1>Process Flow Diagram</h1><p>Aadhaar eKYC Verification — Complete Artist Registration Flow</p><div style="margin-top:8px"><span class="tag">BLA-27</span><span class="tag">P0 Critical</span><span class="tag">Sprint 1-2</span></div></div>
+<div class="flow-wrap">
+<h2>1. Complete Registration + eKYC Flow</h2>
+<div class="node start"><div class="title">🟢 START</div><div class="sub">Artist Opens App → Taps "Register as Artist"</div></div>
+<div class="arr">↓</div>
+<div class="node process-blue"><div class="title">📝 Step 1: Basic Information</div><div class="sub">Full legal name, email, phone number, city, Solo/Band toggle, category selection<br>(Singer / DJ / Dancer / Rapper / Beatboxer / Comedian / Instrumentalist / Band)</div></div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#E94560;background:#E9456010"><div class="title">🔐 Step 2: Identity Verification</div><div class="sub">User chooses verification method</div></div>
+<div class="arr">↓</div>
+<div class="split">
+<div class="split-col">
+<div class="split-label" style="background:#2563EB30;color:#2563EB">PATH A: Aadhaar OTP</div>
+<div class="arr">↓</div>
+<div class="node process-blue"><div class="title">Enter 12-Digit Aadhaar</div><div class="sub">Real-time format validation<br>Must be exactly 12 digits, no letters</div></div>
+<div class="arr">↓</div>
+<div class="node api"><div class="title">🔗 API: UIDAI OTP Generate</div><div class="sub">POST /api/v1/otp/generate<br>Params: uid, txnId, appId, timestamp, consent</div></div>
+<div class="arr">↓</div>
+<div class="node process-blue"><div class="title">Enter 6-Digit OTP</div><div class="sub">60-second countdown timer<br>Max 3 attempts<br>Resend after timer expires</div></div>
+<div class="arr">↓</div>
+<div class="node api"><div class="title">🔗 API: UIDAI OTP Verify</div><div class="sub">POST /api/v1/otp/verify<br>Returns: name, DOB, gender, photo</div></div>
+</div>
+<div style="display:flex;align-items:center;color:#4A4A68;font-size:12px;font-weight:600">OR</div>
+<div class="split-col">
+<div class="split-label" style="background:#0F9B8E30;color:#0F9B8E">PATH B: Offline XML</div>
+<div class="arr">↓</div>
+<div class="node process-teal"><div class="title">Show Instructions</div><div class="sub">Guide: Download XML from<br>resident.uidai.gov.in</div></div>
+<div class="arr">↓</div>
+<div class="node process-teal"><div class="title">Upload ZIP File</div><div class="sub">Max 5MB, .zip format only<br>File picker opens</div></div>
+<div class="arr">↓</div>
+<div class="node process-teal"><div class="title">Enter 4-Digit Share Code</div><div class="sub">Provided during XML download<br>Used to decrypt the ZIP</div></div>
+<div class="arr">↓</div>
+<div class="node api"><div class="title">🔒 Server: Decrypt + Validate</div><div class="sub">Firebase Cloud Function<br>Validate UIDAI digital signature<br>Check XML not expired (>3 days)<br>Extract: name, DOB, gender</div></div>
+</div>
+</div>
+<div class="arr">↓ Both paths merge ↓</div>
+<div class="node decision"><div class="title">📊 Extract Demographics</div><div class="sub">Name, Date of Birth, Gender from UIDAI response/XML<br>Calculate name match score (form name vs Aadhaar name)</div></div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#DC2626;background:#DC262610"><div class="title">⚖️ AGE CHECK</div><div class="sub">Calculate age from DOB: (current date - DOB) in years<br>Is age ≥ 18?</div></div>
+<div class="arr">↓</div>
+<div class="split">
+<div class="split-col">
+<div class="split-label" style="background:#05966930;color:#059669">✅ AGE ≥ 18</div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#059669;background:#05966910"><div class="title">Full Artist Registration</div><div class="sub">Proceed to Step 3: Legal Consent<br>Copyright declaration, IPRS, data consent</div></div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#059669;background:#05966910"><div class="title">Step 4: Profile Setup</div><div class="sub">Stage name, bio, genre tags,<br>social links, portfolio video</div></div>
+<div class="arr">↓</div>
+<div class="node api"><div class="title">💾 Save to Firestore</div><div class="sub">artists/{uid}<br>kycVerification.isVerified = true<br>profileStatus.status = "pending_review"</div></div>
+<div class="arr">↓</div>
+<div class="node decision"><div class="title">⏳ Admin Review Queue</div><div class="sub">Admin reviews: KYC data, name match,<br>content check, social link validation</div></div>
+<div class="arr">↓</div>
+<div class="split">
+<div class="split-col"><div class="split-label" style="background:#05966930;color:#059669">Approved</div><div class="node end-green"><div class="title">🎉 Profile LIVE</div><div class="sub">✅ Verified badge<br>📍 Visible on map & search<br>📱 Push notification sent</div></div></div>
+<div class="split-col"><div class="split-label" style="background:#DC262630;color:#DC2626">Rejected</div><div class="node end-red"><div class="title">❌ Rejected</div><div class="sub">Notification with reason<br>Option to re-apply</div></div></div>
+<div class="split-col"><div class="split-label" style="background:#D9770630;color:#D97706">Re-verify</div><div class="node" style="border-color:#D97706;background:#D9770610"><div class="title">🔄 Re-verify</div><div class="sub">Asked to redo KYC<br>Data mismatch detected</div></div></div>
+</div>
+</div>
+<div class="split-col">
+<div class="split-label" style="background:#DC262630;color:#DC2626">❌ AGE < 18</div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#D97706;background:#D9770610"><div class="title">🔞 Restricted Fan Mode</div><div class="sub">User CAN enter the app<br>but with age-appropriate content only</div></div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#D97706;background:#D9770615"><div class="title">What they CAN do:</div><div class="sub">✅ Browse age-appropriate events<br>✅ Follow artists<br>✅ View general artist profiles<br>✅ Attend family-friendly events</div></div>
+<div class="arr">↓</div>
+<div class="node" style="border-color:#DC2626;background:#DC262610"><div class="title">What they CANNOT do:</div><div class="sub">❌ Register as performing artist<br>❌ See nightlife/bar/pub events<br>❌ See 18+ tagged events<br>❌ Create events</div></div>
+<div class="arr">↓</div>
+<div class="node api"><div class="title">💾 Save to Firestore</div><div class="sub">users/{uid}<br>ageTier = "under_18"<br>dateOfBirth = DOB<br>contentFilter = "age_appropriate"</div></div>
+<div class="arr">↓</div>
+<div class="note">🎂 When user turns 18 (based on stored DOB), system auto-upgrades access tier to full on next app open.</div>
+</div>
+</div>
+
+<hr>
+<h2>2. Error Handling Flow</h2>
+<div class="split" style="flex-wrap:wrap">
+<div class="split-col" style="min-width:250px">
+<div class="node" style="border-color:#DC2626"><div class="title">Invalid Aadhaar (K-200)</div><div class="sub">"Please check your Aadhaar number"<br>→ Re-enter</div></div>
+</div>
+<div class="split-col" style="min-width:250px">
+<div class="node" style="border-color:#DC2626"><div class="title">OTP Expired (K-544)</div><div class="sub">"OTP expired. Request new one"<br>→ Resend OTP</div></div>
+</div>
+<div class="split-col" style="min-width:250px">
+<div class="node" style="border-color:#DC2626"><div class="title">Wrong OTP (K-569)</div><div class="sub">"Incorrect OTP. X attempts left"<br>→ Retry (max 3)</div></div>
+</div>
+<div class="split-col" style="min-width:250px">
+<div class="node" style="border-color:#DC2626"><div class="title">Max Retries Exceeded</div><div class="sub">"Too many attempts. Wait 30 mins"<br>→ Cooldown timer</div></div>
+</div>
+<div class="split-col" style="min-width:250px">
+<div class="node" style="border-color:#DC2626"><div class="title">Mobile Not Linked (K-100)</div><div class="sub">"Use Offline XML instead"<br>→ Switch to XML path</div></div>
+</div>
+<div class="split-col" style="min-width:250px">
+<div class="node" style="border-color:#DC2626"><div class="title">Invalid XML (XML-002)</div><div class="sub">"File not verified. Download fresh"<br>→ Re-download from UIDAI</div></div>
+</div>
+</div>
+
+<div style="text-align:center;margin-top:40px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">BeLive App · Aadhaar eKYC Process Flow · Mohammad Jamal Yusuf · March 2026</div>
+</div>
+</body></html>

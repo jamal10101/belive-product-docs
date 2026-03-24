@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>API Analysis — Aadhaar eKYC</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#0B0B10;color:#E8E8F0;padding:30px}h1{font-size:28px;text-align:center;margin-bottom:4px}h2{font-size:20px;margin:30px 0 12px;color:#E94560;padding-bottom:6px;border-bottom:1px solid #2A2A3A}h3{font-size:16px;margin:16px 0 8px;color:#2563EB}.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:24px}.tag{display:inline-block;padding:3px 12px;border-radius:4px;font-size:10px;font-weight:700;margin:2px}.method{display:inline-block;padding:4px 14px;border-radius:6px;font-size:12px;font-weight:700;color:#FFF;margin-right:8px}.method.post{background:#059669}.method.get{background:#2563EB}pre{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;margin:10px 0}table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}th{background:#1E293B;color:#FFF;padding:8px 12px;text-align:left;font-size:11px}td{padding:8px 12px;border:1px solid #2A2A3A}.card{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:16px;margin:12px 0}.card h4{margin:0 0 6px;font-size:14px}p{font-size:13px;margin:6px 0;color:#B0B0C8}code{font-family:'JetBrains Mono',monospace;background:#1C1C28;padding:1px 6px;border-radius:3px;font-size:11px}.note{background:#D9770610;border:1px dashed #D97706;border-radius:8px;padding:10px 16px;font-size:12px;color:#D97706;margin:10px 0}tr:nth-child(even){background:#14141C}</style></head><body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP · AUTHENTICATION & VERIFICATION</div>
+<h1>API Analysis & Parameters</h1>
+<div class="sub">UIDAI Aadhaar eKYC API Documentation · Endpoints, Parameters, Responses, Error Codes</div>
+
+<div class="card" style="border-left:4px solid #2563EB">
+<h4 style="color:#2563EB">API Provider Information</h4>
+<p><strong>Provider:</strong> UIDAI (Unique Identification Authority of India)</p>
+<p><strong>Access via:</strong> Licensed ASA (Authentication Service Agency) or KUA (KYC User Agency) — e.g., Digio, Signzy, Protean</p>
+<p><strong>Sandbox URL:</strong> <code>https://stage1.uidai.gov.in</code></p>
+<p><strong>Production URL:</strong> Provided after licensing approval</p>
+<p><strong>Authentication:</strong> Digital signature certificate + licensed sub-AUA code</p>
+<p><strong>Rate Limit:</strong> Varies by license tier (typically 100-1000 requests/day for sandbox)</p>
+</div>
+
+<h2>API Endpoint 1: Generate OTP</h2>
+<p><span class="method post">POST</span> <code>/api/v1/otp/generate</code></p>
+<p>Sends OTP to the mobile number linked with the given Aadhaar number.</p>
+
+<h3>Request Parameters</h3>
+<table><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><th>Validation</th></tr>
+<tr><td><code>uid</code></td><td>String</td><td>Yes</td><td>12-digit Aadhaar number</td><td>Exactly 12 digits, numeric only, Verhoeff checksum</td></tr>
+<tr><td><code>txnId</code></td><td>String</td><td>Yes</td><td>Unique transaction ID</td><td>UUID v4 format</td></tr>
+<tr><td><code>appId</code></td><td>String</td><td>Yes</td><td>Licensed application identifier</td><td>Assigned by UIDAI</td></tr>
+<tr><td><code>timestamp</code></td><td>DateTime</td><td>Yes</td><td>Request timestamp</td><td>ISO 8601 (e.g., 2026-03-22T10:30:00Z)</td></tr>
+<tr><td><code>consent</code></td><td>String</td><td>Yes</td><td>User consent flag</td><td>Must be "Y" — user must explicitly consent</td></tr></table>
+
+<h3>Response — Success</h3>
+<pre>{
+  "status": "SUCCESS",
+  "txnId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "message": "OTP sent to registered mobile number",
+  "otpSentTo": "XXXXXXXX90"   // last 2 digits shown
+}</pre>
+
+<h3>Response — Error</h3>
+<pre>{
+  "status": "FAILURE",
+  "errorCode": "K-200",
+  "message": "Invalid Aadhaar number",
+  "txnId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+}</pre>
+
+<h2>API Endpoint 2: Verify OTP & Get eKYC Data</h2>
+<p><span class="method post">POST</span> <code>/api/v1/otp/verify</code></p>
+<p>Verifies the OTP entered by user and returns demographic eKYC data.</p>
+
+<h3>Request Parameters</h3>
+<table><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><th>Validation</th></tr>
+<tr><td><code>uid</code></td><td>String</td><td>Yes</td><td>12-digit Aadhaar number</td><td>Same as OTP generate request</td></tr>
+<tr><td><code>txnId</code></td><td>String</td><td>Yes</td><td>Transaction ID from OTP request</td><td>Must match generate response txnId</td></tr>
+<tr><td><code>otp</code></td><td>String</td><td>Yes</td><td>6-digit OTP entered by user</td><td>Exactly 6 digits, numeric</td></tr>
+<tr><td><code>consent</code></td><td>String</td><td>Yes</td><td>User consent flag</td><td>Must be "Y"</td></tr>
+<tr><td><code>timestamp</code></td><td>DateTime</td><td>Yes</td><td>Request timestamp</td><td>ISO 8601</td></tr></table>
+
+<h3>Response — Success (eKYC Data)</h3>
+<pre>{
+  "status": "SUCCESS",
+  "txnId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "ekyc": {
+    "name": "Atharva Sunil Patil",
+    "dob": "2001-05-15",          // YYYY-MM-DD format
+    "gender": "M",                 // M = Male, F = Female, T = Transgender
+    "photo": "base64_encoded...",  // Aadhaar photo (base64 JPEG)
+    "address": {
+      "state": "Maharashtra",
+      "district": "Pune",
+      "pincode": "411045"
+    },
+    "referenceId": "XXXX XXXX 4523"  // Masked Aadhaar (last 4 visible)
+  }
+}
+
+// Fields we STORE in Firebase:
+// ✅ name, dob, gender → for verification record
+// ✅ referenceId → for audit (masked, not full Aadhaar)
+// ❌ photo → NOT stored (privacy)
+// ❌ address → NOT stored (not needed)
+// ❌ Full Aadhaar number → NEVER stored</pre>
+
+<h2>API Endpoint 3: Offline XML Processing (Server-Side)</h2>
+<p><span class="method post">POST</span> <code>/api/v1/xml/validate</code> <span style="font-size:11px;color:#7878A0">(Our Firebase Cloud Function)</span></p>
+
+<h3>Processing Steps</h3>
+<pre>// Firebase Cloud Function: processAadhaarXML
+
+Step 1: Receive ZIP file upload
+  → Validate: file size ≤ 5MB, extension = .zip
+
+Step 2: Extract XML from ZIP using share_code as password
+  → If decryption fails → Error: XML-001
+
+Step 3: Validate UIDAI Digital Signature
+  → Parse XML → Check &lt;Signature&gt; element
+  → Validate against UIDAI public certificate
+  → If invalid → Error: XML-002
+
+Step 4: Check XML freshness
+  → Read "generatedOn" attribute
+  → If older than 3 days → Error: XML-003
+
+Step 5: Extract Demographics
+  → poi (Proof of Identity) element:
+    - name = poi.@name
+    - dob  = poi.@dob          // DD-MM-YYYY format
+    - gender = poi.@gender     // M/F/T
+  → poa (Proof of Address) element:
+    - state, district (optional, not stored)
+
+Step 6: Return extracted data to app
+  → Same format as OTP eKYC response</pre>
+
+<h3>Request (multipart/form-data)</h3>
+<table><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+<tr><td><code>xmlFile</code></td><td>File</td><td>Yes</td><td>Aadhaar XML ZIP file (≤ 5MB)</td></tr>
+<tr><td><code>shareCode</code></td><td>String</td><td>Yes</td><td>4-digit numeric code (set during XML download)</td></tr>
+<tr><td><code>artistId</code></td><td>String</td><td>Yes</td><td>Firebase UID of the registering artist</td></tr></table>
+
+<h2>Complete Error Codes Reference</h2>
+<table><tr><th>Code</th><th>Source</th><th>Description</th><th>User Message</th><th>Action</th></tr>
+<tr><td><code>K-200</code></td><td>UIDAI</td><td>Invalid Aadhaar number</td><td>"Please check your Aadhaar number and try again"</td><td>Re-enter Aadhaar</td></tr>
+<tr><td><code>K-544</code></td><td>UIDAI</td><td>OTP expired (>10 min)</td><td>"OTP has expired. Please request a new one"</td><td>Resend OTP</td></tr>
+<tr><td><code>K-569</code></td><td>UIDAI</td><td>OTP does not match</td><td>"Incorrect OTP. You have X attempts remaining"</td><td>Retry (max 3)</td></tr>
+<tr><td><code>K-955</code></td><td>UIDAI</td><td>Technical failure</td><td>"Service temporarily unavailable. Try again later"</td><td>Retry after 5 min</td></tr>
+<tr><td><code>K-100</code></td><td>UIDAI</td><td>Aadhaar not linked to mobile</td><td>"Your Aadhaar isn't linked to mobile. Use XML instead"</td><td>Switch to XML path</td></tr>
+<tr><td><code>K-540</code></td><td>UIDAI</td><td>Max OTP attempts exceeded</td><td>"Too many OTP requests. Try after 30 minutes"</td><td>Cooldown 30 min</td></tr>
+<tr style="background:#DC262610"><td><code>XML-001</code></td><td>App</td><td>Invalid share code / can't decrypt</td><td>"Incorrect share code. Please check and retry"</td><td>Re-enter code</td></tr>
+<tr style="background:#DC262610"><td><code>XML-002</code></td><td>App</td><td>Tampered / invalid XML signature</td><td>"File could not be verified. Download fresh from UIDAI"</td><td>Re-download XML</td></tr>
+<tr style="background:#DC262610"><td><code>XML-003</code></td><td>App</td><td>XML expired (>3 days old)</td><td>"This XML is expired. Download a new one"</td><td>Re-download XML</td></tr>
+<tr style="background:#DC262610"><td><code>AGE-001</code></td><td>App</td><td>User is under 18</td><td>"Welcome! You can browse age-appropriate content"</td><td>Redirect to restricted mode</td></tr>
+<tr style="background:#DC262610"><td><code>NET-001</code></td><td>App</td><td>Network timeout</td><td>"Connection failed. Please check internet and retry"</td><td>Retry</td></tr></table>
+
+<div class="note">⚠️ <strong>Security Note:</strong> All API calls must use HTTPS/TLS 1.2+. Aadhaar number must be encrypted in transit using UIDAI's 2048-bit RSA public key. The raw Aadhaar number is NEVER logged or stored in our systems.</div>
+
+<h2>Integration Architecture</h2>
+<pre>
+┌─────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Flutter App │────▶│ Firebase Cloud    │────▶│  UIDAI eKYC     │
+│  (Client)    │◀────│ Functions (Server)│◀────│  API / ASA      │
+└─────────────┘     └──────────────────┘     └─────────────────┘
+      │                     │                        │
+      │ 1. Aadhaar +        │ 2. Encrypted           │ 3. OTP sent
+      │    Consent           │    API call             │    to mobile
+      │                     │                        │
+      │ 6. Show result      │ 5. Store verification  │ 4. Verify OTP
+      │    to user           │    status in Firestore │    return eKYC
+      ▼                     ▼                        ▼
+┌─────────────┐     ┌──────────────────┐
+│  App UI     │     │  Firestore DB    │
+│  (Result)   │     │  (Verification   │
+│             │     │   record stored) │
+└─────────────┘     └──────────────────┘
+</pre>
+
+<div style="text-align:center;margin-top:40px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">BeLive App · API Analysis · Mohammad Jamal Yusuf · March 2026</div>
+</body></html>

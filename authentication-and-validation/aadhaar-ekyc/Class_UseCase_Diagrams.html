@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Class & Use Case Diagrams — Aadhaar eKYC</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#0B0B10;color:#E8E8F0;padding:30px}h1{font-size:28px;text-align:center;margin-bottom:4px}h2{font-size:20px;margin:30px 0 12px;color:#E94560;padding-bottom:6px;border-bottom:1px solid #2A2A3A}.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:24px}.cls{display:inline-block;vertical-align:top;margin:8px;min-width:240px;border:2px solid;border-radius:8px;overflow:hidden;font-size:12px;background:#14141C}.cls .cname{padding:8px 14px;font-weight:700;font-size:14px;color:#FFF;text-align:center}.cls .section{padding:6px 14px;border-top:1px solid #2A2A3A}.cls .section div{padding:2px 0;font-family:'JetBrains Mono',monospace;font-size:11px}.cls .section.methods div{color:#2563EB}.cls .section.attrs div{color:#B0B0C8}p{font-size:13px;margin:6px 0;color:#B0B0C8}.note{background:#2563EB10;border:1px solid #2563EB30;border-radius:8px;padding:12px 16px;font-size:12px;color:#93C5FD;margin:12px 0}.uc-box{display:inline-block;border:2px solid #2563EB;border-radius:30px;padding:8px 20px;margin:5px;font-size:12px;text-align:center;background:#2563EB08}.uc-box.ext{border-color:#0F9B8E;background:#0F9B8E08}.uc-box.sys{border-color:#E94560;background:#E9456008}.actor{text-align:center;display:inline-flex;flex-direction:column;align-items:center;margin:10px 24px;font-size:13px;font-weight:600}.actor .icon{font-size:40px;line-height:1}.sys-boundary{border:2px dashed #3A3A48;border-radius:16px;padding:20px;margin:16px 0;display:inline-block;text-align:center}.sys-boundary .sys-title{font-size:14px;font-weight:700;color:#E94560;margin-bottom:12px}.rel{text-align:center;margin:16px 0;font-size:12px;color:#7878A0}</style></head><body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP · AUTHENTICATION & VERIFICATION</div>
+<h1>Class Diagram & Use Case Diagram</h1>
+<div class="sub">UML Diagrams for Aadhaar eKYC Verification Feature</div>
+
+<h2>1. Class Diagram</h2>
+<p>Object-oriented structure showing the main classes, their attributes, methods, and relationships.</p>
+
+<div style="text-align:center;overflow-x:auto;padding:16px 0;">
+<div class="cls" style="border-color:#2563EB"><div class="cname" style="background:#2563EB">AadhaarKYCService</div><div class="section attrs"><div>- apiKey: String</div><div>- baseUrl: String</div><div>- maxRetries: int = 3</div><div>- otpTimeout: int = 60</div><div>- cooldownMinutes: int = 30</div></div><div class="section methods"><div>+ generateOTP(uid: String): OTPResponse</div><div>+ verifyOTP(uid, otp, txnId): eKYCData</div><div>+ validateXML(file, shareCode): eKYCData</div><div>+ calculateAge(dob: String): int</div><div>+ determineAgeTier(age: int): String</div><div>+ matchNames(input, aadhaar): float</div><div>- encryptRequest(data): String</div><div>- validateAadhaarFormat(uid): bool</div><div>- checkCooldown(artistId): bool</div></div></div>
+
+<div class="cls" style="border-color:#0F9B8E"><div class="cname" style="background:#0F9B8E">ArtistRegistration</div><div class="section attrs"><div>- artistId: String</div><div>- registrationStep: int (1-5)</div><div>- kycStatus: KYCStatus enum</div><div>- personalInfo: PersonalInfo</div><div>- ageTier: String</div></div><div class="section methods"><div>+ startRegistration(): void</div><div>+ submitBasicInfo(info): void</div><div>+ initKYCVerification(): void</div><div>+ handleVerificationResult(data): void</div><div>+ submitConsent(consent): void</div><div>+ submitProfile(profile): void</div><div>+ getProgress(): float</div></div></div>
+
+<div class="cls" style="border-color:#7C3AED"><div class="cname" style="background:#7C3AED">AdminKYCQueue</div><div class="section attrs"><div>- queueItems: List&lt;KYCItem&gt;</div><div>- filters: FilterCriteria</div><div>- currentPage: int</div></div><div class="section methods"><div>+ getPendingArtists(): List&lt;Artist&gt;</div><div>+ getKYCDetails(artistId): KYCDetail</div><div>+ approveArtist(artistId): void</div><div>+ rejectArtist(artistId, reason): void</div><div>+ requestReVerify(artistId): void</div><div>+ filterByStatus(status): List</div><div>+ searchByName(query): List</div><div>+ logAction(action, artistId): void</div></div></div>
+
+<div class="cls" style="border-color:#D97706"><div class="cname" style="background:#D97706">eKYCData</div><div class="section attrs"><div>+ name: String</div><div>+ dateOfBirth: String</div><div>+ gender: String</div><div>+ age: int (calculated)</div><div>+ ageTier: String</div><div>+ photo: String (base64)</div><div>+ referenceId: String (masked)</div><div>+ verificationMethod: String</div><div>+ verifiedAt: DateTime</div></div><div class="section methods"><div>+ getAge(): int</div><div>+ isAdult(): bool</div><div>+ matchName(inputName): float</div><div>+ getAgeTier(): String</div></div></div>
+
+<div class="cls" style="border-color:#E94560"><div class="cname" style="background:#E94560">ContentGateService</div><div class="section attrs"><div>- userAgeTier: String</div><div>- contentRules: Map</div></div><div class="section methods"><div>+ filterEvents(events, ageTier): List</div><div>+ isEventAccessible(event, user): bool</div><div>+ getRestrictedCategories(): List</div><div>+ checkAutoUpgrade(user): bool</div><div>+ upgradeToAdult(userId): void</div></div></div>
+
+<div class="cls" style="border-color:#059669"><div class="cname" style="background:#059669">AuditLogger</div><div class="section attrs"><div>- collectionRef: FirestoreRef</div></div><div class="section methods"><div>+ logOTPSent(artistId, txnId): void</div><div>+ logOTPVerified(artistId): void</div><div>+ logXMLUploaded(artistId): void</div><div>+ logAgeCheckResult(artistId, age, tier): void</div><div>+ logAdminAction(adminId, artistId, action): void</div><div>+ getAuditTrail(artistId): List&lt;Log&gt;</div></div></div>
+</div>
+
+<div class="note">
+<strong>Relationships:</strong><br>
+• <strong>ArtistRegistration</strong> → uses → <strong>AadhaarKYCService</strong> (for verification)<br>
+• <strong>AadhaarKYCService</strong> → produces → <strong>eKYCData</strong> (verification result)<br>
+• <strong>ArtistRegistration</strong> → uses → <strong>ContentGateService</strong> (for age-based routing)<br>
+• <strong>AdminKYCQueue</strong> → reads → <strong>eKYCData</strong> (to review verification)<br>
+• <strong>All classes</strong> → use → <strong>AuditLogger</strong> (for compliance trail)<br>
+• <strong>ContentGateService</strong> → reads → <strong>eKYCData.ageTier</strong> (to determine content access)
+</div>
+
+<h2>2. Use Case Diagram</h2>
+<p>Shows all actors (Artist, Admin, Fan, Under-18 User) and their interactions with the Aadhaar eKYC system.</p>
+
+<div style="text-align:center;padding:20px 0;">
+<div style="display:flex;justify-content:center;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+
+<div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+<div class="actor"><div class="icon">🧑‍🎤</div>Artist (18+)</div>
+<div style="font-size:10px;color:#7878A0;text-align:center;">Primary actor<br>Registers & verifies</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+<div class="actor"><div class="icon">👶</div>User (&lt;18)</div>
+<div style="font-size:10px;color:#7878A0;text-align:center;">Restricted access<br>Age-appropriate only</div>
+</div>
+
+<div class="sys-boundary">
+<div class="sys-title">BeLive App — Aadhaar eKYC System</div>
+<div class="uc-box">UC1: Enter Aadhaar Number</div>
+<div class="uc-box">UC2: Verify via OTP</div>
+<div class="uc-box ext">UC3: Upload Offline XML</div><br>
+<div class="uc-box sys">UC4: Age Verification & Routing</div><br>
+<div class="uc-box" style="border-color:#059669;background:#05966908">UC5: Receive Verified Badge</div>
+<div class="uc-box sys">UC6: Browse Age-Appropriate Content</div><br>
+<div class="uc-box" style="border-color:#7C3AED;background:#7C3AED08">UC7: Review KYC Queue</div>
+<div class="uc-box" style="border-color:#7C3AED;background:#7C3AED08">UC8: Approve/Reject/Re-verify</div><br>
+<div class="uc-box" style="border-color:#D97706;background:#D9770608">UC9: View Verified Artists</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+<div class="actor"><div class="icon">👨‍💼</div>Admin</div>
+<div style="font-size:10px;color:#7878A0;text-align:center;">Reviews &<br>approves</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+<div class="actor"><div class="icon">👤</div>Fan</div>
+<div style="font-size:10px;color:#7878A0;text-align:center;">Views badges<br>& profiles</div>
+</div>
+
+</div>
+</div>
+
+<div class="rel">
+<strong>Actor → Use Case Mapping:</strong><br><br>
+🧑‍🎤 <strong>Artist (18+):</strong> UC1, UC2, UC3, UC4, UC5<br>
+👶 <strong>User (&lt;18):</strong> UC1, UC2/UC3 (verify age), UC4, UC6<br>
+👨‍💼 <strong>Admin:</strong> UC7, UC8<br>
+👤 <strong>Fan:</strong> UC9<br><br>
+<strong>Relationships:</strong><br>
+UC2 «extends» UC3 (XML is fallback for OTP)<br>
+UC4 «includes» UC1 (age check requires Aadhaar entry)<br>
+UC5 «depends on» UC4 (badge only if 18+ verified)<br>
+UC6 «depends on» UC4 (restricted mode if &lt;18)<br>
+UC8 «includes» UC7 (approve/reject from queue view)
+</div>
+
+<h2>3. Enum Definitions</h2>
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+<div class="cls" style="border-color:#64748B;min-width:180px"><div class="cname" style="background:#64748B">«enum» KYCStatus</div><div class="section attrs"><div>PENDING_KYC</div><div>KYC_IN_PROGRESS</div><div>KYC_VERIFIED</div><div>KYC_FAILED</div><div>PENDING_REVIEW</div><div>APPROVED</div><div>REJECTED</div><div>RE_VERIFY_REQUIRED</div></div></div>
+<div class="cls" style="border-color:#64748B;min-width:180px"><div class="cname" style="background:#64748B">«enum» AgeTier</div><div class="section attrs"><div>ADULT (18+)</div><div>MINOR (&lt;18)</div></div></div>
+<div class="cls" style="border-color:#64748B;min-width:180px"><div class="cname" style="background:#64748B">«enum» VerificationMethod</div><div class="section attrs"><div>AADHAAR_OTP</div><div>AADHAAR_XML</div></div></div>
+<div class="cls" style="border-color:#64748B;min-width:180px"><div class="cname" style="background:#64748B">«enum» AdminAction</div><div class="section attrs"><div>APPROVE</div><div>REJECT</div><div>REQUEST_REVERIFY</div></div></div>
+<div class="cls" style="border-color:#64748B;min-width:180px"><div class="cname" style="background:#64748B">«enum» ContentFilter</div><div class="section attrs"><div>ALL (adults)</div><div>AGE_APPROPRIATE (minors)</div></div></div>
+</div>
+
+<div style="text-align:center;margin-top:40px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">BeLive App · Class & Use Case Diagrams · Mohammad Jamal Yusuf · March 2026</div>
+</body></html>
