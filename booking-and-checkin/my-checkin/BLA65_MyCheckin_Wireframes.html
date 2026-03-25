@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-65 My Checkin Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:28px;text-align:center;margin-bottom:4px}
+h2{font-size:18px;color:#E94560;text-align:center;margin:30px 0 16px}
+.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:30px}
+.screens{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:10px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:8px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#E94560;color:#FFF;border-radius:50%;font-size:11px;font-weight:700}
+.sl{font-size:12px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:10px;color:#7878A0;text-align:center;max-width:260px}
+.ph{width:260px;height:540px;background:#F8F9FB;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 20px 60px rgba(0,0,0,.5)}
+.sb{height:28px;background:#FFF;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:9px;font-weight:600;color:#1E293B}
+.no{width:70px;height:16px;background:#1E293B;border-radius:0 0 10px 10px;position:absolute;left:50%;transform:translateX(-50%);top:0}
+.bn{position:absolute;bottom:0;left:0;right:0;height:50px;background:#FFF;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-around;font-size:8px;color:#94A3B8}
+.bn .n{text-align:center}.bn .n.a{color:#E94560}.bn .n i{font-size:16px;font-style:normal;display:block}
+.ct{height:calc(100% - 78px);overflow-y:auto}
+
+/* Header bar */
+.hd{background:#FFF;padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E2E8F0}
+.hd .bk{font-size:16px;color:#1E293B}
+.hd .tt{font-size:14px;font-weight:700;color:#1E293B;flex:1}
+.hd .ic{font-size:14px;color:#94A3B8}
+
+/* Event detail header */
+.evh{width:100%;height:130px;position:relative;overflow:hidden}
+.evh .bg{width:100%;height:100%;object-fit:cover}
+.evh .ov{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#FFF}
+.evh .ov .en{font-size:14px;font-weight:700}.evh .ov .ar{font-size:10px;opacity:.9}
+
+/* Info rows */
+.ir{padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:10px;color:#1E293B;border-bottom:1px solid #F1F5F9}
+.ir .il{color:#94A3B8;min-width:16px;text-align:center}
+
+/* Check-in button */
+.cib{margin:12px 14px;padding:12px;border-radius:12px;text-align:center;font-size:13px;font-weight:700;color:#FFF;cursor:pointer}
+.cib.active{background:#E94560}
+.cib.done{background:#059669}
+.cib.disabled{background:#E2E8F0;color:#94A3B8}
+.cib .sub2{font-size:9px;font-weight:400;opacity:.8;margin-top:2px}
+
+/* Success overlay */
+.succ{position:absolute;top:0;left:0;right:0;bottom:50px;background:rgba(5,150,105,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#FFF;z-index:10;text-align:center;padding:20px}
+.succ .chk{font-size:60px;margin-bottom:10px}
+.succ .st{font-size:18px;font-weight:700;margin-bottom:4px}
+.succ .sd{font-size:11px;opacity:.9;margin-bottom:16px}
+.succ .sbtn{background:#FFF;color:#059669;padding:8px 20px;border-radius:10px;font-size:11px;font-weight:700;display:inline-block;margin:3px}
+.succ .sbtn.share{background:rgba(255,255,255,.2);color:#FFF;border:1px solid rgba(255,255,255,.4)}
+
+/* Error toast */
+.err{position:absolute;bottom:60px;left:12px;right:12px;background:#DC2626;color:#FFF;padding:8px 14px;border-radius:10px;font-size:10px;font-weight:500;text-align:center;z-index:10}
+
+/* Home checkin cards */
+.tabs{display:flex;background:#FFF;border-bottom:1px solid #E2E8F0;font-size:10px;font-weight:600}
+.tabs .t{flex:1;text-align:center;padding:7px 0;color:#94A3B8;position:relative}
+.tabs .t.a{color:#E94560}.tabs .t.a::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:#E94560;border-radius:1px}
+
+.stl{font-size:11px;font-weight:700;color:#1E293B;padding:10px 12px 4px;display:flex;justify-content:space-between}
+.stl .sa{font-size:9px;color:#2563EB;font-weight:600}
+
+.hsc{display:flex;gap:8px;padding:6px 12px;overflow-x:auto}
+.hcard{min-width:140px;background:#FFF;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);flex-shrink:0}
+.hcard .img{height:70px;width:100%}
+.hcard .inf{padding:6px 8px;font-size:9px;color:#1E293B}
+.hcard .inf .tt{font-weight:700;font-size:10px;margin-bottom:1px}
+.hcard .inf .mt{color:#94A3B8;font-size:8px}
+
+/* Rating screen */
+.stars{display:flex;gap:6px;justify-content:center;margin:10px 0}
+.star{font-size:28px;cursor:pointer}
+.star.on{color:#D97706}.star.off{color:#E2E8F0}
+.rvbox{margin:8px 14px;background:#FFF;border:1px solid #E2E8F0;border-radius:10px;padding:10px;font-size:10px;color:#94A3B8;min-height:60px}
+.rbtn{margin:8px 14px;padding:10px;background:#E94560;color:#FFF;border-radius:10px;text-align:center;font-size:12px;font-weight:700}
+.badge{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;font-weight:600}
+.badge.va{background:#D1FAE5;color:#059669}
+
+/* Empty */
+.empty{text-align:center;padding:30px 16px;color:#94A3B8;font-size:10px}
+.empty .ei{font-size:36px;margin-bottom:6px}.empty .em{font-weight:600;color:#1E293B;font-size:11px;margin-bottom:3px}
+.empty .ec{margin-top:8px;padding:5px 12px;background:#E94560;color:#FFF;border-radius:7px;display:inline-block;font-size:9px;font-weight:600}
+
+/* Share card */
+.shcard{margin:12px 14px;background:linear-gradient(135deg,#E94560,#7C3AED);border-radius:14px;padding:16px;color:#FFF;text-align:center}
+.shcard .logo{font-size:10px;font-weight:700;letter-spacing:2px;opacity:.7;margin-bottom:8px}
+.shcard .ev{font-size:16px;font-weight:700;margin-bottom:4px}
+.shcard .ar{font-size:11px;opacity:.9;margin-bottom:2px}
+.shcard .loc{font-size:10px;opacity:.8}
+.shcard .tag{display:inline-block;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px;font-size:9px;font-weight:600;margin-top:8px}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:40px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:14px;margin:20px auto;max-width:800px;font-size:11px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-65</div>
+<h1>My Checkin — Wireframes</h1>
+<div class="sub">6 Screens · Check-in Flow, History, Rating, Share</div>
+
+<h2>Check-in Flow</h2>
+<div class="screens">
+
+<!-- Screen 1: Event Detail with Check-in Button -->
+<div class="sw"><span class="sn">1</span><div class="sl">Event Detail — Check In</div><div class="ss">Live event, within 500m radius</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div>
+<div class="ct">
+<div class="evh"><div class="bg" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div class="ov"><div class="en">Acoustic Night Live 🎤</div><div class="ar">By Atharva Patil</div></div></div>
+<div class="ir"><span class="il">📍</span> Oasis Club, Baner, Pune</div>
+<div class="ir"><span class="il">🗓</span> Today · 8:00 PM – 11:00 PM</div>
+<div class="ir"><span class="il">👥</span> 23 checked in</div>
+<div class="ir"><span class="il">🏷</span> Singer · Acoustic · Live Music</div>
+<div class="cib active">📍 Check In<div class="sub2">You're 320m away from the venue</div></div>
+<div style="text-align:center;font-size:8px;color:#94A3B8;padding:0 14px">GPS verified · Location within range ✅</div>
+</div>
+<div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div>
+</div></div>
+
+<!-- Screen 2: Check-in Success -->
+<div class="sw"><span class="sn">2</span><div class="sl">Check-In Success</div><div class="ss">Confirmation + share option</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div>
+<div class="ct" style="position:relative">
+<div class="evh"><div class="bg" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div></div>
+<div class="succ">
+<div class="chk">✅</div>
+<div class="st">You're Checked In!</div>
+<div class="sd">Acoustic Night Live · Oasis Club<br>Mar 25, 2026 at 8:14 PM</div>
+<div class="sbtn">View Event Details</div>
+<div class="sbtn share">📤 Share Check-In</div>
+</div>
+</div>
+<div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div>
+</div></div>
+
+<!-- Screen 3: Out of Range Error -->
+<div class="sw"><span class="sn">3</span><div class="sl">Out of Range Error</div><div class="ss">GPS > 500m from venue</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div>
+<div class="ct" style="position:relative">
+<div class="evh"><div class="bg" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div class="ov"><div class="en">Acoustic Night Live 🎤</div><div class="ar">By Atharva Patil</div></div></div>
+<div class="ir"><span class="il">📍</span> Oasis Club, Baner, Pune</div>
+<div class="ir"><span class="il">🗓</span> Today · 8:00 PM – 11:00 PM</div>
+<div class="ir"><span class="il">👥</span> 23 checked in</div>
+<div class="cib disabled">📍 Check In<div class="sub2" style="color:#94A3B8">You are 2.3 km away</div></div>
+<div class="err">❌ You need to be at or near the venue to check in. Please try again when you arrive.</div>
+</div>
+<div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<h2>History, Rating & Share</h2>
+<div class="screens">
+
+<!-- Screen 4: My Checkins on Home -->
+<div class="sw"><span class="sn">4</span><div class="sl">Home — My Checkins Tab</div><div class="ss">Horizontal scrollable history</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div>
+<div class="ct">
+<div class="tabs"><div class="t">Nearby Artists</div><div class="t a">My Checkins</div></div>
+<div class="stl">Recent Check-ins <span class="sa">View All →</span></div>
+<div class="hsc">
+<div class="hcard"><div class="img" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div class="inf"><div class="tt">Acoustic Night Live</div><div class="mt">🎤 Atharva Patil</div><div class="mt">📍 Oasis Club · Mar 25</div></div></div>
+<div class="hcard"><div class="img" style="background:linear-gradient(135deg,#059669,#0F9B8E)"></div><div class="inf"><div class="tt">DJ Rave Night</div><div class="mt">🎧 DJ Ravi</div><div class="mt">📍 Blue Frog · Mar 20</div></div></div>
+<div class="hcard"><div class="img" style="background:linear-gradient(135deg,#2563EB,#7C3AED)"></div><div class="inf"><div class="tt">Rang De 3.0</div><div class="mt">🎤 Multiple Artists</div><div class="mt">📍 Oasis Club · Mar 15</div></div></div>
+</div>
+<div class="stl" style="margin-top:8px">Past Events <span class="sa">View All →</span></div>
+<div style="padding:4px 12px">
+<div style="background:#FFF;border-radius:10px;padding:8px 10px;margin:4px 0;display:flex;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.03)">
+<div style="width:44px;height:44px;border-radius:7px;background:linear-gradient(135deg,#D97706,#E94560);flex-shrink:0"></div>
+<div style="flex:1;font-size:9px;color:#1E293B"><div style="font-weight:700;font-size:10px">Bollywood Unplugged</div><div style="color:#94A3B8">🎸 Shreya Band · Hard Rock · Mar 10</div></div>
+<div style="font-size:8px;color:#D97706;font-weight:600;align-self:center">⭐ Rate</div>
+</div>
+<div style="background:#FFF;border-radius:10px;padding:8px 10px;margin:4px 0;display:flex;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.03)">
+<div style="width:44px;height:44px;border-radius:7px;background:linear-gradient(135deg,#7C3AED,#E94560);flex-shrink:0"></div>
+<div style="flex:1;font-size:9px;color:#1E293B"><div style="font-weight:700;font-size:10px">Open Mic Friday</div><div style="color:#94A3B8">🎤 Various · Cafe Durga · Mar 5</div></div>
+<div style="font-size:8px;color:#059669;font-weight:600;align-self:center">✅ Rated</div>
+</div>
+</div>
+</div>
+<div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div>
+</div></div>
+
+<!-- Screen 5: Rating Screen -->
+<div class="sw"><span class="sn">5</span><div class="sl">Rate Artist — Post Event</div><div class="ss">Only for checked-in fans</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div>
+<div class="ct">
+<div class="hd"><span class="bk">←</span><span class="tt">Rate Performance</span><span class="ic"></span></div>
+<div style="text-align:center;padding:14px">
+<div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED);margin:0 auto 8px"></div>
+<div style="font-size:14px;font-weight:700;color:#1E293B">Atharva Patil</div>
+<div style="font-size:10px;color:#94A3B8">Acoustic Night Live · Oasis Club</div>
+<div style="margin-top:4px"><span class="badge va">✅ Verified Attendee</span></div>
+</div>
+<div style="text-align:center;font-size:11px;color:#1E293B;font-weight:600;margin-bottom:4px">How was the performance?</div>
+<div class="stars">
+<span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span>
+</div>
+<div style="text-align:center;font-size:10px;color:#D97706;font-weight:600;margin-bottom:10px">Great!</div>
+<div style="padding:0 14px;font-size:10px;color:#1E293B;font-weight:600;margin-bottom:4px">Write a review (optional)</div>
+<div class="rvbox">Amazing acoustic set! Atharva's voice was incredible. The venue ambiance was perfect...</div>
+<div style="text-align:right;padding:0 14px;font-size:8px;color:#94A3B8">127/300 characters</div>
+<div class="rbtn">Submit Rating ⭐</div>
+</div>
+<div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div>
+</div></div>
+
+<!-- Screen 6: Share Check-in Card -->
+<div class="sw"><span class="sn">6</span><div class="sl">Share Check-In Card</div><div class="ss">Branded card + share sheet</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div>
+<div class="ct">
+<div class="hd"><span class="bk">←</span><span class="tt">Share Check-In</span><span class="ic"></span></div>
+<div class="shcard">
+<div class="logo">BELIVE</div>
+<div class="ev">🎤 Acoustic Night Live</div>
+<div class="ar">By Atharva Patil</div>
+<div class="loc">📍 Oasis Club, Baner, Pune</div>
+<div class="loc">🗓 Mar 25, 2026 · 8:00 PM</div>
+<div class="tag">🎵 I'm here!</div>
+</div>
+<div style="padding:10px 14px;font-size:10px;color:#1E293B;font-weight:600">Share to:</div>
+<div style="display:flex;gap:12px;padding:0 14px;justify-content:center">
+<div style="text-align:center"><div style="width:44px;height:44px;background:#25D366;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">💬</div><div style="font-size:8px;color:#94A3B8">WhatsApp</div></div>
+<div style="text-align:center"><div style="width:44px;height:44px;background:linear-gradient(135deg,#833AB4,#E1306C,#F77737);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">📷</div><div style="font-size:8px;color:#94A3B8">Instagram</div></div>
+<div style="text-align:center"><div style="width:44px;height:44px;background:#1DA1F2;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">🐦</div><div style="font-size:8px;color:#94A3B8">Twitter</div></div>
+<div style="text-align:center"><div style="width:44px;height:44px;background:#E2E8F0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">📋</div><div style="font-size:8px;color:#94A3B8">Copy Link</div></div>
+</div>
+<div style="margin:12px 14px;padding:8px 12px;background:#F1F5F9;border-radius:8px;font-size:9px;color:#94A3B8;display:flex;align-items:center;gap:6px">
+<span>🔗</span>
+<span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">beliveapp.link/event/acoustic-night-live-2026</span>
+</div>
+<div style="text-align:center;font-size:8px;color:#94A3B8;padding:4px">Deep link via Branch.io · Works even if recipient doesn't have the app</div>
+</div>
+<div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Screen to User Story Mapping</strong><br><br>
+Screen 1 (Check In Button) → US-001: Fan checks into live event (AC1-AC6)<br>
+Screen 2 (Success) → US-001: AC6 + US-005: Share check-in (AC1)<br>
+Screen 3 (Out of Range) → US-001: AC2 (GPS > 500m error)<br>
+Screen 4 (My Checkins Home) → US-002: Fan views check-in history (AC1-AC4)<br>
+Screen 5 (Rating) → US-004: Check-in unlocks rating (AC1-AC5)<br>
+Screen 6 (Share Card) → US-005: Fan shares check-in (AC1-AC3)
+</div>
+
+<div style="text-align:center;margin-top:30px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">
+BeLive App · BLA-65 My Checkin · Wireframes · Mohammad Jamal Yusuf · March 2026
+</div>
+</body>
+</html>
