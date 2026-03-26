@@ -1,0 +1,96 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>BLA-62 Image Carousel Wireframes</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}h1{font-size:28px;text-align:center;margin-bottom:4px}h2{font-size:18px;color:#E94560;text-align:center;margin:30px 0 16px}.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:30px}.screens{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:10px 0}.sw{display:flex;flex-direction:column;align-items:center;gap:8px}.sn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#E94560;color:#FFF;border-radius:50%;font-size:11px;font-weight:700}.sl{font-size:12px;font-weight:700;color:#E94560;text-align:center;max-width:260px}.ss{font-size:10px;color:#7878A0;text-align:center;max-width:260px}.ph{width:260px;height:540px;background:#F8F9FB;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 20px 60px rgba(0,0,0,.5)}.sb{height:28px;background:#FFF;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:9px;font-weight:600;color:#1E293B}.no{width:70px;height:16px;background:#1E293B;border-radius:0 0 10px 10px;position:absolute;left:50%;transform:translateX(-50%);top:0}.bn{position:absolute;bottom:0;left:0;right:0;height:50px;background:#FFF;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-around;font-size:8px;color:#94A3B8}.bn .n{text-align:center}.bn .n.a{color:#E94560}.bn .n i{font-size:16px;font-style:normal;display:block}.ct{height:calc(100% - 78px);overflow-y:auto}.hd{background:#FFF;padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E2E8F0}.hd .bk{font-size:16px;color:#1E293B}.hd .tt{font-size:14px;font-weight:700;color:#1E293B;flex:1}.ir{padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:10px;color:#1E293B;border-bottom:1px solid #F1F5F9}.ir .il{color:#94A3B8;min-width:16px;text-align:center}.btn{margin:8px 14px;padding:10px;border-radius:10px;text-align:center;font-size:12px;font-weight:700;color:#FFF;background:#E94560}.btn.sec{background:#2563EB}.btn.out{background:#FFF;color:#E94560;border:1.5px solid #E94560}.badge{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;font-weight:600}.badge.v{background:#D1FAE5;color:#059669}.badge.p{background:#FEF3C7;color:#D97706}.badge.r{background:#FEE2E2;color:#DC2626}hr{border:none;border-top:1px solid #2A2A3A;margin:40px 0}.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:14px;margin:20px auto;max-width:800px;font-size:11px;color:#B0B0C8;line-height:1.8}.inp{margin:4px 14px;padding:8px 10px;background:#FFF;border:1.5px solid #E2E8F0;border-radius:8px;font-size:10px;color:#1E293B}.inp.err{border-color:#DC2626}.inp .lb{font-size:9px;color:#94A3B8;margin-bottom:3px;font-weight:600}.inp .val{color:#1E293B}.chk{display:flex;align-items:flex-start;gap:6px;padding:6px 14px;font-size:9px;color:#1E293B}.chk .box{width:14px;height:14px;border:1.5px solid #E2E8F0;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px}.chk .box.on{background:#059669;border-color:#059669;color:#FFF}</style></head><body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-62</div>
+<h1>Image Carousel — Wireframes</h1><div class="sub">3 Screens · Home Carousel, Event Detail Carousel, Loading State</div>
+<div class="screens">
+
+<div class="sw"><span class="sn">1</span><div class="sl">Home — Featured Carousel</div><div class="ss">Auto-scrolling artist & event highlights</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div><div class="ct">
+<!-- Carousel -->
+<div style="position:relative;height:160px;overflow:hidden">
+<div style="width:100%;height:100%;background:linear-gradient(135deg,#E94560,#7C3AED);position:relative">
+<div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#FFF">
+<div style="font-size:8px;font-weight:600;letter-spacing:1px;opacity:.7;margin-bottom:2px">FEATURED ARTIST</div>
+<div style="font-size:14px;font-weight:700">Atharva Patil 🎤</div>
+<div style="font-size:9px;opacity:.9">Singer · Acoustic · Pune · ✅ Verified</div>
+<div style="margin-top:6px;display:inline-block;padding:4px 12px;background:rgba(255,255,255,.2);border-radius:6px;font-size:9px;font-weight:600;backdrop-filter:blur(4px)">View Profile →</div>
+</div>
+</div>
+<!-- Dots -->
+<div style="position:absolute;bottom:6px;right:12px;display:flex;gap:4px">
+<div style="width:6px;height:6px;border-radius:50%;background:#FFF"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)"></div>
+</div>
+</div>
+
+<div style="display:flex;background:#FFF;border-bottom:1px solid #E2E8F0;font-size:10px;font-weight:600"><div style="flex:1;text-align:center;padding:7px 0;color:#E94560;position:relative">Nearby Artists<div style="position:absolute;bottom:0;left:20%;right:20%;height:2px;background:#E94560;border-radius:1px"></div></div><div style="flex:1;text-align:center;padding:7px 0;color:#94A3B8">My Checkins</div></div>
+<div style="display:flex;background:#FFF;padding:5px 10px;gap:5px"><div style="flex:1;padding:5px 0;text-align:center;font-size:9px;font-weight:600;border-radius:7px;background:#E94560;color:#FFF">Map</div><div style="flex:1;padding:5px 0;text-align:center;font-size:9px;font-weight:600;border-radius:7px;color:#94A3B8">List</div></div>
+<div style="height:140px;background:linear-gradient(135deg,#D4E7D0,#B8D4A8 30%,#C8D8BC 60%,#E8E8D8);position:relative;overflow:hidden">
+<div style="position:absolute;height:2px;width:120%;background:rgba(255,255,255,.45);top:40%;left:-10%"></div>
+<div style="position:absolute;width:2px;height:120%;background:rgba(255,255,255,.45);left:45%;top:-10%"></div>
+<div style="position:absolute;width:12px;height:12px;background:#2563EB;border:2px solid #FFF;border-radius:50%;top:46%;left:44%;box-shadow:0 0 0 3px rgba(37,99,235,.2)"></div>
+<div style="position:absolute;top:25%;left:20%"><div style="width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#059669;display:flex;align-items:center;justify-content:center;font-size:8px;box-shadow:0 2px 4px rgba(0,0,0,.2)"><span style="transform:rotate(45deg)">🎤</span></div></div>
+<div style="position:absolute;top:35%;left:60%"><div style="width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#EA580C;display:flex;align-items:center;justify-content:center;font-size:8px;box-shadow:0 2px 4px rgba(0,0,0,.2)"><span style="transform:rotate(45deg)">🎧</span></div></div>
+</div>
+</div><div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">2</span><div class="sl">Carousel — Event Slide</div><div class="ss">Event poster with CTA</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div><div class="ct">
+<!-- Carousel showing event -->
+<div style="position:relative;height:160px;overflow:hidden">
+<div style="width:100%;height:100%;background:linear-gradient(135deg,#D97706,#EA580C);position:relative">
+<div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.3);padding:2px 8px;border-radius:10px;font-size:8px;color:#FFF;font-weight:600">🔥 TRENDING EVENT</div>
+<div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#FFF">
+<div style="font-size:14px;font-weight:700">Rang De 4.0 🎨</div>
+<div style="font-size:9px;opacity:.9">📍 Oasis Club, Baner · 🗓 Apr 12, 6 PM</div>
+<div style="font-size:8px;opacity:.8;margin-top:2px">🎤 Multiple Artists · 👥 120 interested</div>
+<div style="margin-top:6px;display:inline-block;padding:4px 12px;background:#E94560;border-radius:6px;font-size:9px;font-weight:600">View Event →</div>
+</div>
+</div>
+<div style="position:absolute;bottom:6px;right:12px;display:flex;gap:4px">
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:#FFF"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)"></div>
+</div>
+</div>
+
+<div style="display:flex;background:#FFF;border-bottom:1px solid #E2E8F0;font-size:10px;font-weight:600"><div style="flex:1;text-align:center;padding:7px 0;color:#E94560;position:relative">Nearby Artists<div style="position:absolute;bottom:0;left:20%;right:20%;height:2px;background:#E94560;border-radius:1px"></div></div><div style="flex:1;text-align:center;padding:7px 0;color:#94A3B8">My Checkins</div></div>
+<div style="padding:6px 14px;font-size:11px;font-weight:700;color:#1E293B;display:flex;justify-content:space-between">Nearby Events <span style="font-size:9px;color:#2563EB;font-weight:600">View All →</span></div>
+<div style="margin:3px 14px;background:#FFF;border-radius:10px;padding:8px;display:flex;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.03)"><div style="width:44px;height:44px;border-radius:7px;background:linear-gradient(135deg,#7C3AED,#2563EB);flex-shrink:0"></div><div style="font-size:9px"><div style="font-weight:700;font-size:10px;color:#1E293B">Acoustic Night</div><div style="color:#94A3B8;font-size:8px">🎤 Atharva · Oasis Club · 1.2 km</div></div><span style="font-size:7px;padding:2px 5px;border-radius:3px;font-weight:600;background:#D1FAE5;color:#059669;align-self:flex-start;margin-top:2px">● LIVE</span></div>
+<div style="margin:3px 14px;background:#FFF;border-radius:10px;padding:8px;display:flex;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.03)"><div style="width:44px;height:44px;border-radius:7px;background:linear-gradient(135deg,#059669,#0F9B8E);flex-shrink:0"></div><div style="font-size:9px"><div style="font-weight:700;font-size:10px;color:#1E293B">DJ Night Extravaganza</div><div style="color:#94A3B8;font-size:8px">🎧 DJ Ravi · Blue Frog · 2.5 km</div></div><span style="font-size:7px;padding:2px 5px;border-radius:3px;font-weight:600;background:#FEF3C7;color:#EA580C;align-self:flex-start;margin-top:2px">UPCOMING</span></div>
+</div><div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">3</span><div class="sl">Carousel — Loading State</div><div class="ss">Shimmer skeleton while fetching</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div><div class="ct">
+<!-- Shimmer carousel -->
+<div style="height:160px;background:linear-gradient(90deg,#E2E8F0 25%,#F1F5F9 50%,#E2E8F0 75%);background-size:200% 100%;position:relative;overflow:hidden">
+<div style="position:absolute;bottom:12px;left:12px;right:80px">
+<div style="height:8px;background:#CBD5E1;border-radius:4px;margin-bottom:6px;width:60%"></div>
+<div style="height:14px;background:#CBD5E1;border-radius:4px;margin-bottom:6px;width:80%"></div>
+<div style="height:8px;background:#CBD5E1;border-radius:4px;width:50%"></div>
+</div>
+<div style="position:absolute;bottom:6px;right:12px;display:flex;gap:4px">
+<div style="width:6px;height:6px;border-radius:50%;background:#CBD5E1"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:#CBD5E1"></div>
+<div style="width:6px;height:6px;border-radius:50%;background:#CBD5E1"></div>
+</div>
+</div>
+
+<div style="display:flex;background:#FFF;border-bottom:1px solid #E2E8F0;font-size:10px;font-weight:600"><div style="flex:1;text-align:center;padding:7px 0;color:#E94560;position:relative">Nearby Artists<div style="position:absolute;bottom:0;left:20%;right:20%;height:2px;background:#E94560;border-radius:1px"></div></div><div style="flex:1;text-align:center;padding:7px 0;color:#94A3B8">My Checkins</div></div>
+
+<div style="padding:10px 14px;font-size:9px;color:#94A3B8;text-align:center">
+<div style="margin-bottom:8px">⏳ Loading featured content...</div>
+<div style="display:flex;gap:8px;padding:4px 0">
+<div style="flex:1;height:80px;background:#E2E8F0;border-radius:10px"></div>
+<div style="flex:1;height:80px;background:#E2E8F0;border-radius:10px"></div>
+</div>
+</div>
+<div style="text-align:center;font-size:8px;color:#94A3B8;padding:8px">If carousel fails to load, this section hides gracefully</div>
+</div><div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div></div></div>
+
+</div>
+<div class="nt"><strong style="color:#E94560">Screen to AC Mapping</strong><br><br>Screen 1 (Artist Slide) → AC 1, 2, 3, 4, 5, 6, 9<br>Screen 2 (Event Slide) → AC 1, 3, 5, 6<br>Screen 3 (Loading) → AC 7, 8, 10, 11</div>
+<div style="text-align:center;margin-top:30px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">BeLive App · BLA-62 Image Carousel · Wireframes · Mohammad Jamal Yusuf · March 2026</div>
+</body></html>
