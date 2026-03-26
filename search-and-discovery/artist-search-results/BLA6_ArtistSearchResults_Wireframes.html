@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>BLA-6 Artist Search Wireframes</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}h1{font-size:28px;text-align:center;margin-bottom:4px}h2{font-size:18px;color:#E94560;text-align:center;margin:30px 0 16px}.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:30px}.screens{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:10px 0}.sw{display:flex;flex-direction:column;align-items:center;gap:8px}.sn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#E94560;color:#FFF;border-radius:50%;font-size:11px;font-weight:700}.sl{font-size:12px;font-weight:700;color:#E94560;text-align:center;max-width:260px}.ss{font-size:10px;color:#7878A0;text-align:center;max-width:260px}.ph{width:260px;height:540px;background:#F8F9FB;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 20px 60px rgba(0,0,0,.5)}.sb{height:28px;background:#FFF;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:9px;font-weight:600;color:#1E293B}.no{width:70px;height:16px;background:#1E293B;border-radius:0 0 10px 10px;position:absolute;left:50%;transform:translateX(-50%);top:0}.bn{position:absolute;bottom:0;left:0;right:0;height:50px;background:#FFF;border-top:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-around;font-size:8px;color:#94A3B8}.bn .n{text-align:center}.bn .n.a{color:#E94560}.bn .n i{font-size:16px;font-style:normal;display:block}.ct{height:calc(100% - 78px);overflow-y:auto}.hd{background:#FFF;padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E2E8F0}.hd .bk{font-size:16px;color:#1E293B}.hd .tt{font-size:14px;font-weight:700;color:#1E293B;flex:1}.ir{padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:10px;color:#1E293B;border-bottom:1px solid #F1F5F9}.ir .il{color:#94A3B8;min-width:16px;text-align:center}.btn{margin:8px 14px;padding:10px;border-radius:10px;text-align:center;font-size:12px;font-weight:700;color:#FFF;background:#E94560}.btn.sec{background:#2563EB}.btn.out{background:#FFF;color:#E94560;border:1.5px solid #E94560}.badge{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;font-weight:600}.badge.v{background:#D1FAE5;color:#059669}.badge.p{background:#FEF3C7;color:#D97706}.badge.r{background:#FEE2E2;color:#DC2626}hr{border:none;border-top:1px solid #2A2A3A;margin:40px 0}.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:14px;margin:20px auto;max-width:800px;font-size:11px;color:#B0B0C8;line-height:1.8}.inp{margin:4px 14px;padding:8px 10px;background:#FFF;border:1.5px solid #E2E8F0;border-radius:8px;font-size:10px;color:#1E293B}.inp.err{border-color:#DC2626}.inp .lb{font-size:9px;color:#94A3B8;margin-bottom:3px;font-weight:600}.inp .val{color:#1E293B}.chk{display:flex;align-items:flex-start;gap:6px;padding:6px 14px;font-size:9px;color:#1E293B}.chk .box{width:14px;height:14px;border:1.5px solid #E2E8F0;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px}.chk .box.on{background:#059669;border-color:#059669;color:#FFF}</style></head><body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-6</div>
+<h1>Display Artists List on Search — Wireframes</h1><div class="sub">3 Screens · Search, Results, Empty State</div>
+<div class="screens">
+
+<div class="sw"><span class="sn">1</span><div class="sl">Search — Typing Query</div><div class="ss">Real-time results as user types</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div><div class="ct">
+<div style="background:#FFF;padding:8px 14px;border-bottom:1px solid #E2E8F0">
+<div style="display:flex;gap:6px;align-items:center;background:#F1F5F9;border-radius:10px;padding:8px 12px"><span style="color:#94A3B8;font-size:14px">🔍</span><span style="font-size:11px;color:#1E293B;font-weight:500">Ath<span style="border-right:1.5px solid #E94560;animation:blink 1s infinite">&#8203;</span></span><span style="margin-left:auto;font-size:9px;color:#94A3B8">✕</span></div>
+</div>
+<div style="display:flex;gap:4px;padding:8px 14px;overflow-x:auto">
+<span style="padding:4px 10px;background:#F1F5F9;color:#94A3B8;border-radius:14px;font-size:9px;font-weight:600;white-space:nowrap">All</span>
+<span style="padding:4px 10px;background:#E94560;color:#FFF;border-radius:14px;font-size:9px;font-weight:600;white-space:nowrap">Artists</span>
+<span style="padding:4px 10px;background:#F1F5F9;color:#94A3B8;border-radius:14px;font-size:9px;font-weight:600;white-space:nowrap">Events</span>
+<span style="padding:4px 10px;background:#F1F5F9;color:#94A3B8;border-radius:14px;font-size:9px;font-weight:600;white-space:nowrap">Venues</span>
+</div>
+<div style="padding:4px 14px;font-size:9px;color:#94A3B8">3 artists found for "Ath"</div>
+<div style="margin:4px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px">🎤</div>
+<div style="flex:1"><div style="font-size:12px;font-weight:700;color:#1E293B"><span style="background:#FEF3C7">Ath</span>arva Patil <span class="badge v">✅</span></div><div style="font-size:9px;color:#94A3B8;margin:2px 0">Singer · Acoustic · Pune</div><div style="font-size:8px;color:#94A3B8">👥 1.2K followers · 24 shows</div></div>
+<div style="font-size:18px;align-self:center;color:#E2E8F0">›</div>
+</div>
+<div style="margin:4px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#059669,#0F9B8E);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px">💃</div>
+<div style="flex:1"><div style="font-size:12px;font-weight:700;color:#1E293B"><span style="background:#FEF3C7">Ath</span>ira Menon</div><div style="font-size:9px;color:#94A3B8;margin:2px 0">Dancer · Contemporary · Mumbai</div><div style="font-size:8px;color:#94A3B8">👥 890 followers · 16 shows</div></div>
+<div style="font-size:18px;align-self:center;color:#E2E8F0">›</div>
+</div>
+<div style="margin:4px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#D97706,#EA580C);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px">🎧</div>
+<div style="flex:1"><div style="font-size:12px;font-weight:700;color:#1E293B"><span style="background:#FEF3C7">Ath</span>ang DJ</div><div style="font-size:9px;color:#94A3B8;margin:2px 0">DJ · Electronic · Pune</div><div style="font-size:8px;color:#94A3B8">👥 456 followers · 8 shows</div></div>
+<div style="font-size:18px;align-self:center;color:#E2E8F0">›</div>
+</div>
+</div><div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">2</span><div class="sl">Search with Filters</div><div class="ss">City + Category filters applied</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div><div class="ct">
+<div style="background:#FFF;padding:8px 14px;border-bottom:1px solid #E2E8F0">
+<div style="display:flex;gap:6px;align-items:center;background:#F1F5F9;border-radius:10px;padding:8px 12px"><span style="color:#94A3B8;font-size:14px">🔍</span><span style="font-size:11px;color:#94A3B8">Search artists...</span></div>
+</div>
+<div style="display:flex;gap:4px;padding:8px 14px">
+<span style="padding:4px 10px;background:#E94560;color:#FFF;border-radius:14px;font-size:9px;font-weight:600;white-space:nowrap">Artists</span>
+</div>
+<div style="display:flex;gap:4px;padding:0 14px 6px;border-bottom:1px solid #E2E8F0">
+<span style="padding:3px 10px;background:#2563EB;color:#FFF;border-radius:8px;font-size:8px;font-weight:600;display:flex;align-items:center;gap:3px">📍 Pune ✕</span>
+<span style="padding:3px 10px;background:#7C3AED;color:#FFF;border-radius:8px;font-size:8px;font-weight:600;display:flex;align-items:center;gap:3px">🎤 Singer ✕</span>
+<span style="padding:3px 10px;background:#F1F5F9;color:#94A3B8;border-radius:8px;font-size:8px;font-weight:600">+ Filter</span>
+</div>
+<div style="padding:6px 14px;font-size:9px;color:#94A3B8;display:flex;justify-content:space-between">8 singers in Pune <span style="color:#2563EB">Sort: Relevance ↕</span></div>
+<div style="margin:3px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED);flex-shrink:0"></div>
+<div style="flex:1"><div style="font-size:11px;font-weight:700;color:#1E293B">Atharva Patil <span class="badge v">✅</span></div><div style="font-size:8px;color:#94A3B8">Singer · Pune · 👥 1.2K · ⭐ 4.8</div></div><div style="font-size:16px;align-self:center;color:#E2E8F0">›</div>
+</div>
+<div style="margin:3px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#059669,#2563EB);flex-shrink:0"></div>
+<div style="flex:1"><div style="font-size:11px;font-weight:700;color:#1E293B">Shreya Kulkarni <span class="badge v">✅</span></div><div style="font-size:8px;color:#94A3B8">Singer · Pune · 👥 980 · ⭐ 4.7</div></div><div style="font-size:16px;align-self:center;color:#E2E8F0">›</div>
+</div>
+<div style="margin:3px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#D97706,#E94560);flex-shrink:0"></div>
+<div style="flex:1"><div style="font-size:11px;font-weight:700;color:#1E293B">Rohan Mehta</div><div style="font-size:8px;color:#94A3B8">Singer · Pune · 👥 654 · ⭐ 4.5</div></div><div style="font-size:16px;align-self:center;color:#E2E8F0">›</div>
+</div>
+<div style="margin:3px 14px;background:#FFF;border-radius:10px;padding:10px;display:flex;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);flex-shrink:0"></div>
+<div style="flex:1"><div style="font-size:11px;font-weight:700;color:#1E293B">Ankit Joshi</div><div style="font-size:8px;color:#94A3B8">Singer · Pune · 👥 320 · ⭐ 4.2</div></div><div style="font-size:16px;align-self:center;color:#E2E8F0">›</div>
+</div>
+</div><div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">3</span><div class="sl">No Results — Empty State</div><div class="ss">No matching artists found</div>
+<div class="ph"><div class="sb"><span>9:41</span><div class="no"></div><span>100%</span></div><div class="ct">
+<div style="background:#FFF;padding:8px 14px;border-bottom:1px solid #E2E8F0">
+<div style="display:flex;gap:6px;align-items:center;background:#F1F5F9;border-radius:10px;padding:8px 12px"><span style="color:#94A3B8;font-size:14px">🔍</span><span style="font-size:11px;color:#1E293B">xyzartist123</span><span style="margin-left:auto;font-size:9px;color:#94A3B8">✕</span></div>
+</div>
+<div style="display:flex;gap:4px;padding:8px 14px">
+<span style="padding:4px 10px;background:#E94560;color:#FFF;border-radius:14px;font-size:9px;font-weight:600">Artists</span>
+</div>
+<div style="text-align:center;padding:50px 20px">
+<div style="font-size:40px;margin-bottom:8px">🔍</div>
+<div style="font-size:13px;font-weight:700;color:#1E293B;margin-bottom:4px">No artists found</div>
+<div style="font-size:10px;color:#94A3B8;margin-bottom:12px;line-height:1.5">No artists match "xyzartist123".<br>Try a different name or category.</div>
+<div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+<span style="padding:4px 10px;background:#F1F5F9;color:#94A3B8;border-radius:8px;font-size:9px;font-weight:600">Try: Singer</span>
+<span style="padding:4px 10px;background:#F1F5F9;color:#94A3B8;border-radius:8px;font-size:9px;font-weight:600">Try: DJ</span>
+<span style="padding:4px 10px;background:#F1F5F9;color:#94A3B8;border-radius:8px;font-size:9px;font-weight:600">Try: Pune</span>
+</div>
+</div>
+</div><div class="bn"><div class="n"><i>🏠</i>Home</div><div class="n"><i>🔍</i>Search</div><div class="n"><i style="font-size:20px;color:#E94560">⊕</i></div><div class="n"><i>🔔</i>Alerts</div><div class="n"><i>👤</i>Profile</div></div></div></div>
+
+</div>
+<div class="nt"><strong style="color:#E94560">Screen to AC Mapping</strong><br><br>Screen 1 (Typing Search) → AC 1, 2, 4, 6, 7, 9, 10<br>Screen 2 (Filtered Results) → AC 3, 8<br>Screen 3 (Empty State) → AC 5</div>
+<div style="text-align:center;margin-top:30px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">BeLive App · BLA-6 Artist Search Results · Wireframes · Mohammad Jamal Yusuf · March 2026</div>
+</body></html>
