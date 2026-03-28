@@ -1,0 +1,257 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>BLA-63/67/68 User Profile Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:28px;text-align:center;margin-bottom:4px}
+h2{font-size:18px;color:#E94560;text-align:center;margin:30px 0 16px}
+.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:30px}
+.screens{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:10px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:8px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#E94560;color:#FFF;border-radius:50%;font-size:11px;font-weight:700}
+.sl{font-size:12px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:10px;color:#7878A0;text-align:center;max-width:260px}
+
+/* Phone matching BeLive style */
+.ph{width:260px;height:540px;background:#FFFAF5;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 20px 60px rgba(0,0,0,.5)}
+.sb{height:28px;background:linear-gradient(135deg,#E8532E,#F5A623);display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:9px;font-weight:600;color:#FFF}
+.no{width:70px;height:16px;background:#000;border-radius:0 0 10px 10px;position:absolute;left:50%;transform:translateX(-50%);top:0}
+
+/* BeLive bottom nav */
+.bn{position:absolute;bottom:0;left:0;right:0;height:50px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:7px;color:#B0A89E;font-weight:500}
+.bn .n{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1px}
+.bn .n.a{color:#E8532E}
+.bn .n .ic{font-size:18px}
+.ct{height:calc(100% - 78px);overflow-y:auto}
+
+/* BeLive orange gradient header */
+.og{background:linear-gradient(180deg,#E8532E 0%,#F5A623 100%);padding:16px;text-align:center;color:#FFF}
+.og .welcome{font-size:12px;opacity:.9}
+.og .name{font-size:18px;font-weight:700;margin-top:2px}
+
+/* Avatar */
+.avatar{width:100px;height:100px;border-radius:50%;background:#FFF;margin:12px auto;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.avatar .inner{width:80px;height:80px;border-radius:50%;background:linear-gradient(180deg,#F5A623,#E8532E);display:flex;align-items:center;justify-content:center}
+.avatar .inner .person{font-size:40px;color:#FFF}
+.avatar.photo{background:url('') center/cover}
+.avatar .cam{position:absolute;bottom:0;right:0;width:24px;height:24px;background:#E8532E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#FFF;border:2px solid #FFF}
+
+/* Menu items */
+.mi{padding:12px 16px;display:flex;align-items:center;gap:12px;font-size:12px;color:#1E293B;border-bottom:1px solid #F5F0EB}
+.mi .mic{font-size:16px;color:#4A5568;width:20px;text-align:center}
+.mi.danger{color:#DC2626}
+
+/* BeLive gradient button */
+.gbtn{margin:10px 16px;padding:12px;border-radius:30px;text-align:center;font-size:13px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623)}
+.gbtn.disabled{opacity:.4}
+.gbtn.red{background:linear-gradient(90deg,#DC2626,#EF4444)}
+
+/* Input fields BeLive style */
+.finp{margin:6px 16px;border:1.5px solid #D4C8BE;border-radius:12px;padding:10px 14px;background:#FFF}
+.finp .flb{font-size:9px;color:#94A3B8;font-weight:500;margin-bottom:2px}
+.finp .fval{font-size:11px;color:#1E293B}
+.finp .fval.placeholder{color:#C4B8AE}
+.finp.err{border-color:#DC2626}
+
+/* Dialog */
+.dialog{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#FFF;border-radius:16px;padding:18px;width:220px;box-shadow:0 10px 40px rgba(0,0,0,.2);text-align:center;z-index:20}
+.dialog .dtitle{font-size:13px;font-weight:700;color:#1E293B;margin-bottom:6px}
+.dialog .ddesc{font-size:9px;color:#64748B;line-height:1.5;margin-bottom:12px}
+.dialog .dbtn{padding:8px;border-radius:10px;font-size:10px;font-weight:700;margin:3px 0}
+.dialog .dbtn.cancel{background:#F1F5F9;color:#64748B}
+.dialog .dbtn.delete{background:#DC2626;color:#FFF}
+
+/* Toast */
+.toast{position:absolute;bottom:60px;left:16px;right:16px;padding:8px 14px;border-radius:12px;font-size:9px;font-weight:500;text-align:center;z-index:20}
+.toast.success{background:#059669;color:#FFF}
+.toast.error{background:#DC2626;color:#FFF}
+
+/* Orange footer bar */
+.ofooter{background:linear-gradient(90deg,#E8532E,#F5A623);padding:8px 16px;text-align:center;font-size:9px;color:#FFF}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:40px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:14px;margin:20px auto;max-width:900px;font-size:11px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-63 / BLA-67 / BLA-68</div>
+<h1>User Profile CRUD — Wireframes</h1>
+<div class="sub">8 Screens · Create, Edit, Delete Profile · Matching BeLive App Design</div>
+
+<h2>BLA-63: Create My Profile</h2>
+<div class="screens">
+
+<!-- S1: Profile Completion -->
+<div class="sw"><span class="sn">1</span><div class="sl">Complete Your Profile</div><div class="ss">After signup + email verification</div>
+<div class="ph"><div class="sb"><span>2:38</span><div class="no"></div><span>82%</span></div>
+<div class="ct">
+<div class="og"><div class="welcome">Almost there!</div><div class="name">Complete Your Profile</div></div>
+<div style="position:relative;display:flex;justify-content:center;margin:16px 0">
+<div class="avatar"><div class="inner"><div class="person">👤</div></div></div>
+<div style="position:absolute;bottom:12px;right:85px;width:28px;height:28px;background:#E8532E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#FFF;border:2px solid #FFF;box-shadow:0 2px 6px rgba(0,0,0,.15)">📷</div>
+</div>
+<div style="text-align:center;font-size:9px;color:#94A3B8;margin-bottom:10px">Tap to upload profile photo (optional)</div>
+<div class="finp"><div class="flb">First Name *</div><div class="fval">Mohammad</div></div>
+<div class="finp"><div class="flb">Last Name *</div><div class="fval">Jamal</div></div>
+<div class="finp"><div class="flb">City *</div><div class="fval placeholder">Select your city</div></div>
+<div class="gbtn">Save Profile</div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- S2: Guest Profile -->
+<div class="sw"><span class="sn">2</span><div class="sl">Guest Profile View</div><div class="ss">Via "Get Started" without login</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct">
+<div class="og"><div class="name">Welcome, Guest</div></div>
+<div style="display:flex;justify-content:center;margin:16px 0"><div class="avatar"><div class="inner"><div class="person">👤</div></div></div></div>
+<div class="mi"><span class="mic">📋</span> Register as Artist</div>
+<div class="mi"><span class="mic">📄</span> Privacy policy</div>
+<div class="mi"><span class="mic">📄</span> Terms and condition</div>
+<div class="mi"><span class="mic">✉️</span> Contact us</div>
+<div class="mi"><span class="mic">🔑</span> Log In or Sign Up</div>
+<div style="flex:1"></div>
+</div>
+<div class="ofooter">For verified artist only. Please contact support.</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- S3: Logged in Profile -->
+<div class="sw"><span class="sn">3</span><div class="sl">Logged In Profile</div><div class="ss">After profile creation complete</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct">
+<div class="og"><div class="welcome">Welcome,</div><div class="name">Mohammad Jamal</div></div>
+<div style="display:flex;justify-content:center;margin:16px 0"><div class="avatar" style="background:linear-gradient(135deg,#E94560,#7C3AED);border:3px solid #FFF"><div style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;color:#FFF">MJ</div></div></div>
+<div class="mi"><span class="mic">✏️</span> Edit Profile</div>
+<div class="mi"><span class="mic">📋</span> Register as Artist</div>
+<div class="mi"><span class="mic">📄</span> Privacy policy</div>
+<div class="mi"><span class="mic">📄</span> Terms and condition</div>
+<div class="mi"><span class="mic">✉️</span> Contact us</div>
+<div class="mi danger"><span class="mic">🗑️</span> Delete Account</div>
+<div class="mi danger" style="color:#E8532E"><span class="mic">🚪</span> Log Out</div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<h2>BLA-68: Edit My Profile</h2>
+<div class="screens">
+
+<!-- S4: Edit Profile Form -->
+<div class="sw"><span class="sn">4</span><div class="sl">Edit Profile Form</div><div class="ss">Pre-populated with current data</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct">
+<div style="background:linear-gradient(90deg,#E8532E,#F5A623);padding:10px 14px;display:flex;align-items:center"><span style="font-size:16px;color:#FFF">←</span><span style="flex:1;text-align:center;font-size:14px;font-weight:700;color:#FFF">Edit Profile</span><span style="font-size:11px;color:#FFF;font-weight:600;opacity:.8">Save</span></div>
+<div style="position:relative;display:flex;justify-content:center;margin:14px 0">
+<div class="avatar" style="width:80px;height:80px;background:linear-gradient(135deg,#E94560,#7C3AED);border:3px solid #FFF"><div style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#FFF">MJ</div></div>
+<div style="position:absolute;bottom:8px;right:78px;width:24px;height:24px;background:#E8532E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#FFF;border:2px solid #FFF">📷</div>
+</div>
+<div style="text-align:center;font-size:9px;color:#2563EB;font-weight:600;margin-bottom:8px">Change Photo · Remove Photo</div>
+<div class="finp"><div class="flb">First Name *</div><div class="fval">Mohammad</div></div>
+<div class="finp"><div class="flb">Last Name *</div><div class="fval">Jamal</div></div>
+<div class="finp"><div class="flb">City *</div><div class="fval">Pune</div></div>
+<div class="finp" style="border-color:#E2E8F0;background:#F8F9FB"><div class="flb">Email (cannot be changed)</div><div class="fval" style="color:#94A3B8">mohammad@email.com</div></div>
+<div class="gbtn">Save Changes</div>
+<div style="text-align:center;font-size:8px;color:#94A3B8;padding:6px">Email cannot be changed from this screen</div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- S5: Edit Success Toast -->
+<div class="sw"><span class="sn">5</span><div class="sl">Edit Saved — Success</div><div class="ss">Toast confirmation after save</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct" style="position:relative">
+<div class="og"><div class="welcome">Welcome,</div><div class="name">Mohammad Jamal</div></div>
+<div style="display:flex;justify-content:center;margin:16px 0"><div class="avatar" style="width:100px;height:100px;background:linear-gradient(135deg,#059669,#0F9B8E);border:3px solid #FFF"><div style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;color:#FFF">MJ</div></div></div>
+<div class="mi"><span class="mic">✏️</span> Edit Profile</div>
+<div class="mi"><span class="mic">📋</span> Register as Artist</div>
+<div class="toast success">✅ Profile updated successfully!</div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<h2>BLA-67: Delete My Profile</h2>
+<div class="screens">
+
+<!-- S6: Delete Confirmation -->
+<div class="sw"><span class="sn">6</span><div class="sl">Delete — Confirmation Dialog</div><div class="ss">"Are you sure?" with warning</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct" style="position:relative;filter:blur(1px);opacity:.6">
+<div class="og"><div class="name">Welcome, Mohammad</div></div>
+<div style="display:flex;justify-content:center;margin:16px 0"><div class="avatar"><div class="inner"><div class="person">👤</div></div></div></div>
+</div>
+<div class="dialog">
+<div style="font-size:28px;margin-bottom:6px">⚠️</div>
+<div class="dtitle">Delete Your Account?</div>
+<div class="ddesc">This action is permanent and cannot be undone. All your data including profile, check-ins, and event history will be permanently removed.</div>
+<div class="dbtn cancel">Cancel</div>
+<div class="dbtn delete">Delete My Account</div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- S7: Password Re-entry -->
+<div class="sw"><span class="sn">7</span><div class="sl">Password Verification</div><div class="ss">Re-enter password before delete</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct">
+<div style="background:linear-gradient(90deg,#E8532E,#F5A623);padding:10px 14px;display:flex;align-items:center"><span style="font-size:16px;color:#FFF">←</span><span style="flex:1;text-align:center;font-size:14px;font-weight:700;color:#FFF">Verify Identity</span></div>
+<div style="text-align:center;padding:24px 16px">
+<div style="font-size:36px;margin-bottom:8px">🔒</div>
+<div style="font-size:13px;font-weight:700;color:#1E293B;margin-bottom:4px">Confirm Your Password</div>
+<div style="font-size:10px;color:#64748B;margin-bottom:16px;line-height:1.5">For security, please re-enter your password to proceed with account deletion</div>
+</div>
+<div class="finp"><div class="flb">Password</div><div class="fval" style="display:flex;justify-content:space-between"><span>••••••••</span><span style="font-size:12px;color:#94A3B8">👁️</span></div></div>
+<div class="gbtn red">Confirm Deletion</div>
+<div style="text-align:center;padding:10px"><span style="font-size:10px;color:#2563EB;font-weight:600">Cancel and go back</span></div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- S8: Artist Extra Warning -->
+<div class="sw"><span class="sn">8</span><div class="sl">Artist — Extra Warning</div><div class="ss">Additional warning for artist accounts</div>
+<div class="ph"><div class="sb"><span>2:39</span><div class="no"></div><span>82%</span></div>
+<div class="ct" style="position:relative;filter:blur(1px);opacity:.6">
+<div class="og"><div class="name">Welcome, Atharva</div></div>
+</div>
+<div class="dialog" style="width:230px">
+<div style="font-size:28px;margin-bottom:6px">🎤⚠️</div>
+<div class="dtitle">Artist Account Deletion</div>
+<div class="ddesc">Deleting your account will also remove:<br><br>
+<span style="color:#DC2626;font-weight:600">❌ Your artist profile & verification<br>
+❌ All your listed events & shows<br>
+❌ Your ratings & reviews from fans<br>
+❌ Your follower list</span><br><br>
+This cannot be recovered.</div>
+<div class="dbtn cancel">Cancel</div>
+<div class="dbtn delete">I Understand, Delete</div>
+</div>
+<div class="bn"><div class="n"><div class="ic">🏠</div>Home</div><div class="n"><div class="ic">🔍</div>Search</div><div class="n"><div class="ic">🔒</div>Add</div><div class="n a"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Screen to BLA / User Story Mapping</strong><br><br>
+<strong>BLA-63 Create My Profile:</strong><br>
+Screen 1 (Complete Profile) → US-001: AC1-AC5<br>
+Screen 2 (Guest View) → US-002: AC1-AC3<br>
+Screen 3 (Logged In View) → US-003: AC1-AC2<br><br>
+<strong>BLA-68 Edit My Profile:</strong><br>
+Screen 4 (Edit Form) → US-001: AC1-AC7<br>
+Screen 5 (Success Toast) → US-001: AC5 + US-002: AC1-AC3<br><br>
+<strong>BLA-67 Delete My Profile:</strong><br>
+Screen 6 (Confirmation Dialog) → US-001: AC1<br>
+Screen 7 (Password Verify) → US-001: AC2-AC5<br>
+Screen 8 (Artist Warning) → US-002: AC1-AC3
+</div>
+
+<div style="text-align:center;margin-top:30px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">
+BeLive App · BLA-63/67/68 User Profile CRUD · Wireframes · Mohammad Jamal Yusuf · March 2026
+</div>
+</body></html>
