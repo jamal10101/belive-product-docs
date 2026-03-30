@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-74 Artist Profile — Updated Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:28px;text-align:center;margin-bottom:4px}
+h2{font-size:18px;color:#E94560;text-align:center;margin:30px 0 16px}
+.sub{text-align:center;color:#7878A0;font-size:13px;margin-bottom:30px}
+.screens{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:10px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:8px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#E94560;color:#FFF;border-radius:50%;font-size:11px;font-weight:700}
+.sl{font-size:12px;font-weight:700;color:#E94560;text-align:center;max-width:280px}
+.ss{font-size:10px;color:#7878A0;text-align:center;max-width:280px}
+
+/* Phone frame */
+.ph{width:280px;height:600px;background:#FFF;border-radius:32px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 20px 60px rgba(0,0,0,.5)}
+.sbar{height:0px}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:52px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:7px;color:#B0A89E;font-weight:500}
+.bnav .ni{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1px}
+.bnav .ni.ac{color:#F5A623}
+.bnav .ni .ic{font-size:18px}
+.cnt{height:calc(100% - 52px);overflow-y:auto;overflow-x:hidden}
+
+/* Hero image with fade */
+.hero{width:100%;height:220px;position:relative;overflow:hidden}
+.hero .bg{width:100%;height:100%;background:linear-gradient(135deg,#E94560 0%,#7C3AED 50%,#2563EB 100%);display:flex;align-items:center;justify-content:center}
+.hero .fade{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,#FFF)}
+.hero .nav{position:absolute;top:12px;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;z-index:5}
+.hero .nav .btn-circle{width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:14px;color:#FFF;backdrop-filter:blur(4px)}
+.hero .artist-name{position:absolute;bottom:30px;left:0;right:0;text-align:center;font-size:22px;font-weight:800;color:#FFF;text-shadow:0 2px 8px rgba(0,0,0,.3);letter-spacing:-0.5px}
+.hero .hashtag{font-size:11px;color:rgba(255,255,255,.7)}
+
+/* Rating */
+.rating-row{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0}
+.stars{display:flex;gap:1px}
+.star{font-size:14px;color:#F5A623}
+.star.half{color:#F5A623;position:relative}
+.rating-badge{width:36px;height:36px;border-radius:50%;border:2px solid #0F9B8E;display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;right:14px;top:-18px}
+.rating-badge .num{font-size:11px;font-weight:800;color:#0F9B8E}
+.rating-badge .ppl{font-size:7px;color:#0F9B8E}
+
+/* Info section */
+.info{padding:0 16px}
+.info-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:11px;color:#1E293B}
+.info-row .icon{color:#64748B;font-size:13px;width:16px;text-align:center}
+.beliver{color:#E8532E;font-size:10px;font-weight:600}
+
+/* Stats */
+.stats{display:flex;text-align:center;padding:12px 16px;gap:0;margin:8px 0}
+.stats .stat{flex:1}
+.stats .stat .num{font-size:22px;font-weight:800;color:#1E293B}
+.stats .stat .label{font-size:8px;color:#64748B;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+
+/* Genre tags */
+.genre-row{padding:0 16px 8px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.genre-label{font-size:10px;color:#64748B;font-weight:600}
+.genre-tag{padding:4px 12px;border:1.5px solid #D4C8BE;border-radius:20px;font-size:9px;color:#1E293B;font-weight:500}
+
+/* Bio */
+.bio{padding:6px 16px 10px;font-size:10px;color:#1E293B;line-height:1.6}
+
+/* Gallery */
+.gallery-title{padding:8px 16px 4px;font-size:11px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.5px}
+.gallery{display:flex;flex-wrap:wrap;gap:3px;padding:0 16px 10px}
+.gallery .gimg{width:calc(33.33% - 2px);height:55px;border-radius:6px;background-size:cover}
+
+/* Favourite / heart */
+.fav-section{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 0}
+.heart-btn{display:flex;align-items:center;gap:4px;padding:5px 14px;border:1.5px solid #E8E0D8;border-radius:20px;font-size:10px;color:#64748B;font-weight:600}
+.heart-btn .heart{color:#E94560;font-size:14px}
+.heart-btn.active{border-color:#E94560;color:#E94560;background:#FFF0F3}
+
+/* Book button */
+.book-section{padding:6px 16px}
+.booking-count{text-align:center;font-size:10px;font-weight:700;color:#E8532E;margin-bottom:4px}
+.book-btn{padding:10px;border-radius:25px;text-align:center;font-size:13px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623);box-shadow:0 4px 12px rgba(232,83,46,.3)}
+
+/* Upcoming events */
+.section-header{padding:10px 16px 4px;display:flex;justify-content:space-between;align-items:center}
+.section-header .title{font-size:11px;font-weight:700;color:#1E293B;background:#E8E0D8;padding:3px 12px;border-radius:4px}
+.section-header .arrow{width:24px;height:24px;border-radius:50%;border:1.5px solid #D4C8BE;display:flex;align-items:center;justify-content:center;font-size:10px;color:#64748B}
+
+.event-card{margin:4px 16px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:8px;display:flex;gap:8px}
+.event-card .poster{width:70px;height:70px;border-radius:6px;flex-shrink:0;background-size:cover;background-position:center}
+.event-card .details{flex:1;font-size:9px;color:#1E293B;display:flex;flex-direction:column;justify-content:center}
+.event-card .details .datetime{display:flex;align-items:center;gap:4px;color:#64748B;margin-bottom:2px}
+.event-card .details .datetime .day-badge{background:#1E293B;color:#FFF;padding:1px 6px;border-radius:3px;font-size:7px;font-weight:700}
+.event-card .details .ename{font-weight:700;font-size:11px;margin-bottom:2px}
+.event-card .details .venue{color:#64748B;font-size:8px}
+.event-card .edit-icon{width:28px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#F5A623}
+
+/* Empty state */
+.empty{text-align:center;padding:16px;font-size:10px;color:#94A3B8;line-height:1.5}
+
+/* Dialog */
+.dialog{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#FFF;border-radius:16px;padding:18px;width:230px;box-shadow:0 10px 40px rgba(0,0,0,.2);text-align:center;z-index:20}
+.dialog .dtitle{font-size:13px;font-weight:700;color:#1E293B;margin-bottom:4px}
+.dialog .ddesc{font-size:9px;color:#64748B;line-height:1.5;margin-bottom:10px}
+.dialog .dbtn{padding:8px;border-radius:25px;font-size:10px;font-weight:700;margin:3px 0}
+.dialog .dbtn.primary{background:linear-gradient(90deg,#E8532E,#F5A623);color:#FFF}
+.dialog .dbtn.secondary{background:#F1F5F9;color:#64748B}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:40px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:14px;margin:20px auto;max-width:900px;font-size:11px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-74 (UPDATED)</div>
+<h1>Add Artist Profile — Wireframes v2</h1>
+<div class="sub">5 Screens · Based on Vihang's review feedback · March 29, 2026</div>
+
+<div class="screens">
+
+<!-- Screen 1: Full Artist Profile -->
+<div class="sw"><span class="sn">1</span><div class="sl">Artist Profile — Full View</div><div class="ss">Fan sees complete profile with all info</div>
+<div class="ph">
+<div class="cnt">
+<!-- Hero with fade -->
+<div class="hero">
+<div class="bg" style="background:linear-gradient(180deg,#C84B8A 0%,#7B4DAA 40%,#4A6FCC 100%)">
+<div style="font-size:60px;opacity:.3">🎸</div>
+</div>
+<div class="nav">
+<div class="btn-circle">←</div>
+<div class="btn-circle">📤</div>
+</div>
+<div class="artist-name"><span class="hashtag">#</span>Artistname</div>
+<div class="fade"></div>
+</div>
+
+<!-- Rating row with badge -->
+<div style="position:relative;padding:0 16px">
+<div class="rating-row">
+<div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.4">★</span></div>
+</div>
+<div class="rating-badge"><div class="num">4.7</div><div class="ppl">👥</div></div>
+</div>
+
+<!-- Info rows -->
+<div class="info">
+<div class="info-row"><span class="icon">📍</span> Pune, Maharashtra, India</div>
+<div class="info-row"><span class="icon">👥</span> Music band / Artist group</div>
+<div class="info-row"><span class="beliver">BeLive'r since Mar 2026</span></div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+<div class="stat"><div class="num">500</div><div class="label">Shows</div></div>
+<div class="stat" style="border-left:1px solid #E8E0D8;border-right:1px solid #E8E0D8"><div class="num">5k</div><div class="label">Check In Fans</div></div>
+<div class="stat"><div class="num">100</div><div class="label">Venues</div></div>
+</div>
+
+<!-- Genre -->
+<div class="genre-row">
+<span class="genre-label">Genre :</span>
+<span class="genre-tag">Bollywood</span>
+<span class="genre-tag">Classical</span>
+<span class="genre-tag">Sufi</span>
+<span class="genre-tag">Ghazal</span>
+</div>
+
+<!-- Bio -->
+<div class="bio">Born 30 July 1973) is an Indian playback singer, music director, dubbing artist and actor. I am recipient of Padma Shri, India's fourth-highest civilian award...</div>
+
+<!-- Gallery -->
+<div class="gallery-title">Gallery</div>
+<div class="gallery">
+<div class="gimg" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div>
+<div class="gimg" style="background:linear-gradient(135deg,#2563EB,#0F9B8E)"></div>
+<div class="gimg" style="background:linear-gradient(135deg,#D97706,#EA580C)"></div>
+<div class="gimg" style="background:linear-gradient(135deg,#059669,#2563EB)"></div>
+<div class="gimg" style="background:linear-gradient(135deg,#7C3AED,#E94560)"></div>
+</div>
+
+<!-- Favourite -->
+<div class="fav-section">
+<div class="heart-btn"><span class="heart">♡</span> 2.4K fans added to favourites</div>
+</div>
+
+<!-- Book Artist -->
+<div class="book-section">
+<div class="booking-count">2.5K booking requests</div>
+<div class="book-btn">Book Artist</div>
+</div>
+
+<!-- Upcoming Events -->
+<div class="section-header"><span class="title">Upcoming events</span><span class="arrow">→</span></div>
+<div class="event-card">
+<div class="poster" style="background:linear-gradient(135deg,#E94560,#D97706)"></div>
+<div class="details">
+<div class="datetime"><span>⏰</span> 01, Jan 8 pm <span class="day-badge">SAT</span></div>
+<div class="ename">Show name</div>
+<div class="venue">📍 Venue name</div>
+</div>
+<div class="edit-icon">✏️</div>
+</div>
+<div class="event-card">
+<div class="poster" style="background:linear-gradient(135deg,#7C3AED,#2563EB)"></div>
+<div class="details">
+<div class="datetime"><span>⏰</span> 29, Mar 8:30 pm <span class="day-badge">SAT</span></div>
+<div class="ename">Sunday Live</div>
+<div class="venue">📍 Ice N Fire Sky Lounge, Baner</div>
+</div>
+<div class="edit-icon">✏️</div>
+</div>
+<div style="height:16px"></div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 2: Heart/Favourite Active -->
+<div class="sw"><span class="sn">2</span><div class="sl">Favourited State</div><div class="ss">Heart icon active + count updated</div>
+<div class="ph">
+<div class="cnt">
+<div class="hero" style="height:180px">
+<div class="bg" style="background:linear-gradient(180deg,#C84B8A,#7B4DAA 40%,#4A6FCC)"><div style="font-size:50px;opacity:.3">🎸</div></div>
+<div class="nav"><div class="btn-circle">←</div><div class="btn-circle">📤</div></div>
+<div class="artist-name"><span class="hashtag">#</span>Artistname</div>
+<div class="fade"></div>
+</div>
+<div style="position:relative;padding:0 16px">
+<div class="rating-row"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.4">★</span></div></div>
+<div class="rating-badge"><div class="num">4.7</div><div class="ppl">👥</div></div>
+</div>
+<div class="info">
+<div class="info-row"><span class="icon">📍</span> Pune, Maharashtra, India</div>
+<div class="info-row"><span class="icon">👥</span> Music band / Artist group</div>
+<div class="info-row"><span class="beliver">BeLive'r since Mar 2026</span></div>
+</div>
+<div class="stats">
+<div class="stat"><div class="num">500</div><div class="label">Shows</div></div>
+<div class="stat" style="border-left:1px solid #E8E0D8;border-right:1px solid #E8E0D8"><div class="num">5k</div><div class="label">Check In Fans</div></div>
+<div class="stat"><div class="num">100</div><div class="label">Venues</div></div>
+</div>
+
+<!-- Favourite ACTIVE state -->
+<div class="fav-section">
+<div class="heart-btn active"><span class="heart">❤️</span> 2.4K fans added to favourites</div>
+</div>
+
+<div style="text-align:center;padding:4px;font-size:9px;color:#059669;font-weight:600">✅ Added to your favourites!</div>
+
+<div class="book-section">
+<div class="booking-count">2.5K booking requests</div>
+<div class="book-btn">Book Artist</div>
+</div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 3: Guest tries to Book/Favourite -->
+<div class="sw"><span class="sn">3</span><div class="sl">Guest — Login Prompt</div><div class="ss">Not logged in tries to book or favourite</div>
+<div class="ph">
+<div class="cnt" style="filter:blur(1.5px);opacity:.5">
+<div class="hero" style="height:160px"><div class="bg" style="background:linear-gradient(180deg,#C84B8A,#7B4DAA)"></div></div>
+</div>
+<div class="dialog">
+<div style="font-size:28px;margin-bottom:6px">🔑</div>
+<div class="dtitle">Please Log In</div>
+<div class="ddesc">Please log in to book the artist or add to favourites</div>
+<div class="dbtn primary">Log In</div>
+<div class="dbtn secondary">Sign Up</div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 4: No Upcoming Events -->
+<div class="sw"><span class="sn">4</span><div class="sl">No Upcoming Events</div><div class="ss">Empty state for events section</div>
+<div class="ph">
+<div class="cnt">
+<div class="hero" style="height:160px">
+<div class="bg" style="background:linear-gradient(180deg,#059669,#0F9B8E 50%,#2563EB)"><div style="font-size:50px;opacity:.3">🎤</div></div>
+<div class="nav"><div class="btn-circle">←</div><div class="btn-circle">📤</div></div>
+<div class="artist-name"><span class="hashtag">#</span>NewArtist</div>
+<div class="fade"></div>
+</div>
+<div style="position:relative;padding:0 16px">
+<div class="rating-row"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.4">★</span><span class="star" style="opacity:.4">★</span></div></div>
+</div>
+<div class="info">
+<div class="info-row"><span class="icon">📍</span> Mumbai, Maharashtra, India</div>
+<div class="info-row"><span class="icon">🧑‍🎤</span> Solo performer</div>
+<div class="info-row"><span class="beliver">BeLive'r since Mar 2026</span></div>
+</div>
+<div class="stats">
+<div class="stat"><div class="num">3</div><div class="label">Shows</div></div>
+<div class="stat" style="border-left:1px solid #E8E0D8;border-right:1px solid #E8E0D8"><div class="num">28</div><div class="label">Check In Fans</div></div>
+<div class="stat"><div class="num">2</div><div class="label">Venues</div></div>
+</div>
+<div class="genre-row"><span class="genre-label">Genre :</span><span class="genre-tag">Acoustic</span><span class="genre-tag">Indie</span></div>
+<div class="bio">Singer-songwriter from Mumbai performing acoustic originals at local cafes and open mics.</div>
+<div class="fav-section"><div class="heart-btn"><span class="heart">♡</span> 15 fans added to favourites</div></div>
+<div class="book-section"><div class="booking-count">3 booking requests</div><div class="book-btn">Book Artist</div></div>
+<div class="section-header"><span class="title">Upcoming events</span><span class="arrow">→</span></div>
+<div class="empty">No upcoming events.<br>Follow to get notified!</div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 5: Share Sheet -->
+<div class="sw"><span class="sn">5</span><div class="sl">Share Artist Profile</div><div class="ss">Native share with deep link</div>
+<div class="ph">
+<div class="cnt" style="filter:blur(1px);opacity:.4">
+<div class="hero" style="height:160px"><div class="bg" style="background:linear-gradient(180deg,#C84B8A,#7B4DAA)"></div></div>
+</div>
+<div style="position:absolute;bottom:52px;left:0;right:0;background:#FFF;border-radius:16px 16px 0 0;padding:16px;box-shadow:0 -4px 20px rgba(0,0,0,.1);z-index:10">
+<div style="width:40px;height:4px;background:#E2E8F0;border-radius:2px;margin:0 auto 12px"></div>
+<div style="font-size:12px;font-weight:700;color:#1E293B;margin-bottom:10px">Share Artist Profile</div>
+<div style="display:flex;gap:14px;justify-content:center;margin-bottom:12px">
+<div style="text-align:center"><div style="width:44px;height:44px;background:#25D366;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">💬</div><div style="font-size:7px;color:#64748B">WhatsApp</div></div>
+<div style="text-align:center"><div style="width:44px;height:44px;background:linear-gradient(135deg,#833AB4,#E1306C);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">📷</div><div style="font-size:7px;color:#64748B">Instagram</div></div>
+<div style="text-align:center"><div style="width:44px;height:44px;background:#1DA1F2;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">🐦</div><div style="font-size:7px;color:#64748B">Twitter</div></div>
+<div style="text-align:center"><div style="width:44px;height:44px;background:#E8E0D8;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:3px">📋</div><div style="font-size:7px;color:#64748B">Copy Link</div></div>
+</div>
+<div style="background:#F8F5F0;border-radius:8px;padding:8px;font-size:8px;color:#64748B;display:flex;align-items:center;gap:4px"><span>🔗</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">beliveapp.app.link/artist/artistname</span></div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Screen to Acceptance Criteria Mapping (per Vihang's final AC)</strong><br><br>
+Screen 1 (Full Profile) → AC 1 (tap opens profile), AC 2 (all profile fields), AC 3 (stats: shows/checkins/venues), AC 4 (bio after stats), AC 5 (booking section), AC 6 (upcoming events with day), AC 8 (heart favourite), AC 9 (share button in nav)<br><br>
+Screen 2 (Favourited) → AC 8.1 (add to favourites), AC 8.2 (show fan count)<br><br>
+Screen 3 (Guest Prompt) → AC 5.2/5.3 (login check for booking), AC 8.3/8.4 (login check for favourite)<br><br>
+Screen 4 (No Events) → AC 7 (default text for no upcoming events)<br><br>
+Screen 5 (Share Sheet) → AC 9 (native share with deep link)
+</div>
+
+<div style="text-align:center;margin-top:30px;padding-top:16px;border-top:1px solid #2A2A3A;font-size:11px;color:#4A4A68">
+BeLive App · BLA-74 Artist Profile (Updated per Vihang review) · Mohammad Jamal Yusuf · March 2026
+</div>
+</body>
+</html>
