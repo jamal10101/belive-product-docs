@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-6 Search Results — Updated Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:26px;text-align:center;margin-bottom:4px}
+h2{font-size:16px;color:#E94560;text-align:center;margin:28px 0 14px}
+.sub{text-align:center;color:#7878A0;font-size:12px;margin-bottom:24px}
+.screens{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;padding:8px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#E94560;color:#FFF;border-radius:50%;font-size:10px;font-weight:700}
+.sl{font-size:11px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:9px;color:#7878A0;text-align:center;max-width:260px}
+
+.ph{width:260px;height:560px;background:#FFFAF5;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 16px 50px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:48px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#F5A623}.bnav .ni .ic{font-size:16px;display:block}
+.cnt{height:calc(100% - 48px);overflow-y:auto}
+
+/* Search bar */
+.sbar{background:#FFF;padding:8px 12px;border-bottom:1px solid #F0EBE5}
+.sinput{display:flex;align-items:center;gap:6px;background:#F8F5F0;border:1.5px solid #E8E0D8;border-radius:10px;padding:8px 10px}
+.sinput .sicon{font-size:13px;color:#94A3B8}
+.sinput .stext{font-size:11px;color:#1E293B;flex:1}
+.sinput .stext.ph2{color:#B0A89E}
+.sinput .sx{font-size:10px;color:#94A3B8}
+
+/* Filter tabs */
+.ftabs{display:flex;gap:4px;padding:8px 12px;overflow-x:auto;flex-wrap:nowrap}
+.ft{padding:4px 10px;border-radius:16px;font-size:9px;font-weight:600;white-space:nowrap;background:#F1F0EB;color:#94A3B8}
+.ft.ac{background:#E8532E;color:#FFF}
+.ft.blue{background:#2563EB;color:#FFF}
+.ft.teal{background:#0F9B8E;color:#FFF}
+
+/* Result count */
+.rcount{padding:4px 12px;font-size:9px;color:#94A3B8;display:flex;justify-content:space-between}
+.rcount .sort{color:#2563EB;font-weight:600}
+
+/* Result cards */
+.rcard{margin:3px 12px;background:#FFF;border-radius:10px;padding:8px;display:flex;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.03);border:1px solid #F5F0EB}
+.rcard .avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0}
+.rcard .info{flex:1;font-size:9px;color:#1E293B}
+.rcard .info .name{font-weight:700;font-size:11px;display:flex;align-items:center;gap:3px}
+.rcard .info .meta{color:#94A3B8;font-size:8px;margin-top:1px}
+.rcard .info .stats{color:#94A3B8;font-size:7px;margin-top:2px;display:flex;gap:6px}
+.rcard .arrow{font-size:14px;color:#E2E8F0;align-self:center}
+.badge-v{background:#D1FAE5;color:#059669;font-size:7px;padding:1px 4px;border-radius:3px;font-weight:600}
+
+/* Type badge on card */
+.type-badge{font-size:7px;padding:2px 6px;border-radius:4px;font-weight:700}
+.type-badge.artist{background:#FFF0EB;color:#E8532E}
+.type-badge.venue{background:#EFF6FF;color:#2563EB}
+.type-badge.org{background:#F0FDF4;color:#059669}
+.type-badge.mentor{background:#F5F3FF;color:#7C3AED}
+.type-badge.fan{background:#F8F5F0;color:#94A3B8}
+
+/* Highlight search match */
+.hl{background:#FEF3C7;padding:0 1px;border-radius:2px}
+
+/* Section header in results */
+.sec-hdr{padding:6px 12px 2px;font-size:9px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:6px}
+.sec-hdr .line{flex:1;height:1px;background:#E8E0D8}
+
+/* Empty state */
+.empty{text-align:center;padding:30px 16px;color:#94A3B8;font-size:10px}
+.empty .eicon{font-size:36px;margin-bottom:6px}
+.empty .etitle{font-weight:700;color:#1E293B;font-size:12px;margin-bottom:3px}
+.empty .suggestions{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.empty .sug{padding:4px 10px;background:#F8F5F0;color:#94A3B8;border-radius:8px;font-size:8px;font-weight:600}
+
+/* Filter chips */
+.chips{display:flex;gap:4px;padding:0 12px 6px;flex-wrap:wrap}
+.chip{padding:3px 8px;border-radius:8px;font-size:8px;font-weight:600;display:flex;align-items:center;gap:3px}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:30px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:12px;margin:16px auto;max-width:900px;font-size:10px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-6 (UPDATED)</div>
+<h1>Search Results — All Profile Types</h1>
+<div class="sub">Artists, Venues, Organisers, Mentors · 4 Screens</div>
+
+<h2>Universal Search</h2>
+<div class="screens">
+
+<!-- Screen 1: Search All - Mixed Results -->
+<div class="sw"><span class="sn">1</span><div class="sl">Search All — Mixed Results</div><div class="ss">Shows all types matching query</div>
+<div class="ph">
+<div class="cnt">
+<div class="sbar"><div class="sinput"><span class="sicon">🔍</span><span class="stext"><span class="hl">Pun</span>e</span><span class="sx">✕</span></div></div>
+<div class="ftabs">
+<span class="ft ac">All</span>
+<span class="ft">Artists</span>
+<span class="ft">Venues</span>
+<span class="ft">Organisers</span>
+<span class="ft">Mentors</span>
+</div>
+<div class="rcount">8 results for "Pune" <span class="sort">Sort ↕</span></div>
+
+<div class="sec-hdr">Artists <div class="line"></div></div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div>
+<div class="info"><div class="name">Atharva Patil <span class="badge-v">✅</span> <span class="type-badge artist">Artist</span></div><div class="meta">Singer · Acoustic · <span class="hl">Pune</span></div><div class="stats">👥 1.2K fans · ⭐ 4.8 · 24 shows</div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#D97706,#EA580C)"></div>
+<div class="info"><div class="name">DJ Ravi <span class="type-badge artist">Artist</span></div><div class="meta">DJ · Electronic · <span class="hl">Pune</span></div><div class="stats">👥 890 fans · ⭐ 4.5 · 16 shows</div></div>
+<div class="arrow">›</div>
+</div>
+
+<div class="sec-hdr">Venues <div class="line"></div></div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#2563EB,#0F9B8E);border-radius:8px"></div>
+<div class="info"><div class="name">Oasis Club <span class="badge-v">✅</span> <span class="type-badge venue">Venue</span></div><div class="meta">Club · Baner, <span class="hl">Pune</span></div><div class="stats">🎤 45 shows hosted · 500 capacity</div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:8px"></div>
+<div class="info"><div class="name">Hard Rock Cafe <span class="type-badge venue">Venue</span></div><div class="meta">Restaurant · Koregaon Park, <span class="hl">Pune</span></div><div class="stats">🎤 32 shows · 200 capacity</div></div>
+<div class="arrow">›</div>
+</div>
+
+<div class="sec-hdr">Organisers <div class="line"></div></div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#059669,#0F9B8E)"></div>
+<div class="info"><div class="name">Rahul Sharma <span class="type-badge org">Organiser</span></div><div class="meta">Music Events Agency · <span class="hl">Pune</span></div><div class="stats">📋 12 events · 3 artists managed</div></div>
+<div class="arrow">›</div>
+</div>
+
+<div class="sec-hdr">Mentors <div class="line"></div></div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#C84B8A)"></div>
+<div class="info"><div class="name">Ravi Shankar <span class="badge-v">✅</span> <span class="type-badge mentor">Mentor</span></div><div class="meta">Vocal Coaching · <span class="hl">Pune</span></div><div class="stats">⭐ 4.8 · 52 students · ₹500/hr</div></div>
+<div class="arrow">›</div>
+</div>
+<div style="height:10px"></div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni ac"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 2: Filtered by Venues -->
+<div class="sw"><span class="sn">2</span><div class="sl">Filter: Venues Only</div><div class="ss">Venues tab selected</div>
+<div class="ph">
+<div class="cnt">
+<div class="sbar"><div class="sinput"><span class="sicon">🔍</span><span class="stext ph2">Search venues...</span></div></div>
+<div class="ftabs">
+<span class="ft">All</span>
+<span class="ft">Artists</span>
+<span class="ft ac" style="background:#2563EB">Venues</span>
+<span class="ft">Organisers</span>
+<span class="ft">Mentors</span>
+</div>
+<div class="chips">
+<span class="chip" style="background:#2563EB;color:#FFF">📍 Pune ✕</span>
+<span class="chip" style="background:#F8F5F0;color:#94A3B8">+ Add Filter</span>
+</div>
+<div class="rcount">5 venues in Pune <span class="sort">Sort: Rating ↕</span></div>
+
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#2563EB,#0F9B8E);border-radius:8px"></div>
+<div class="info"><div class="name">Oasis Club <span class="badge-v">✅</span></div><div class="meta">Club · Baner · ⭐ 4.7</div><div class="stats">🎤 45 shows · 500 cap · Open Wed-Sun</div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:8px"></div>
+<div class="info"><div class="name">Hard Rock Cafe</div><div class="meta">Restaurant · Koregaon Park · ⭐ 4.5</div><div class="stats">🎤 32 shows · 200 cap · Open Daily</div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#D97706,#EA580C);border-radius:8px"></div>
+<div class="info"><div class="name">Ice N Fire Sky Lounge</div><div class="meta">Lounge · Baner · ⭐ 4.3</div><div class="stats">🎤 18 shows · 150 cap · Open Thu-Sun</div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#059669,#2563EB);border-radius:8px"></div>
+<div class="info"><div class="name">Cafe Durga</div><div class="meta">Cafe · FC Road · ⭐ 4.1</div><div class="stats">🎤 12 shows · 80 cap · Open Daily</div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#C84B8A,#7C3AED);border-radius:8px"></div>
+<div class="info"><div class="name">Royal Farm, Kirti Garden</div><div class="meta">Open Ground · Pashan · ⭐ 4.6</div><div class="stats">🎤 8 shows · 2000 cap · Event Only</div></div>
+<div class="arrow">›</div>
+</div>
+<div style="height:10px"></div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni ac"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 3: Filtered by Mentors -->
+<div class="sw"><span class="sn">3</span><div class="sl">Filter: Mentors Only</div><div class="ss">Mentors tab selected</div>
+<div class="ph">
+<div class="cnt">
+<div class="sbar"><div class="sinput"><span class="sicon">🔍</span><span class="stext ph2">Search mentors...</span></div></div>
+<div class="ftabs">
+<span class="ft">All</span>
+<span class="ft">Artists</span>
+<span class="ft">Venues</span>
+<span class="ft">Organisers</span>
+<span class="ft ac" style="background:#7C3AED">Mentors</span>
+</div>
+<div class="chips">
+<span class="chip" style="background:#7C3AED;color:#FFF">🎤 Vocal ✕</span>
+<span class="chip" style="background:#F8F5F0;color:#94A3B8">+ Add Filter</span>
+</div>
+<div class="rcount">3 vocal mentors <span class="sort">Sort: Rating ↕</span></div>
+
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#C84B8A)"></div>
+<div class="info"><div class="name">Ravi Shankar <span class="badge-v">✅</span></div><div class="meta">Vocal Coaching · Pune · 12 yrs</div><div class="stats">⭐ 4.8 · 52 students · <span style="color:#059669;font-weight:600">₹500/hr</span></div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#059669,#0F9B8E)"></div>
+<div class="info"><div class="name">Ananya Iyer</div><div class="meta">Vocal + Performance · Mumbai · 8 yrs</div><div class="stats">⭐ 4.6 · 34 students · <span style="color:#059669;font-weight:600">Free</span></div></div>
+<div class="arrow">›</div>
+</div>
+<div class="rcard">
+<div class="avatar" style="background:linear-gradient(135deg,#E94560,#D97706)"></div>
+<div class="info"><div class="name">Meera Kulkarni</div><div class="meta">Vocal Training · Pune · 5 yrs</div><div class="stats">⭐ 4.3 · 18 students · <span style="color:#059669;font-weight:600">₹300/hr</span></div></div>
+<div class="arrow">›</div>
+</div>
+<div style="height:10px"></div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni ac"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+<!-- Screen 4: Empty State -->
+<div class="sw"><span class="sn">4</span><div class="sl">No Results — Empty State</div><div class="ss">No matching results found</div>
+<div class="ph">
+<div class="cnt">
+<div class="sbar"><div class="sinput"><span class="sicon">🔍</span><span class="stext">xyzrandomname</span><span class="sx">✕</span></div></div>
+<div class="ftabs">
+<span class="ft ac">All</span>
+<span class="ft">Artists</span>
+<span class="ft">Venues</span>
+<span class="ft">Organisers</span>
+<span class="ft">Mentors</span>
+</div>
+<div class="empty">
+<div class="eicon">🔍</div>
+<div class="etitle">No results found</div>
+<div>No artists, venues, organisers, or mentors match "xyzrandomname". Try a different search.</div>
+<div class="suggestions">
+<span class="sug">Try: Singer</span>
+<span class="sug">Try: Pune</span>
+<span class="sug">Try: DJ</span>
+<span class="sug">Try: Venue</span>
+<span class="sug">Try: Mentor</span>
+</div>
+</div>
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni ac"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Updates from Vihang's feedback:</strong><br><br>
+1. Search now covers <strong>ALL profile types</strong> — not just artists<br>
+2. Filter tabs: <strong>All | Artists | Venues | Organisers | Mentors</strong><br>
+3. Mixed results view (Screen 1) groups results by type with section headers<br>
+4. Each result card shows a <strong>color-coded type badge</strong> (Artist=orange, Venue=blue, Organiser=green, Mentor=purple)<br>
+5. Stats shown are <strong>type-specific</strong>: Artists show fans/rating/shows, Venues show shows hosted/capacity, Organisers show events/artists, Mentors show rating/students/rate<br>
+6. Venue avatars use <strong>rounded square</strong> (border-radius:8px) to differentiate from circular person avatars<br>
+7. Empty state mentions all types: "No artists, venues, organisers, or mentors match..."<br>
+8. Quick suggestions include type-based terms: Singer, Pune, DJ, Venue, Mentor
+</div>
+
+<div style="text-align:center;margin-top:20px;padding-top:12px;border-top:1px solid #2A2A3A;font-size:10px;color:#4A4A68">
+BeLive App · BLA-6 Search Results (Updated — All Profile Types) · Mohammad Jamal Yusuf · March 2026
+</div>
+</body>
+</html>
