@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-77 Studio Profile — Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:24px;text-align:center;margin-bottom:4px}
+h2{font-size:16px;color:#E94560;text-align:center;margin:28px 0 12px}
+.sub{text-align:center;color:#7878A0;font-size:12px;margin-bottom:24px}
+.screens{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;padding:8px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#E94560;color:#FFF;border-radius:50%;font-size:10px;font-weight:700}
+.sl{font-size:10px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:8px;color:#7878A0;text-align:center;max-width:260px}
+.ph{width:260px;height:560px;background:#FFFAF5;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 14px 40px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:48px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#F5A623}.bnav .ni .ic{font-size:14px;display:block}
+.cnt{height:calc(100% - 48px);overflow-y:auto}
+.hdr{background:linear-gradient(90deg,#E8532E,#F5A623);padding:10px 12px;display:flex;align-items:center}
+.hdr .back{font-size:14px;color:#FFF}
+.hdr .title{flex:1;text-align:center;font-size:12px;font-weight:700;color:#FFF}
+.finp{margin:5px 12px;border:1.5px solid #D4C8BE;border-radius:10px;padding:8px 10px;background:#FFF}
+.finp .flb{font-size:8px;color:#94A3B8;font-weight:500;margin-bottom:2px}
+.finp .fval{font-size:10px;color:#C4B8AE}
+.finp .fval.filled{color:#1E293B}
+.tag-row{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px}
+.tag{padding:2px 8px;border-radius:10px;font-size:7px;font-weight:600}
+.tag.sel{background:#E8532E;color:#FFF}
+.tag.unsel{background:#F8F5F0;color:#94A3B8}
+.gbtn{margin:8px 12px;padding:10px;border-radius:25px;text-align:center;font-size:11px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623)}
+.gbtn.off{opacity:.3}
+.chk-row{display:flex;align-items:flex-start;gap:6px;padding:4px 12px;font-size:8px;color:#1E293B}
+.chk-box{width:14px;height:14px;border:2px solid #D4C8BE;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px}
+.chk-box.on{background:#E8532E;border-color:#E8532E;color:#FFF}
+.chk-link{color:#2563EB;text-decoration:underline}
+
+/* Studio profile specific */
+.hero-studio{width:100%;height:140px;position:relative;overflow:hidden}
+.hero-studio .bg{width:100%;height:100%}
+.hero-studio .fade{position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,#FFF)}
+.hero-studio .nav{position:absolute;top:8px;left:0;right:0;display:flex;justify-content:space-between;padding:0 12px}
+.hero-studio .nav .cb{width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:12px;color:#FFF}
+.hero-studio .dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+.hero-studio .dots .dot{width:5px;height:5px;border-radius:50%}
+
+.studio-info{padding:6px 14px}
+.studio-name{font-size:16px;font-weight:800;color:#1E293B;display:flex;align-items:center;gap:4px}
+.badge-v{background:#D1FAE5;color:#059669;font-size:7px;padding:1px 5px;border-radius:3px;font-weight:600}
+.badge-new{background:#EFF6FF;color:#2563EB;font-size:7px;padding:1px 5px;border-radius:3px;font-weight:600}
+.type-tags{display:flex;gap:3px;margin:4px 0;flex-wrap:wrap}
+.type-tag{padding:2px 8px;background:#F0E6FF;color:#7C3AED;border-radius:8px;font-size:7px;font-weight:600}
+.studio-meta{font-size:9px;color:#64748B;padding:2px 0;display:flex;align-items:center;gap:5px}
+.stars-sm span{font-size:11px;color:#F5A623}
+.rate-badge{font-size:9px;font-weight:700;color:#059669;background:#F0FDF4;padding:2px 8px;border-radius:6px}
+
+.equip-title{padding:8px 14px 3px;font-size:10px;font-weight:700;color:#1E293B}
+.equip-tags{display:flex;gap:3px;flex-wrap:wrap;padding:0 14px 6px}
+.equip-tag{padding:3px 8px;background:#F8F5F0;border-radius:6px;font-size:7px;color:#64748B;font-weight:500}
+
+.studio-bio{padding:4px 14px 8px;font-size:9px;color:#1E293B;line-height:1.5}
+.gallery-title{padding:6px 14px 3px;font-size:10px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:.5px}
+.gallery{display:flex;flex-wrap:wrap;gap:3px;padding:0 14px 6px}
+.gallery .gi{width:calc(33.33% - 2px);height:45px;border-radius:6px}
+
+.review-card{margin:3px 14px;background:#FFF;border:1px solid #F0EBE5;border-radius:8px;padding:8px;font-size:8px}
+.review-card .rv-head{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.review-card .rv-avatar{width:22px;height:22px;border-radius:50%}
+.review-card .rv-name{font-weight:700;color:#1E293B;font-size:9px}
+.review-card .rv-stars{font-size:9px;color:#F5A623}
+.review-card .rv-text{color:#64748B;line-height:1.4}
+
+.book-count{text-align:center;font-size:9px;font-weight:700;color:#E8532E;padding:4px}
+
+/* Booking form */
+.session-types{display:flex;gap:4px;padding:0 12px;flex-wrap:wrap;margin:4px 0}
+.stype{padding:4px 10px;border-radius:8px;font-size:8px;font-weight:600}
+.stype.sel{background:#7C3AED;color:#FFF}
+.stype.unsel{background:#F8F5F0;color:#94A3B8}
+
+.cost-est{margin:6px 12px;padding:8px;background:#F0FDF4;border-radius:8px;text-align:center;font-size:9px;color:#059669;font-weight:600}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:30px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:12px;margin:14px auto;max-width:900px;font-size:10px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-77</div>
+<h1>Studio Profile — Wireframes</h1>
+<div class="sub">4 Screens · Registration, Public Profile, Book Studio, Search</div>
+
+<div class="screens">
+
+<!-- Screen 1: Studio Registration -->
+<div class="sw"><span class="sn">1</span><div class="sl">Studio Registration Form</div><div class="ss">Owner registers studio</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Register Studio</span></div>
+<div style="text-align:center;padding:8px"><div style="font-size:8px;color:#94A3B8">Profile type: <strong style="color:#7C3AED">Studio</strong></div></div>
+<div class="finp"><div class="flb">Studio Name *</div><div class="fval">e.g. SoundBox Studio</div></div>
+<div class="finp"><div class="flb">Studio Type * (select all that apply)</div><div class="tag-row"><span class="tag sel">🎙 Recording</span><span class="tag sel">🎸 Rehearsal</span><span class="tag unsel">🎧 Podcast</span><span class="tag unsel">🎹 Production</span><span class="tag unsel">🎚 Mix & Master</span></div></div>
+<div class="finp"><div class="flb">Address * (Google Places)</div><div class="fval">Search address...</div></div>
+<div class="finp"><div class="flb">City *</div><div class="fval">Select city</div></div>
+<div class="finp"><div class="flb">Cover Photos *</div><div style="height:40px;background:#FFF0EB;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-top:3px"><span style="font-size:8px;color:#E8532E;font-weight:600">📷 Upload Photos (max 5)</span></div></div>
+<div class="finp"><div class="flb">Description *</div><div class="fval" style="min-height:24px">Describe your studio...</div></div>
+<div class="finp"><div class="flb">Equipment & Facilities</div><div class="tag-row"><span class="tag sel">🎤 Condenser Mic</span><span class="tag sel">🥁 Drum Kit</span><span class="tag unsel">🎚 Mixing Console</span><span class="tag unsel">🔇 Soundproof</span><span class="tag unsel">❄️ AC</span><span class="tag unsel">🅿️ Parking</span></div></div>
+<div class="finp"><div class="flb">Operating Hours *</div><div class="fval">e.g. 10 AM – 10 PM (Mon-Sat)</div></div>
+<div class="finp"><div class="flb">Hourly Rate Range *</div><div class="fval">₹ Min — ₹ Max  or  Contact for pricing</div></div>
+<div class="finp"><div class="flb">Contact Phone *</div><div class="fval">+91 XXXXX XXXXX</div></div>
+<div class="finp"><div class="flb">Website / Social Link</div><div class="fval">https://...</div></div>
+<div style="height:4px"></div>
+<div class="chk-row"><div class="chk-box on">✓</div><div>I accept the <span class="chk-link">Terms and Conditions</span></div></div>
+<div class="chk-row"><div class="chk-box on">✓</div><div>I accept the <span class="chk-link">Privacy Policy</span></div></div>
+<div class="gbtn">Submit for Review</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;padding:4px 12px">Admin will review within 24-48 hours</div>
+<div style="height:8px"></div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 2: Studio Public Profile -->
+<div class="sw"><span class="sn">2</span><div class="sl">Studio Profile — Public View</div><div class="ss">Artist views studio details</div>
+<div class="ph"><div class="cnt">
+<div class="hero-studio">
+<div class="bg" style="background:linear-gradient(135deg,#1E293B 0%,#334155 40%,#475569 100%)"></div>
+<div class="nav"><div class="cb">←</div><div class="cb">📤</div></div>
+<div class="dots"><div class="dot" style="background:#FFF"></div><div class="dot" style="background:rgba(255,255,255,.4)"></div><div class="dot" style="background:rgba(255,255,255,.4)"></div></div>
+<div class="fade"></div>
+</div>
+
+<div class="studio-info">
+<div class="studio-name">SoundBox Studio <span class="badge-v">✅</span></div>
+<div class="type-tags"><span class="type-tag">🎙 Recording</span><span class="type-tag">🎸 Rehearsal</span></div>
+<div class="studio-meta"><span class="stars-sm"><span>★</span><span>★</span><span>★</span><span>★</span><span style="opacity:.3">★</span></span> 4.6 (23 reviews)</div>
+<div class="studio-meta">📍 Baner, Pune · <span class="rate-badge">₹500 – ₹1,500/hr</span></div>
+<div class="studio-meta">⏰ 10 AM – 10 PM (Mon-Sat)</div>
+<div class="studio-meta">📞 +91 98765 43210</div>
+</div>
+
+<div style="margin:6px 14px;height:50px;background:#E2E8F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#94A3B8">📍 Google Maps · Tap for Directions</div>
+
+<div class="equip-title">Equipment & Facilities</div>
+<div class="equip-tags">
+<span class="equip-tag">🎤 Condenser Mic</span><span class="equip-tag">🎚 Mixing Console</span><span class="equip-tag">🥁 Drum Kit</span><span class="equip-tag">🔇 Soundproof</span><span class="equip-tag">🎧 Monitors</span><span class="equip-tag">❄️ AC</span><span class="equip-tag">🅿️ Parking</span>
+</div>
+
+<div class="studio-bio">Professional recording studio in the heart of Baner, Pune. Equipped with industry-standard gear. Perfect for recording, mixing, and rehearsals...</div>
+
+<div class="gallery-title">Gallery</div>
+<div class="gallery">
+<div class="gi" style="background:linear-gradient(135deg,#334155,#1E293B)"></div>
+<div class="gi" style="background:linear-gradient(135deg,#475569,#334155)"></div>
+<div class="gi" style="background:linear-gradient(135deg,#1E293B,#475569)"></div>
+</div>
+
+<div class="equip-title">Reviews</div>
+<div class="review-card">
+<div class="rv-head"><div class="rv-avatar" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div><div class="rv-name">Atharva Patil</div><div class="rv-stars">★★★★★</div></div></div>
+<div class="rv-text">Amazing studio! Sound quality is top-notch. The soundproofing is excellent.</div>
+</div>
+
+<div class="book-count">47 booking requests</div>
+<div class="gbtn">Book Studio 🎙</div>
+<div style="height:10px"></div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni ac"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 3: Book Studio Form -->
+<div class="sw"><span class="sn">3</span><div class="sl">Book Studio — Session Form</div><div class="ss">Artist books a session</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Book Studio</span></div>
+<div style="text-align:center;padding:10px"><div style="font-size:10px;font-weight:700;color:#1E293B">SoundBox Studio</div><div style="font-size:8px;color:#94A3B8">Recording · Rehearsal · Baner, Pune</div></div>
+
+<div style="padding:4px 12px;font-size:9px;font-weight:700;color:#1E293B">Session Type</div>
+<div class="session-types">
+<span class="stype sel">🎙 Recording</span>
+<span class="stype unsel">🎸 Rehearsal</span>
+<span class="stype unsel">🎚 Mixing</span>
+<span class="stype unsel">🎧 Podcast</span>
+<span class="stype unsel">Other</span>
+</div>
+
+<div class="finp"><div class="flb">Preferred Date *</div><div class="fval filled">📅 Apr 10, 2026</div></div>
+<div class="finp"><div class="flb">Time Slot *</div><div class="fval filled">⏰ 2:00 PM – 5:00 PM (3 hours)</div></div>
+<div class="finp"><div class="flb">Number of People</div><div class="fval filled">3 (band members)</div></div>
+<div class="finp"><div class="flb">Special Requirements (optional)</div><div class="fval" style="min-height:24px">e.g. Need drum kit set up, vocal booth...</div></div>
+
+<div class="cost-est">💰 Estimated Cost: ₹1,500 – ₹4,500 (3 hrs × ₹500-1,500/hr)</div>
+
+<div class="gbtn">Send Booking Request</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;padding:4px">Studio owner will respond within 48 hours</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 4: Studios in Search -->
+<div class="sw"><span class="sn">4</span><div class="sl">Studios in Search Results</div><div class="ss">Studios tab in universal search</div>
+<div class="ph"><div class="cnt">
+<div style="background:#FFF;padding:6px 12px;border-bottom:1px solid #F0EBE5"><div style="display:flex;align-items:center;gap:4px;background:#F8F5F0;border:1.5px solid #E8E0D8;border-radius:8px;padding:6px 8px"><span style="font-size:10px;color:#94A3B8">🔍</span><span style="font-size:9px;color:#94A3B8">Search studios...</span></div></div>
+<div style="display:flex;gap:3px;padding:6px 12px;font-size:8px">
+<span style="padding:3px 8px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-weight:600">All</span>
+<span style="padding:3px 8px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-weight:600">Artists</span>
+<span style="padding:3px 8px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-weight:600">Venues</span>
+<span style="padding:3px 8px;background:#7C3AED;color:#FFF;border-radius:12px;font-weight:600">Studios</span>
+<span style="padding:3px 8px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-weight:600">Mentors</span>
+</div>
+<div style="padding:3px 12px;font-size:8px;color:#94A3B8">4 studios in Pune</div>
+
+<div style="margin:3px 12px;background:#FFF;border-radius:8px;padding:8px;display:flex;gap:8px;border:1px solid #F0EBE5">
+<div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#1E293B,#475569);flex-shrink:0"></div>
+<div style="flex:1;font-size:8px"><div style="font-weight:700;font-size:10px;color:#1E293B">SoundBox Studio <span class="badge-v">✅</span></div><div style="color:#94A3B8">Recording · Rehearsal · Baner</div><div style="color:#94A3B8;margin-top:2px">⭐ 4.6 · <span style="color:#059669;font-weight:600">₹500-1,500/hr</span></div></div>
+<div style="font-size:12px;color:#E2E8F0;align-self:center">›</div>
+</div>
+<div style="margin:3px 12px;background:#FFF;border-radius:8px;padding:8px;display:flex;gap:8px;border:1px solid #F0EBE5">
+<div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#334155,#1E293B);flex-shrink:0"></div>
+<div style="flex:1;font-size:8px"><div style="font-weight:700;font-size:10px;color:#1E293B">Harmony Studios</div><div style="color:#94A3B8">Recording · Production · KP</div><div style="color:#94A3B8;margin-top:2px">⭐ 4.3 · <span style="color:#059669;font-weight:600">₹800-2,000/hr</span></div></div>
+<div style="font-size:12px;color:#E2E8F0;align-self:center">›</div>
+</div>
+<div style="margin:3px 12px;background:#FFF;border-radius:8px;padding:8px;display:flex;gap:8px;border:1px solid #F0EBE5">
+<div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#475569,#334155);flex-shrink:0"></div>
+<div style="flex:1;font-size:8px"><div style="font-weight:700;font-size:10px;color:#1E293B">BeatLab Pune <span class="badge-new">New</span></div><div style="color:#94A3B8">Podcast · Mix & Master · Hinjewadi</div><div style="color:#94A3B8;margin-top:2px">New on BeLive · <span style="color:#059669;font-weight:600">₹300-800/hr</span></div></div>
+<div style="font-size:12px;color:#E2E8F0;align-self:center">›</div>
+</div>
+<div style="margin:3px 12px;background:#FFF;border-radius:8px;padding:8px;display:flex;gap:8px;border:1px solid #F0EBE5">
+<div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#7C3AED,#334155);flex-shrink:0"></div>
+<div style="flex:1;font-size:8px"><div style="font-weight:700;font-size:10px;color:#1E293B">Echo Chamber</div><div style="color:#94A3B8">Rehearsal · Aundh</div><div style="color:#94A3B8;margin-top:2px">⭐ 4.0 · <span style="color:#059669;font-weight:600">₹400/hr</span></div></div>
+<div style="font-size:12px;color:#E2E8F0;align-self:center">›</div>
+</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni ac"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Screen to User Story / AC Mapping:</strong><br><br>
+Screen 1 (Registration) → US-001: AC1, AC2 (form fields + submit for review)<br>
+Screen 2 (Public Profile) → US-002: AC1, AC2, AC3, AC4 (full studio page + reviews + map)<br>
+Screen 3 (Book Studio) → US-003: AC1, AC2 (booking form with session type, date, cost estimate)<br>
+Screen 4 (Search Results) → US-002: AC1 (studios in search with "Studios" filter tab, type badges, pricing)
+</div>
+
+<div style="text-align:center;margin-top:20px;padding-top:12px;border-top:1px solid #2A2A3A;font-size:10px;color:#4A4A68">
+BeLive App · BLA-77 Studio Profile · Wireframes · Mohammad Jamal Yusuf · March 2026
+</div>
+</body>
+</html>
