@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-74 Artist Profile — v3 Final Updated</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:24px;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:#7878A0;font-size:12px;margin-bottom:20px}
+.screens{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#E94560;color:#FFF;border-radius:50%;font-size:10px;font-weight:700}
+.sl{font-size:11px;font-weight:700;color:#E94560;text-align:center;max-width:300px}
+.ss{font-size:9px;color:#7878A0;text-align:center;max-width:300px}
+.ph{width:300px;height:700px;background:#FFF;border-radius:34px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 20px 60px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:52px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:7px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#4A6FA5}.bnav .ni .ic{font-size:18px;display:block}
+.cnt{height:calc(100% - 52px);overflow-y:auto;overflow-x:hidden}
+.hero{width:100%;height:240px;position:relative;overflow:hidden}
+.hero .bg{width:100%;height:100%;background:linear-gradient(180deg,#C84B8A 0%,#9B59B6 40%,#7B4DAA 70%,#DDD 100%)}
+.hero .fade{position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(transparent,#FFF)}
+.hero .topnav{position:absolute;top:14px;left:0;right:0;display:flex;justify-content:space-between;padding:0 16px;z-index:5}
+.hero .topnav .cb{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:15px;color:#FFF;backdrop-filter:blur(4px)}
+.hero .topnav .right-btns{display:flex;flex-direction:column;gap:4px;align-items:center}
+.hero .topnav .heart-count{font-size:9px;color:#FFF;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.hero .guitar{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);font-size:60px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3))}
+.hero .aname{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-size:24px;font-weight:800;color:#1E293B;letter-spacing:-0.5px}
+.rating-area{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 16px;position:relative}
+.stars span{font-size:16px;color:#F5A623}.stars span.off{opacity:.35}
+.rbadge{position:absolute;right:16px;width:38px;height:38px;border-radius:50%;border:2px solid #0F9B8E;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rbadge .rn{font-size:12px;font-weight:800;color:#0F9B8E}.rbadge .rp{font-size:8px;color:#0F9B8E}
+.info{padding:2px 18px}
+.irow{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:11px;color:#1E293B}
+.irow .ic{color:#E94560;font-size:13px;width:16px;text-align:center}
+.beliver{color:#E8532E;font-size:10px;font-weight:600}
+.stats{display:flex;text-align:center;padding:10px 18px;margin:6px 0}
+.stats .s{flex:1}.stats .s .n{font-size:24px;font-weight:800;color:#1E293B}.stats .s .l{font-size:7px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.stats .s+.s{border-left:1px solid #E8E0D8}
+.genre-row{padding:2px 18px 6px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.glabel{font-size:10px;color:#E8532E;font-weight:600}
+.gtag{padding:4px 12px;border:1.5px solid #D4C8BE;border-radius:20px;font-size:9px;color:#1E293B}
+.bio{padding:6px 18px 8px;font-size:10px;color:#1E293B;line-height:1.6}
+.social-row{padding:4px 18px 6px;display:flex;gap:8px}
+.social-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.sec-title{padding:8px 18px 4px;font-size:12px;font-weight:800;color:#1E293B;text-transform:uppercase;letter-spacing:.5px}
+.gallery{display:flex;flex-wrap:wrap;gap:4px;padding:0 18px 8px}
+.gallery .gi{width:calc(33.33% - 3px);height:60px;border-radius:8px}
+.band-section{padding:4px 18px 8px}
+.band-card{display:flex;align-items:center;gap:10px;padding:8px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;margin:4px 0}
+.band-card .band-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0}
+.band-card .band-info{flex:1;font-size:10px}
+.band-card .band-info .bname{font-weight:700;color:#1E293B;font-size:11px}
+.band-card .band-info .brole{color:#94A3B8;font-size:8px}
+.band-card .view-btn{font-size:8px;color:#2563EB;font-weight:600}
+.booking-count{text-align:center;font-size:11px;font-weight:700;color:#E8532E;padding:4px}
+.book-btn{margin:4px 18px 8px;padding:12px;border-radius:28px;text-align:center;font-size:14px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623);box-shadow:0 4px 12px rgba(232,83,46,.25)}
+.ev-header{padding:8px 18px 4px;display:flex;justify-content:space-between;align-items:center}
+.ev-header .evtitle{font-size:11px;font-weight:700;color:#1E293B;background:#F0EBE5;padding:3px 12px;border-radius:5px}
+.ev-header .evarrow{width:26px;height:26px;border-radius:50%;border:1.5px solid #D4C8BE;display:flex;align-items:center;justify-content:center;font-size:11px;color:#64748B}
+.ev-grid{display:flex;flex-wrap:wrap;gap:6px;padding:4px 18px 12px}
+.ev-item{width:calc(50% - 3px);background:#FFF;border:1px solid #F0EBE5;border-radius:10px;overflow:hidden}
+.ev-item .ev-poster{width:100%;height:70px;position:relative}
+.ev-item .ev-poster .ev-day{position:absolute;top:4px;right:4px;background:#1E293B;color:#FFF;padding:2px 6px;border-radius:3px;font-size:7px;font-weight:700}
+.ev-item .ev-poster .ev-edit{position:absolute;bottom:4px;right:4px;font-size:14px}
+.ev-item .ev-det{padding:6px 8px;font-size:8px;color:#1E293B}
+.ev-item .ev-det .ev-time{color:#64748B;font-size:7px;display:flex;align-items:center;gap:2px;margin-bottom:2px}
+.ev-item .ev-det .ev-name{font-weight:700;font-size:10px;margin-bottom:2px}
+.ev-item .ev-det .ev-venue{color:#64748B;font-size:7px}
+hr{border:none;border-top:1px solid #2A2A3A;margin:30px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:12px;margin:16px auto;max-width:700px;font-size:10px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-74 (FINAL)</div>
+<h1>Artist Profile — Wireframe v3 Updated</h1>
+<div class="sub">Social links above gallery · 2.4K below heart · Events in 2-col grid</div>
+
+<div class="screens">
+<div class="sw"><span class="sn">1</span><div class="sl">Artist Profile — Full View (Final)</div><div class="ss">All Vihang feedback applied</div>
+<div class="ph">
+<div class="cnt">
+
+<div class="hero">
+<div class="bg"></div>
+<div class="topnav">
+<div class="cb">←</div>
+<div class="right-btns">
+<div class="cb">📤</div>
+<div class="cb" style="background:rgba(233,69,96,.85)">♡</div>
+<div class="heart-count">2.4K</div>
+</div>
+</div>
+<div class="guitar">🎸</div>
+<div class="aname">#Artistname</div>
+<div class="fade"></div>
+</div>
+
+<div class="rating-area">
+<div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span class="off">★</span></div>
+<div class="rbadge"><div class="rn">4.7</div><div class="rp">👥</div></div>
+</div>
+
+<div class="info">
+<div class="irow"><span class="ic">📍</span> Pune, Maharashtra, India</div>
+<div class="irow"><span class="ic">👥</span> Music band / Artist group</div>
+<div class="beliver" style="padding:2px 0">BeLive'r since Mar 2026</div>
+</div>
+
+<div class="stats">
+<div class="s"><div class="n">500</div><div class="l">Shows</div></div>
+<div class="s"><div class="n">5k</div><div class="l">Check In Fans</div></div>
+<div class="s"><div class="n">100</div><div class="l">Venues</div></div>
+</div>
+
+<div class="genre-row">
+<span class="glabel">Genre :</span>
+<span class="gtag">Bollywood</span>
+<span class="gtag">Classical</span>
+<span class="gtag">Sufi</span>
+<span class="gtag">Ghazal</span>
+</div>
+
+<div class="bio">Born 30 July 1973) is an Indian playback singer, music director, dubbing artist and actor. I am recipient of Padma Shri, India's fourth-highest civilian award...</div>
+
+<!-- Social Links — ABOVE GALLERY -->
+<div class="social-row">
+<div class="social-icon" style="background:#E1306C;color:#FFF">📷</div>
+<div class="social-icon" style="background:#1DA1F2;color:#FFF">🐦</div>
+<div class="social-icon" style="background:#FF0000;color:#FFF">▶️</div>
+<div class="social-icon" style="background:#1E293B;color:#FFF">🌐</div>
+</div>
+
+<div class="sec-title">Gallery</div>
+<div class="gallery">
+<div class="gi" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div>
+<div class="gi" style="background:linear-gradient(135deg,#2563EB,#0F9B8E)"></div>
+<div class="gi" style="background:linear-gradient(135deg,#D97706,#EA580C)"></div>
+<div class="gi" style="background:linear-gradient(135deg,#059669,#2563EB)"></div>
+<div class="gi" style="background:linear-gradient(135deg,#7C3AED,#E94560)"></div>
+</div>
+
+<!-- Bands & Collaborations -->
+<div class="sec-title">Bands & Collaborations</div>
+<div class="band-section">
+<div class="band-card">
+<div class="band-avatar" style="background:linear-gradient(135deg,#C84B8A,#7B4DAA)"></div>
+<div class="band-info"><div class="bname">Inayat The Band</div><div class="brole">Lead Vocalist · 4 members</div></div>
+<div class="view-btn">View →</div>
+</div>
+<div class="band-card">
+<div class="band-avatar" style="background:linear-gradient(135deg,#059669,#2563EB)"></div>
+<div class="band-info"><div class="bname">The State Bus</div><div class="brole">Guest Performer · 6 members</div></div>
+<div class="view-btn">View →</div>
+</div>
+</div>
+
+<div class="booking-count">2.5K booking requests</div>
+<div class="book-btn">Book Artist</div>
+
+<!-- Upcoming Events — 2 COLUMN GRID -->
+<div class="ev-header"><span class="evtitle">Upcoming events</span><span class="evarrow">→</span></div>
+<div class="ev-grid">
+<div class="ev-item">
+<div class="ev-poster" style="background:linear-gradient(135deg,#E94560,#D97706)"><div class="ev-day">SAT</div><div class="ev-edit">✏️</div></div>
+<div class="ev-det"><div class="ev-time">⏰ 01, Jan 8 pm</div><div class="ev-name">Show name</div><div class="ev-venue">📍 Venue name</div></div>
+</div>
+<div class="ev-item">
+<div class="ev-poster" style="background:linear-gradient(135deg,#7C3AED,#2563EB)"><div class="ev-day">SAT</div><div class="ev-edit">✏️</div></div>
+<div class="ev-det"><div class="ev-time">⏰ 29, Mar 8:30 pm</div><div class="ev-name">Sunday Live</div><div class="ev-venue">📍 Ice N Fire, Baner</div></div>
+</div>
+<div class="ev-item">
+<div class="ev-poster" style="background:linear-gradient(135deg,#059669,#0F9B8E)"><div class="ev-day">FRI</div><div class="ev-edit">✏️</div></div>
+<div class="ev-det"><div class="ev-time">⏰ 04, Apr 7 pm</div><div class="ev-name">Unplugged Night</div><div class="ev-venue">📍 Hard Rock, KP</div></div>
+</div>
+<div class="ev-item">
+<div class="ev-poster" style="background:linear-gradient(135deg,#D97706,#C84B8A)"><div class="ev-day">SUN</div><div class="ev-edit">✏️</div></div>
+<div class="ev-det"><div class="ev-time">⏰ 12, Apr 6 pm</div><div class="ev-name">Rang De 5.0</div><div class="ev-venue">📍 Royal Farm</div></div>
+</div>
+</div>
+<div style="height:12px"></div>
+
+</div>
+<div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div>
+</div></div>
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Changes in this update:</strong><br><br>
+1. ♡ <strong>Heart icon</strong> — shows <strong>"2.4K"</strong> directly below heart icon in top-right corner<br>
+2. 📷 <strong>Social links</strong> — moved to <strong>just above Gallery</strong><br>
+3. 📅 <strong>Upcoming events</strong> — now in <strong>2-column grid</strong> (gallery=3 cols, events=2 cols) with poster, day badge, time, name, venue<br>
+4. 🎸 <strong>Renamed to "Bands & Collaborations"</strong>
+</div>
+
+<div style="text-align:center;margin-top:20px;padding-top:12px;border-top:1px solid #2A2A3A;font-size:10px;color:#4A4A68">
+BeLive App · BLA-74 Artist Profile (Final) · Mohammad Jamal Yusuf · March 2026
+</div>
+</body>
+</html>
