@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-86 Artist Registration — Updated Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:24px;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:#7878A0;font-size:12px;margin-bottom:24px}
+.screens{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;padding:8px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#E94560;color:#FFF;border-radius:50%;font-size:10px;font-weight:700}
+.sl{font-size:10px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:8px;color:#7878A0;text-align:center;max-width:260px}
+.ph{width:260px;height:560px;background:#FFFAF5;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 14px 40px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:48px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#F5A623}.bnav .ni .ic{font-size:14px;display:block}
+.cnt{height:calc(100% - 48px);overflow-y:auto}
+.hdr{background:#FFF;padding:8px 12px;display:flex;align-items:center;border-bottom:1px solid #F0EBE5}
+.hdr .back{font-size:14px;color:#1E293B}
+.hdr .title{flex:1;text-align:center;font-size:12px;font-weight:700;color:#1E293B}
+/* Steps */
+.steps{display:flex;gap:4px;padding:8px 12px;justify-content:center}
+.steps .s{width:50px;height:4px;border-radius:2px;background:#E8E0D8}
+.steps .s.done{background:#059669}
+.steps .s.active{background:#E8532E}
+.finp{margin:5px 12px;border:1.5px solid #D4C8BE;border-radius:10px;padding:8px 10px;background:#FFF}
+.finp .flb{font-size:8px;color:#94A3B8;font-weight:500;margin-bottom:2px}
+.finp .fval{font-size:10px;color:#1E293B}
+.finp .fval.ph2{color:#C4B8AE}
+/* Type cards */
+.type-grid{display:flex;flex-wrap:wrap;gap:8px;padding:8px 12px;justify-content:center}
+.tcard{width:calc(33.33% - 6px);padding:10px 6px;background:#FFF;border:2px solid #E8E0D8;border-radius:12px;text-align:center}
+.tcard.sel{border-color:#E8532E;background:#FFF8F5}
+.tcard .tic{font-size:24px;margin-bottom:3px}
+.tcard .tname{font-size:9px;font-weight:700;color:#1E293B}
+.tcard.sel .tname{color:#E8532E}
+.tcard .tdesc{font-size:6px;color:#94A3B8;margin-top:1px}
+/* Category pills */
+.cat-grid{display:flex;flex-wrap:wrap;gap:4px;padding:4px 12px}
+.cpill{padding:5px 10px;border-radius:20px;font-size:8px;font-weight:600;display:flex;align-items:center;gap:3px}
+.cpill.sel{background:#E8532E;color:#FFF}
+.cpill.unsel{background:#FFF;border:1.5px solid #E8E0D8;color:#64748B}
+.cpill .cic{font-size:10px}
+.cat-count{text-align:center;padding:4px;font-size:8px;color:#059669;font-weight:600}
+/* Button */
+.gbtn{margin:8px 12px;padding:10px;border-radius:25px;text-align:center;font-size:11px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623)}
+.gbtn.off{opacity:.3}
+/* Square photo */
+.sq-photo{width:80px;height:80px;border-radius:10px;background:#FFF0EB;border:2px dashed #E8532E;display:flex;align-items:center;justify-content:center;flex-direction:column;margin:8px auto}
+.sq-photo .picon{font-size:20px}
+.sq-photo .ptxt{font-size:7px;color:#E8532E;font-weight:600;margin-top:2px}
+/* Google dropdown */
+.g-dropdown{margin:0 12px;background:#FFF;border:1px solid #E8E0D8;border-radius:0 0 10px 10px;border-top:none;font-size:9px}
+.g-dropdown .g-item{padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #F8F5F0}
+.g-dropdown .g-item .g-pin{color:#E8532E;font-size:10px}
+.g-dropdown .g-item .g-name{color:#1E293B;font-weight:600}
+.g-dropdown .g-item .g-sub{color:#94A3B8;font-size:7px}
+.g-dropdown .g-powered{text-align:right;padding:4px 8px;font-size:6px;color:#94A3B8}
+/* Review table */
+.rv-table{margin:6px 12px;background:#FFF;border-radius:10px;border:1px solid #F0EBE5;font-size:9px}
+.rv-row{display:flex;justify-content:space-between;padding:5px 10px;border-bottom:1px solid #F8F5F0}
+.rv-row:last-child{border:none}
+.rv-row .rv-label{color:#94A3B8}
+.rv-row .rv-val{color:#1E293B;font-weight:600;text-align:right;max-width:55%}
+/* Social links */
+.social-section{padding:6px 12px}
+.social-input{display:flex;align-items:center;gap:6px;margin:3px 0;padding:6px 8px;background:#FFF;border:1.5px solid #E8E0D8;border-radius:8px}
+.social-input .si-icon{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px}
+.social-input .si-val{flex:1;font-size:8px;color:#C4B8AE}
+.social-input .si-val.filled{color:#1E293B}
+/* Checkbox */
+.chk-row{display:flex;align-items:flex-start;gap:6px;padding:4px 12px;font-size:8px;color:#1E293B}
+.chk-box{width:14px;height:14px;border:2px solid #D4C8BE;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px}
+.chk-box.on{background:#059669;border-color:#059669;color:#FFF}
+.chk-link{color:#2563EB;text-decoration:underline}
+/* Pending */
+.pending-box{margin:10px 12px;padding:12px;background:#FEF3C7;border-radius:10px;text-align:center}
+.pending-box .picon2{font-size:10px;font-weight:700;color:#D97706}
+.pending-box .ptxt2{font-size:8px;color:#92400E;margin-top:3px}
+hr{border:none;border-top:1px solid #2A2A3A;margin:30px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:12px;margin:14px auto;max-width:900px;font-size:10px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-86 (UPDATED)</div>
+<h1>Artist Registration — Wireframes v2</h1>
+<div class="sub">5 Screens · Updated per Vihang's feedback</div>
+
+<div class="screens">
+
+<!-- Step 1: Performer Type - MORE TYPES -->
+<div class="sw"><span class="sn">1</span><div class="sl">Step 1: Performer Type</div><div class="ss">6 types: Solo, Band, Duo, Troupe, DJ Act, Other</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s active"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+<div style="text-align:center;padding:10px 12px"><div style="font-size:13px;font-weight:700;color:#1E293B">What type of performer are you?</div><div style="font-size:9px;color:#94A3B8;margin-top:2px">Select one to continue</div></div>
+
+<div class="type-grid">
+<div class="tcard sel"><div class="tic">🧑‍🎤</div><div class="tname">Solo</div><div class="tdesc">Individual performer</div></div>
+<div class="tcard"><div class="tic">🎸</div><div class="tname">Band</div><div class="tdesc">3+ member group</div></div>
+<div class="tcard"><div class="tic">👥</div><div class="tname">Duo</div><div class="tdesc">Two performers</div></div>
+<div class="tcard"><div class="tic">💃</div><div class="tname">Troupe</div><div class="tdesc">Dance / theatre group</div></div>
+<div class="tcard"><div class="tic">🎧</div><div class="tname">DJ Act</div><div class="tdesc">DJ solo or DJ + MC</div></div>
+<div class="tcard"><div class="tic">✨</div><div class="tname">Other</div><div class="tdesc">Specify your type</div></div>
+</div>
+
+<div class="gbtn">Next →</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Step 2: ALL Categories + Others -->
+<div class="sw"><span class="sn">2</span><div class="sl">Step 2: All Categories + Others</div><div class="ss">Comprehensive list with Others option</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s active"></div><div class="s"></div><div class="s"></div></div>
+<div style="text-align:center;padding:8px 12px"><div style="font-size:13px;font-weight:700;color:#1E293B">Select your category</div><div style="font-size:9px;color:#94A3B8">Choose at least one</div></div>
+
+<div class="cat-grid">
+<span class="cpill sel"><span class="cic">🎤</span> Singer / Vocalist</span>
+<span class="cpill unsel"><span class="cic">🎸</span> Instrumentalist</span>
+<span class="cpill sel"><span class="cic">🎧</span> DJ</span>
+<span class="cpill unsel"><span class="cic">🎵</span> Music Band</span>
+<span class="cpill unsel"><span class="cic">💃</span> Dancer</span>
+<span class="cpill unsel"><span class="cic">🎤</span> Rapper</span>
+<span class="cpill unsel"><span class="cic">🥁</span> Beatboxing</span>
+<span class="cpill unsel"><span class="cic">😂</span> Comedian</span>
+<span class="cpill unsel"><span class="cic">📝</span> Poet</span>
+<span class="cpill unsel"><span class="cic">🎭</span> Theatre Artist</span>
+<span class="cpill unsel"><span class="cic">🪄</span> Magician</span>
+<span class="cpill unsel"><span class="cic">🎹</span> Music Producer</span>
+<span class="cpill unsel"><span class="cic">🎺</span> Classical Artist</span>
+<span class="cpill unsel"><span class="cic">🎻</span> Folk Artist</span>
+<span class="cpill unsel"><span class="cic">🗣️</span> MC / Host / Anchor</span>
+<span class="cpill unsel"><span class="cic">🔊</span> Sound Engineer</span>
+<span class="cpill unsel"><span class="cic">🎨</span> Visual / VJ Artist</span>
+<span class="cpill unsel"><span class="cic">🤸</span> Circus / Acrobat</span>
+<span class="cpill unsel"><span class="cic">📖</span> Storyteller</span>
+<span class="cpill unsel"><span class="cic">➕</span> Others</span>
+</div>
+<div class="cat-count">✅ 2 categories selected</div>
+<div class="gbtn">Next →</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Step 3: Artist Details - DOB, Square Photo, Google City, Socials at end -->
+<div class="sw"><span class="sn">3</span><div class="sl">Step 3: Artist Details</div><div class="ss">DOB added, square photo, Google city, socials at end</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s done"></div><div class="s active"></div><div class="s"></div></div>
+
+<!-- Square photo upload -->
+<div class="sq-photo"><div class="picon">📷</div><div class="ptxt">Upload Photo *</div></div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;margin-bottom:6px">Square format recommended</div>
+
+<div class="finp"><div class="flb">Stage Name *</div><div class="fval">Atharva Patil</div></div>
+<div class="finp"><div class="flb">Date of Birth *</div><div class="fval">📅 15 Jan 1998</div></div>
+<div class="finp"><div class="flb">About Artist * <span style="color:#94A3B8;font-weight:400">(min 10 chars)</span></div><div class="fval ph2" style="min-height:24px">Indie acoustic artist from Pune...</div></div>
+
+<!-- City with Google dropdown -->
+<div class="finp" style="border-radius:10px 10px 0 0;margin-bottom:0"><div class="flb">City * (powered by Google)</div><div class="fval">Pun</div></div>
+<div class="g-dropdown">
+<div class="g-item"><span class="g-pin">📍</span><div><div class="g-name">Pune</div><div class="g-sub">Maharashtra, India</div></div></div>
+<div class="g-item"><span class="g-pin">📍</span><div><div class="g-name">Punchkula</div><div class="g-sub">Haryana, India</div></div></div>
+<div class="g-item"><span class="g-pin">📍</span><div><div class="g-name">Punalur</div><div class="g-sub">Kerala, India</div></div></div>
+<div class="g-powered">Powered by Google</div>
+</div>
+
+<div class="finp"><div class="flb">Contact Number *</div><div class="fval">+91 98765 43210</div></div>
+<div class="finp"><div class="flb">Manager Contact <span style="color:#94A3B8;font-weight:400">(optional)</span></div><div class="fval ph2">Enter manager number</div></div>
+
+<!-- Social links at END -->
+<div style="padding:8px 12px 2px;font-size:9px;font-weight:700;color:#1E293B">Quick Links / Socials</div>
+<div class="social-section">
+<div class="social-input"><div class="si-icon" style="background:#E1306C;color:#FFF">📷</div><div class="si-val filled">instagram.com/atharvamusic</div></div>
+<div class="social-input"><div class="si-icon" style="background:#1DA1F2;color:#FFF">🐦</div><div class="si-val ph2">Twitter / X handle</div></div>
+<div class="social-input"><div class="si-icon" style="background:#FF0000;color:#FFF">▶️</div><div class="si-val ph2">YouTube channel URL</div></div>
+<div class="social-input"><div class="si-icon" style="background:#1E293B;color:#FFF">🌐</div><div class="si-val ph2">Website URL</div></div>
+</div>
+
+<div class="gbtn">Next →</div>
+<div style="height:8px"></div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Step 4: Review & Submit -->
+<div class="sw"><span class="sn">4</span><div class="sl">Step 4: Review & Submit</div><div class="ss">T&C + review all details</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s done"></div><div class="s done"></div><div class="s active"></div></div>
+<div style="padding:8px 12px;font-size:12px;font-weight:700;color:#1E293B">Review Your Details</div>
+
+<div class="rv-table">
+<div class="rv-row"><span class="rv-label">Type</span><span class="rv-val">Solo</span></div>
+<div class="rv-row"><span class="rv-label">Category</span><span class="rv-val">Singer, DJ</span></div>
+<div class="rv-row"><span class="rv-label">Stage Name</span><span class="rv-val">Atharva Patil</span></div>
+<div class="rv-row"><span class="rv-label">DOB</span><span class="rv-val">15 Jan 1998</span></div>
+<div class="rv-row"><span class="rv-label">City</span><span class="rv-val">Pune</span></div>
+<div class="rv-row"><span class="rv-label">Phone</span><span class="rv-val">+91 98765 43210</span></div>
+<div class="rv-row"><span class="rv-label">Instagram</span><span class="rv-val" style="color:#2563EB">instagram.com/atharva...</span></div>
+</div>
+
+<div class="chk-row" style="margin-top:8px"><div class="chk-box on">✓</div><div>I accept the <span class="chk-link">Terms and Conditions</span> and <span class="chk-link">Privacy Policy</span></div></div>
+
+<div class="gbtn">Submit Registration</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;padding:4px">Profile will be reviewed within 24-48 hours</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Step 5: Pending -->
+<div class="sw"><span class="sn">5</span><div class="sl">Pending Verification</div><div class="ss">Waiting for admin approval</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Profile</span></div>
+<div style="text-align:center;padding:16px">
+<div style="width:60px;height:60px;border-radius:10px;background:linear-gradient(135deg,#E94560,#7C3AED);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px">🎤</div>
+<div style="font-size:14px;font-weight:700;color:#1E293B">Welcome, Atharva!</div>
+</div>
+<div class="pending-box"><div class="picon2">⏳ Waiting for Admin Verification</div><div class="ptxt2">Your artist profile is under review. We'll notify you once approved.</div></div>
+<div style="margin:6px 12px;padding:8px 10px;background:#FFF;border-radius:8px;display:flex;align-items:center;gap:8px;opacity:.5;border:1px solid #F0EBE5"><span style="font-size:12px">➕</span><span style="font-size:9px;color:#94A3B8">Add Show <span style="font-size:7px">(available after approval)</span></span></div>
+<div style="padding:6px 12px;font-size:9px;color:#1E293B;display:flex;align-items:center;gap:8px;border-bottom:1px solid #F5F0EB"><span>✏️</span> Edit Profile</div>
+<div style="padding:6px 12px;font-size:9px;color:#1E293B;display:flex;align-items:center;gap:8px;border-bottom:1px solid #F5F0EB"><span>📄</span> Privacy Policy</div>
+<div style="padding:6px 12px;font-size:9px;color:#1E293B;display:flex;align-items:center;gap:8px;border-bottom:1px solid #F5F0EB"><span>📜</span> Terms and Conditions</div>
+<div style="padding:6px 12px;font-size:9px;color:#DC2626;display:flex;align-items:center;gap:8px"><span>🚪</span> Log Out</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Updates in v2 (per Vihang):</strong><br><br>
+1. <strong>Performer Types expanded:</strong> Solo, Band, Duo, Troupe, DJ Act, Other (was only Solo/Band)<br>
+2. <strong>All categories:</strong> Singer/Vocalist, Instrumentalist, DJ, Music Band, Dancer, Rapper, Beatboxing, Comedian, Poet, Theatre Artist, Magician, Music Producer, Classical Artist, Folk Artist, MC/Host/Anchor, Sound Engineer, Visual/VJ Artist, Circus/Acrobat, Storyteller, + <strong>Others</strong><br>
+3. <strong>DOB field added</strong> to Step 3 (required for age verification cross-check with eKYC)<br>
+4. <strong>Social links moved to END</strong> of form with individual platform inputs (Instagram, Twitter, YouTube, Website)<br>
+5. <strong>Square photo upload</strong> (was circular)<br>
+6. <strong>Google Places dropdown</strong> for city selection with autocomplete suggestions
+</div>
+
+<div style="text-align:center;margin-top:20px;padding-top:12px;border-top:1px solid #2A2A3A;font-size:10px;color:#4A4A68">
+BeLive App · BLA-86 Artist Registration v2 · Mohammad Jamal Yusuf · April 2026
+</div>
+</body>
+</html>
