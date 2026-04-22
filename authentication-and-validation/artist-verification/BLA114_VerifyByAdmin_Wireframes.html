@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BLA-114 Verify Artist by Admin</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:22px;text-align:center}h2{font-size:14px;color:#E94560;text-align:center;margin:20px 0 10px}
+.sub{text-align:center;color:#7878A0;font-size:11px;margin-bottom:20px}
+.sn{display:inline-block;width:20px;height:20px;background:#E94560;color:#FFF;border-radius:50%;text-align:center;line-height:20px;font-size:9px;font-weight:700;margin-right:6px}
+.sl{font-size:11px;font-weight:700;color:#E94560;margin-bottom:6px;text-align:center}
+.frame{background:#F8FAFC;border-radius:8px;overflow:hidden;margin:0 auto 20px;box-shadow:0 10px 40px rgba(0,0,0,.4);border:2px solid #333;width:900px;height:540px}
+.sb{background:#1E293B;color:#FFF;padding:14px 12px;width:180px;float:left;height:100%}
+.sb .logo{font-size:16px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.sb .logo .lb{width:22px;height:22px;background:linear-gradient(135deg,#E8532E,#F5A623);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.sb .sec{font-size:8px;color:#64748B;text-transform:uppercase;margin:10px 0 4px}
+.sb .it{padding:5px 8px;font-size:10px;border-radius:6px;margin:2px 0;display:flex;align-items:center;gap:6px}
+.sb .it.ac{background:#E8532E;color:#FFF}
+.sb .it .bd{background:#E94560;color:#FFF;padding:1px 5px;border-radius:8px;font-size:7px;margin-left:auto}
+.main{margin-left:180px;padding:14px;height:100%;overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.title{font-size:16px;font-weight:800;color:#1E293B}
+.filters{display:flex;gap:6px}
+.filter{padding:5px 10px;background:#FFF;border:1px solid #E2E8F0;border-radius:4px;font-size:9px;color:#64748B;font-weight:600}
+/* Queue table */
+.tbl{background:#FFF;border-radius:8px;border:1px solid #E2E8F0;overflow:hidden}
+.th{display:flex;background:#F8FAFC;padding:8px 10px;font-size:8px;font-weight:700;color:#64748B;text-transform:uppercase;border-bottom:1px solid #E2E8F0}
+.tr{display:flex;padding:8px 10px;font-size:9px;color:#1E293B;align-items:center;border-bottom:1px solid #F1F5F9}
+.tr:last-child{border:none}
+.tr.sla{background:#FEF2F2}
+.badge{padding:2px 6px;border-radius:3px;font-size:7px;font-weight:700;display:inline-block}
+.b-ok{background:#D1FAE5;color:#059669}.b-pnd{background:#FEF3C7;color:#D97706}.b-fail{background:#FEE2E2;color:#DC2626}
+.b-minor{background:#FFE4E6;color:#BE123C}
+.btn-s{padding:3px 8px;border-radius:4px;font-size:8px;font-weight:700;margin-right:3px}
+.btn-view{background:#2563EB;color:#FFF}.btn-ap{background:#059669;color:#FFF}.btn-rj{background:#DC2626;color:#FFF}
+.ava-sm{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED);margin-right:6px;flex-shrink:0}
+/* Review page */
+.rv-main{display:grid;grid-template-columns:1fr 1fr;gap:10px;height:calc(100% - 36px)}
+.rv-card{background:#FFF;border-radius:8px;border:1px solid #E2E8F0;padding:10px;overflow-y:auto}
+.rv-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rv-header .rva{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED)}
+.rv-header .rvn{font-size:14px;font-weight:800;color:#1E293B}
+.rv-header .rvs{font-size:9px;color:#64748B}
+.rv-section{margin:8px 0}
+.rv-sec-title{font-size:8px;font-weight:700;color:#64748B;text-transform:uppercase;margin-bottom:4px}
+.rv-row{font-size:9px;color:#1E293B;padding:3px 0;display:flex;justify-content:space-between}
+.rv-row .rl{color:#64748B}
+.check-grid{margin-top:10px}
+.check-row{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:4px;background:#F8FAFC;margin:3px 0;font-size:9px}
+.check-row.ok{background:#F0FDF4}.check-row.warn{background:#FEF3C7}.check-row.fail{background:#FEE2E2}
+.check-row .cok{color:#059669;font-weight:700}.check-row .cfail{color:#DC2626;font-weight:700}.check-row .cwarn{color:#D97706;font-weight:700}
+.mentor-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;background:#F5F3FF;border:1px solid #C4B5FD;border-radius:12px;font-size:8px;color:#7C3AED;margin:2px}
+.action-row{display:flex;gap:6px;margin-top:10px}
+.ab{padding:8px 12px;border-radius:6px;font-size:10px;font-weight:700;color:#FFF;flex:1;text-align:center}
+.ab.rj{background:#DC2626}.ab.ap{background:#059669}.ab.info{background:#2563EB}.ab.flag{background:#F59E0B}
+hr{border:none;border-top:1px solid #2A2A3A;margin:24px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:8px;padding:10px;font-size:10px;color:#B0B0C8;line-height:1.7;max-width:900px;margin:10px auto}
+</style></head><body>
+<div style="font-size:10px;letter-spacing:4px;color:#E94560;text-align:center">BELIVE · BLA-114</div>
+<h1>Verify Artist Profile by Belive Admin</h1>
+<div class="sub">2 Screens · Admin queue + Full review screen · Built on BLA-120 dashboard</div>
+
+<h2>Screen 1: Verification Queue</h2>
+<div class="sl"><span class="sn">1</span>Sorted by submission date, SLA breaches flagged red</div>
+<div class="frame">
+<div class="sb"><div class="logo"><div class="lb">B</div><span>Admin</span></div>
+<div class="sec">Main</div>
+<div class="it">📊 <span>Overview</span></div>
+<div class="it">👥 <span>Users</span></div>
+<div class="it">🎤 <span>Artists</span></div>
+<div class="sec">Queues</div>
+<div class="it">🆔 <span>KYC Queue</span> <span class="bd">12</span></div>
+<div class="it ac">✅ <span>Artist Verify</span> <span style="background:#FFF;color:#E8532E;padding:1px 5px;border-radius:8px;font-size:7px;margin-left:auto">18</span></div>
+<div class="it">💳 <span>Transactions</span></div>
+<div class="it">🛡 <span>Moderation</span></div>
+</div>
+<div class="main">
+<div class="top"><div class="title">Artist Verification Queue · 18 Pending</div>
+<div class="filters"><span class="filter">🔍 Search</span><span class="filter">City ▼</span><span class="filter">Status ▼</span><span class="filter">Bulk Actions ▼</span></div>
+</div>
+<div class="tbl">
+<div class="th"><div style="flex:.3">ID</div><div style="flex:1.5">Artist</div><div style="flex:.8">City</div><div style="flex:.8">KYC</div><div style="flex:.9">Completeness</div><div style="flex:1">Mentor Verified</div><div style="flex:.9">Mentor Score</div><div style="flex:.9">Submitted</div><div style="flex:1.5;text-align:right">Actions</div></div>
+
+<div class="tr"><div style="flex:.3">#1847</div><div style="flex:1.5;display:flex;align-items:center"><div class="ava-sm"></div><div><div style="font-weight:700">Atharva Patil</div><div style="font-size:7px;color:#94A3B8">Singer, DJ · Solo</div></div></div><div style="flex:.8">Pune</div><div style="flex:.8"><span class="badge b-ok">✅ Verified</span></div><div style="flex:.9"><span class="badge b-ok">100%</span></div><div style="flex:1"><span class="mentor-pill">⭐ Ravi S.</span></div><div style="flex:.9"><span style="color:#D97706;font-weight:700">4.3</span></div><div style="flex:.9;font-size:8px;color:#94A3B8">2 hrs ago</div><div style="flex:1.5;text-align:right"><span class="btn-s btn-view">View</span><span class="btn-s btn-ap">Approve</span></div></div>
+
+<div class="tr sla"><div style="flex:.3">#1823</div><div style="flex:1.5;display:flex;align-items:center"><div class="ava-sm" style="background:linear-gradient(135deg,#059669,#0F9B8E)"></div><div><div style="font-weight:700">Priya Sharma 🔴</div><div style="font-size:7px;color:#94A3B8">Dancer · Troupe</div></div></div><div style="flex:.8">Mumbai</div><div style="flex:.8"><span class="badge b-ok">✅ Verified</span></div><div style="flex:.9"><span class="badge b-ok">100%</span></div><div style="flex:1"><span class="mentor-pill">⭐ Vikram K.</span></div><div style="flex:.9"><span style="color:#D97706;font-weight:700">4.8</span></div><div style="flex:.9;font-size:8px;color:#DC2626;font-weight:700">3 days ago ⚠</div><div style="flex:1.5;text-align:right"><span class="btn-s btn-view">View</span><span class="btn-s btn-ap">Approve</span></div></div>
+
+<div class="tr"><div style="flex:.3">#1849</div><div style="flex:1.5;display:flex;align-items:center"><div class="ava-sm" style="background:linear-gradient(135deg,#D97706,#EA580C)"></div><div><div style="font-weight:700">Rahul Kumar</div><div style="font-size:7px;color:#94A3B8">Instrumentalist · Solo</div></div></div><div style="flex:.8">Pune</div><div style="flex:.8"><span class="badge b-minor">⚠ Under 18</span></div><div style="flex:.9"><span class="badge b-ok">100%</span></div><div style="flex:1"><span style="font-size:8px;color:#94A3B8">None yet</span></div><div style="flex:.9"><span style="font-size:8px;color:#94A3B8">—</span></div><div style="flex:.9;font-size:8px;color:#94A3B8">6 hrs ago</div><div style="flex:1.5;text-align:right"><span class="btn-s btn-view">View</span><span class="btn-s btn-flag" style="background:#F59E0B;color:#FFF">Minor Flag</span></div></div>
+
+<div class="tr"><div style="flex:.3">#1850</div><div style="flex:1.5;display:flex;align-items:center"><div class="ava-sm" style="background:linear-gradient(135deg,#2563EB,#7C3AED)"></div><div><div style="font-weight:700">Meera Iyer</div><div style="font-size:7px;color:#94A3B8">Classical Singer</div></div></div><div style="flex:.8">Pune</div><div style="flex:.8"><span class="badge b-ok">✅ Verified</span></div><div style="flex:.9"><span class="badge b-pnd">85%</span></div><div style="flex:1"><span class="mentor-pill">⭐ Asha P.</span></div><div style="flex:.9"><span style="color:#D97706;font-weight:700">4.0</span></div><div style="flex:.9;font-size:8px;color:#94A3B8">1 day ago</div><div style="flex:1.5;text-align:right"><span class="btn-s btn-view">View</span><span class="btn-s" style="background:#F1F5F9;color:#64748B">Incomplete</span></div></div>
+
+<div class="tr"><div style="flex:.3">#1851</div><div style="flex:1.5;display:flex;align-items:center"><div class="ava-sm" style="background:linear-gradient(135deg,#C84B8A,#E94560)"></div><div><div style="font-weight:700">Vikram Singh</div><div style="font-size:7px;color:#94A3B8">Comedian · Solo</div></div></div><div style="flex:.8">Pune</div><div style="flex:.8"><span class="badge b-fail">❌ Pending</span></div><div style="flex:.9"><span class="badge b-ok">100%</span></div><div style="flex:1"><span style="font-size:8px;color:#94A3B8">None yet</span></div><div style="flex:.9"><span style="font-size:8px;color:#94A3B8">—</span></div><div style="flex:.9;font-size:8px;color:#94A3B8">2 days ago</div><div style="flex:1.5;text-align:right"><span class="btn-s btn-view">View</span><span class="btn-s btn-rj">Reject</span></div></div>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:9px;color:#64748B"><span>Showing 1-5 of 18</span><span>‹ 1 2 3 4 ›</span></div>
+</div></div>
+
+<h2>Screen 2: Full Verification Review</h2>
+<div class="sl"><span class="sn">2</span>Complete context: profile + KYC + mentor data + auto-checks</div>
+<div class="frame">
+<div class="sb"><div class="logo"><div class="lb">B</div><span>Admin</span></div>
+<div class="sec">Queues</div>
+<div class="it">🆔 <span>KYC Queue</span></div>
+<div class="it ac">✅ <span>Artist Verify</span> <span style="background:#FFF;color:#E8532E;padding:1px 5px;border-radius:8px;font-size:7px;margin-left:auto">18</span></div>
+<div class="it">💳 <span>Transactions</span></div>
+</div>
+<div class="main">
+<div class="top"><div class="title">← Review: Atharva Patil (#1847)</div><div style="font-size:8px;color:#94A3B8">Queue 1 of 18</div></div>
+<div class="rv-main">
+
+<div class="rv-card">
+<div class="rv-header"><div class="rva"></div><div><div class="rvn">Atharva Patil</div><div class="rvs">@atharvamusic · Pune</div></div></div>
+
+<div class="rv-sec-title">Profile Details</div>
+<div class="rv-row"><span class="rl">Performer Type</span><span>Solo</span></div>
+<div class="rv-row"><span class="rl">Categories</span><span>Singer, DJ</span></div>
+<div class="rv-row"><span class="rl">City</span><span>Pune, MH</span></div>
+<div class="rv-row"><span class="rl">BeLive'r since</span><span>Mar 2026</span></div>
+
+<div class="rv-sec-title" style="margin-top:10px">KYC Documents (from BLA-27)</div>
+<div class="rv-row"><span class="rl">Aadhaar</span><span style="color:#059669;font-weight:700">✅ ••••••••6789</span></div>
+<div class="rv-row"><span class="rl">DOB</span><span>15 Jan 1998 · 28 yrs ✅</span></div>
+<div class="rv-row"><span class="rl">Photo Match</span><span style="color:#059669;font-weight:700">✅ 96% confidence</span></div>
+<div style="display:flex;gap:4px;margin-top:6px"><span class="btn-s btn-view">📄 Aadhaar PDF</span><span class="btn-s btn-view">📷 Selfie</span></div>
+
+<div class="rv-sec-title" style="margin-top:10px">Mentor Verifications (BLA-112)</div>
+<div class="mentor-pill">⭐ Ravi Shankar (Vocal Coach) · Verified Apr 6</div>
+
+<div class="rv-sec-title" style="margin-top:10px">Mentor Score (BLA-113)</div>
+<div style="display:flex;align-items:center;gap:8px;padding:6px;background:#FEF3C7;border-radius:6px">
+<div style="font-size:20px;font-weight:800;color:#D97706">4.3</div>
+<div style="font-size:8px;color:#92400E">Technique 4.0 · Presence 5.0 · Originality 4.0 · Consistency 4.0 · Potential 5.0</div>
+</div>
+</div>
+
+<div class="rv-card">
+<div class="rv-sec-title">Auto-Checks</div>
+<div class="check-row ok"><span class="cok">✓</span><div>KYC Completed (BLA-27)</div></div>
+<div class="check-row ok"><span class="cok">✓</span><div>Profile 100% Complete</div></div>
+<div class="check-row ok"><span class="cok">✓</span><div>DOB ≥ 18 (Adult)</div></div>
+<div class="check-row ok"><span class="cok">✓</span><div>Mentor Verified (1)</div></div>
+<div class="check-row ok"><span class="cok">✓</span><div>Mentor Scored (4.3/5)</div></div>
+<div class="check-row ok"><span class="cok">✓</span><div>No Active Flags</div></div>
+<div class="check-row ok"><span class="cok">✓</span><div>Social Links Verified</div></div>
+
+<div class="rv-sec-title" style="margin-top:10px">Past History</div>
+<div style="font-size:8px;color:#94A3B8;padding:4px 0">No previous rejections or flags</div>
+
+<div class="rv-sec-title" style="margin-top:10px">Admin Notes</div>
+<div style="font-size:8px;color:#C4B8AE;padding:6px;background:#F8FAFC;border-radius:4px;border:1px dashed #E2E8F0;min-height:40px">Add internal notes about this decision (not visible to artist)...</div>
+
+<div class="action-row">
+<div class="ab rj">❌ Reject</div>
+<div class="ab info">💬 More Info</div>
+<div class="ab flag">🚩 Flag</div>
+<div class="ab ap">✅ Approve</div>
+</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;margin-top:6px">Decision logged to adminAuditLog with your ID, timestamp, and IP</div>
+</div>
+
+</div>
+</div></div>
+
+<hr>
+<div class="nt"><strong style="color:#E94560">Screen Mapping:</strong><br>
+Screen 1 (Verification Queue) → AC1, AC2 (queue with KYC status, completeness, mentor data), AC8 (SLA breach highlighting — Priya Sharma in red), AC11 (Bulk Actions), under-18 Minor flag (AC12)<br>
+Screen 2 (Full Review) → AC3 (complete context: profile + KYC + mentors + scores), AC4/AC5 (Approve/Reject actions), AC7 (auto-checks must pass before Approve enabled), AC9 (audit log)<br><br>
+<strong>Integration:</strong> This screen pulls data from BLA-27 (KYC), BLA-86 (registration), BLA-112 (mentor verify), BLA-113 (mentor score), and lives inside the BLA-120 admin dashboard.
+</div>
+<div style="text-align:center;margin-top:14px;font-size:10px;color:#4A4A68">BLA-114 · Mohammad Jamal Yusuf · April 2026</div>
+</body></html>

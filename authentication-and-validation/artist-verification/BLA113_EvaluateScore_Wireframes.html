@@ -1,0 +1,175 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BLA-113 Evaluate / Score Artist</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:22px;text-align:center}.sub{text-align:center;color:#7878A0;font-size:11px;margin-bottom:20px}
+.screens{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#E94560;color:#FFF;border-radius:50%;font-size:9px;font-weight:700}
+.sl{font-size:10px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:8px;color:#7878A0;text-align:center;max-width:260px}
+.ph{width:260px;height:560px;background:#FFFAF5;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 14px 40px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:48px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#D97706}.bnav .ni .ic{font-size:14px;display:block}
+.cnt{height:calc(100% - 48px);overflow-y:auto}
+.hdr{background:linear-gradient(90deg,#D97706,#F5A623);padding:10px 12px;display:flex;align-items:center;color:#FFF}
+.hdr .back{font-size:14px}.hdr .title{flex:1;text-align:center;font-size:12px;font-weight:700}
+.art-bar{padding:10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #F0EBE5;background:#FFF}
+.art-bar .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED)}
+.art-bar .info{flex:1;font-size:9px}
+.art-bar .nm{font-weight:700;color:#1E293B;font-size:11px}
+.art-bar .cat{color:#94A3B8;font-size:8px}
+.dim-card{margin:8px 12px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:10px}
+.dim-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.dim-name{font-size:10px;font-weight:700;color:#1E293B}
+.dim-weight{font-size:7px;color:#94A3B8;background:#F8F5F0;padding:1px 6px;border-radius:3px}
+.dim-desc{font-size:8px;color:#64748B;margin-bottom:6px;line-height:1.4}
+.stars{display:flex;gap:4px;margin-bottom:6px}
+.star{font-size:20px;cursor:pointer}.star.on{color:#F5A623}.star.off{color:#E8E0D8}
+.dim-fb{padding:6px 8px;background:#F8F5F0;border-radius:6px;font-size:8px;color:#C4B8AE;font-style:italic}
+.dim-fb.filled{color:#1E293B;font-style:normal}
+.score-bar{margin:10px 12px;padding:14px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:14px;text-align:center}
+.score-bar .sv{font-size:30px;font-weight:800;color:#D97706}
+.score-bar .sl2{font-size:9px;color:#92400E;margin-top:-4px}
+.score-bar .sdesc{font-size:8px;color:#78350F;margin-top:6px}
+.gbtn{margin:10px 12px;padding:11px;border-radius:25px;text-align:center;font-size:11px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#D97706,#F5A623)}
+.priv-row{margin:6px 12px;padding:10px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;display:flex;align-items:center;gap:8px;font-size:9px;color:#1E293B}
+.toggle{width:32px;height:18px;background:#E8E0D8;border-radius:10px;position:relative;flex-shrink:0}
+.toggle .knob{position:absolute;width:14px;height:14px;background:#FFF;border-radius:50%;top:2px;left:2px;transition:.2s}
+.toggle.on{background:#059669}.toggle.on .knob{left:16px}
+
+.breakdown{padding:12px;background:linear-gradient(180deg,#FFF8F5,#FFFAF5);height:100%}
+.bd-hero{text-align:center;padding:14px}
+.bd-hero .bdav{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED);margin:0 auto 6px}
+.bd-hero .bdnm{font-size:14px;font-weight:800;color:#1E293B}
+.bd-hero .bdscore{font-size:38px;font-weight:800;color:#D97706;margin:4px 0}
+.bd-hero .bdout{font-size:11px;color:#64748B}
+.bd-hero .bdmentor{font-size:8px;color:#94A3B8;margin-top:4px}
+.bd-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#FFF;border-radius:8px;margin:4px 12px;font-size:9px}
+.bd-row .bl{color:#1E293B;font-weight:600}
+.bd-row .br{display:flex;align-items:center;gap:6px}
+.bd-row .br .bn{font-size:11px;font-weight:800;color:#D97706}
+.bd-row .br .bs{font-size:10px;color:#F5A623}
+hr{border:none;border-top:1px solid #2A2A3A;margin:24px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:8px;padding:10px;font-size:10px;color:#B0B0C8;line-height:1.7;max-width:800px;margin:10px auto}
+</style></head><body>
+<div style="font-size:10px;letter-spacing:4px;color:#E94560;text-align:center">BELIVE · BLA-113</div>
+<h1>Evaluate / Score Artist by Mentor</h1>
+<div class="sub">3 Screens · 5-dimension scoring · Score breakdown · Artist view</div>
+<div class="screens">
+
+<div class="sw"><span class="sn">1</span><div class="sl">Scoring Form — 5 Dimensions</div><div class="ss">Rate across Technique, Presence, etc.</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Score Artist</span></div>
+<div class="art-bar"><div class="av"></div><div class="info"><div class="nm">Atharva Patil</div><div class="cat">🎤 Singer, DJ · Pune</div></div></div>
+
+<div class="dim-card">
+<div class="dim-header"><div class="dim-name">Technique</div><div class="dim-weight">Weight: 25%</div></div>
+<div class="dim-desc">Vocal/instrumental/dance skill</div>
+<div class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span></div>
+<div class="dim-fb filled">Strong vocal range, good pitch control</div>
+</div>
+
+<div class="dim-card">
+<div class="dim-header"><div class="dim-name">Stage Presence</div><div class="dim-weight">Weight: 25%</div></div>
+<div class="dim-desc">Performance energy, audience engagement</div>
+<div class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></div>
+<div class="dim-fb filled">Incredible energy, connects well with crowd</div>
+</div>
+
+<div class="dim-card">
+<div class="dim-header"><div class="dim-name">Originality</div><div class="dim-weight">Weight: 20%</div></div>
+<div class="dim-desc">Unique style, creativity</div>
+<div class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span></div>
+<div class="dim-fb">Add feedback (optional)</div>
+</div>
+
+<div class="dim-card">
+<div class="dim-header"><div class="dim-name">Consistency</div><div class="dim-weight">Weight: 15%</div></div>
+<div class="dim-desc">Reliability, quality over time</div>
+<div class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span></div>
+<div class="dim-fb">Add feedback (optional)</div>
+</div>
+
+<div class="dim-card">
+<div class="dim-header"><div class="dim-name">Potential</div><div class="dim-weight">Weight: 15%</div></div>
+<div class="dim-desc">Growth trajectory, future promise</div>
+<div class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></div>
+<div class="dim-fb">Add feedback (optional)</div>
+</div>
+
+<div class="score-bar">
+<div class="sv">4.3 / 5</div>
+<div class="sl2">Weighted Overall Score</div>
+<div class="sdesc">Excellent — ready for premium bookings</div>
+</div>
+
+<div class="priv-row">
+<div class="toggle on"><div class="knob"></div></div>
+<div style="flex:1">Share score publicly on artist profile</div>
+</div>
+
+<div class="gbtn">Submit Evaluation</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni ac"><div class="ic">⭐</div>Score</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">2</span><div class="sl">Score Breakdown (Artist View)</div><div class="ss">Detailed view after submission</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Your Mentor Score</span></div>
+<div class="breakdown">
+<div class="bd-hero">
+<div class="bdav"></div>
+<div class="bdnm">Atharva Patil</div>
+<div class="bdscore">4.3</div>
+<div class="bdout">out of 5.0</div>
+<div class="bdmentor">⭐ Scored by Ravi Shankar · Vocal Coach</div>
+</div>
+<div class="bd-row"><div class="bl">Technique</div><div class="br"><div class="bs">★★★★☆</div><div class="bn">4.0</div></div></div>
+<div class="bd-row"><div class="bl">Stage Presence</div><div class="br"><div class="bs">★★★★★</div><div class="bn">5.0</div></div></div>
+<div class="bd-row"><div class="bl">Originality</div><div class="br"><div class="bs">★★★★☆</div><div class="bn">4.0</div></div></div>
+<div class="bd-row"><div class="bl">Consistency</div><div class="br"><div class="bs">★★★★☆</div><div class="bn">4.0</div></div></div>
+<div class="bd-row"><div class="bl">Potential</div><div class="br"><div class="bs">★★★★★</div><div class="bn">5.0</div></div></div>
+<div style="margin:10px 12px;padding:10px;background:#FFF;border-radius:10px">
+<div style="font-size:9px;font-weight:700;color:#1E293B;margin-bottom:4px">💬 Mentor Feedback</div>
+<div style="font-size:8px;color:#64748B;line-height:1.5">"Strong vocal range with incredible stage energy. Keep working on consistency across different venues. You have real potential for the pro circuit."</div>
+</div>
+<div style="text-align:center;padding:8px;font-size:8px;color:#94A3B8">Dispute this score · Request re-evaluation</div>
+</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">⊕</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">3</span><div class="sl">Low Score → Coaching Offer</div><div class="ss">Score below 2.5 suggests coaching</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Score Submitted</span></div>
+<div class="art-bar"><div class="av" style="background:linear-gradient(135deg,#94A3B8,#64748B)"></div><div class="info"><div class="nm">New Artist</div><div class="cat">🎤 Beginner Singer</div></div></div>
+
+<div style="margin:12px;padding:14px;background:linear-gradient(135deg,#FEE2E2,#FECACA);border-radius:14px;text-align:center">
+<div style="font-size:26px;font-weight:800;color:#DC2626">2.2 / 5</div>
+<div style="font-size:9px;color:#991B1B;margin-top:-2px">Needs Development</div>
+</div>
+
+<div style="margin:10px 12px;padding:12px;background:#FFF;border-radius:12px;border:2px solid #7C3AED">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+<div style="width:30px;height:30px;border-radius:50%;background:#F5F3FF;display:flex;align-items:center;justify-content:center;font-size:16px">🎓</div>
+<div style="font-size:11px;font-weight:800;color:#7C3AED">Coaching Suggestion</div>
+</div>
+<div style="font-size:9px;color:#64748B;line-height:1.5;margin-bottom:8px">Based on this artist's score, would you like to offer them a private coaching session to help them improve?</div>
+<div style="display:flex;gap:6px">
+<div style="flex:1;padding:8px;background:#F1F5F9;border-radius:16px;text-align:center;font-size:9px;font-weight:700;color:#64748B">Skip</div>
+<div style="flex:1;padding:8px;background:#7C3AED;border-radius:16px;text-align:center;font-size:9px;font-weight:700;color:#FFF">🎓 Offer Session</div>
+</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;margin-top:6px">Links to your mentor profile (BLA-78)</div>
+</div>
+
+<div style="margin:10px 12px;padding:10px;background:#F0F9FF;border-radius:10px;font-size:8px;color:#075985;line-height:1.5">
+💡 <strong>Tip:</strong> Offering coaching after a low score builds the BeLive mentor network and helps artists grow with guidance from experts like you.
+</div>
+
+<div style="margin:10px 12px;padding:10px;background:#FFF;border:1.5px solid #E8E0D8;border-radius:20px;text-align:center;font-size:10px;font-weight:700;color:#64748B">Back to Queue</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni ac"><div class="ic">⭐</div>Score</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+<hr>
+<div class="nt"><strong style="color:#E94560">Screen Mapping:</strong><br>
+Screen 1 (Scoring Form) → AC1, AC2, AC3 (5 dimensions with weights, feedback fields, overall score calc, privacy toggle)<br>
+Screen 2 (Score Breakdown) → AC4 (aggregate view from artist perspective with dispute option — AC7)<br>
+Screen 3 (Low Score → Coaching) → AC6 (below 2.5 triggers coaching suggestion tied to BLA-78)
+</div>
+<div style="text-align:center;margin-top:14px;font-size:10px;color:#4A4A68">BLA-113 · Mohammad Jamal Yusuf · April 2026</div>
+</body></html>
