@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BLA-227 Checkin Location</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}h1{font-size:22px;text-align:center;margin-bottom:4px}.sub{text-align:center;color:#7878A0;font-size:11px;margin-bottom:20px}.screens{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}.sw{display:flex;flex-direction:column;align-items:center;gap:5px}.sn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#E94560;color:#FFF;border-radius:50%;font-size:9px;font-weight:700}.sl{font-size:10px;font-weight:700;color:#E94560;text-align:center;max-width:250px}.ss{font-size:7px;color:#7878A0;text-align:center;max-width:250px}.ph{width:250px;height:520px;background:#FFFAF5;border-radius:28px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 12px 36px rgba(0,0,0,.5)}.bnav{position:absolute;bottom:0;left:0;right:0;height:44px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}.bnav .ni{text-align:center}.bnav .ni.ac{color:#F5A623}.bnav .ni .ic{font-size:13px;display:block}.cnt{height:calc(100% - 44px);overflow-y:auto}
+.map-area{height:180px;background:linear-gradient(135deg,#E2E8F0,#CBD5E1);position:relative;display:flex;align-items:center;justify-content:center}
+.map-area .venue-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px}
+.map-area .user-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:#2563EB;border:3px solid #FFF;box-shadow:0 0 8px rgba(37,99,235,.5)}
+.map-area .radius{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;border:2px dashed #059669;background:rgba(5,150,105,.08)}
+.map-area .dist-label{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:#FFF;padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.event-bar{padding:10px 12px;background:#FFF;border-bottom:1px solid #F0EBE5;display:flex;gap:8px;align-items:center}
+.event-bar .eb-img{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#E94560,#D97706)}
+.event-bar .eb-info{flex:1;font-size:9px}.event-bar .eb-name{font-weight:700;color:#1E293B;font-size:10px}.event-bar .eb-meta{color:#94A3B8;font-size:7px}
+.gbtn{margin:10px 12px;padding:11px;border-radius:22px;text-align:center;font-size:11px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623)}
+.gbtn.disabled{opacity:.3}
+.status-card{margin:8px 12px;padding:12px;border-radius:10px;text-align:center}
+.status-card.success{background:#D1FAE5;border:1px solid #059669}
+.status-card.fail{background:#FEE2E2;border:1px solid #DC2626}
+.status-card.warn{background:#FEF3C7;border:1px solid #D97706}
+.status-card .sic{font-size:28px;margin-bottom:4px}
+.status-card .stxt{font-size:10px;font-weight:700}.status-card .sdesc{font-size:8px;margin-top:2px}
+hr{border:none;border-top:1px solid #2A2A3A;margin:24px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:8px;padding:10px;font-size:10px;color:#B0B0C8;line-height:1.7;max-width:800px;margin:10px auto}
+</style></head><body>
+<div style="font-size:10px;letter-spacing:4px;color:#E94560;text-align:center">BELIVE · BLA-227</div>
+<h1>Checkin — Location Validation</h1>
+<div class="sub">4 Screens · Within range · Too far · GPS disabled · Success</div>
+<div class="screens">
+
+<div class="sw"><span class="sn">1</span><div class="sl">Within 200m — Check-in Enabled</div><div class="ss">User is close enough</div>
+<div class="ph"><div class="cnt">
+<div class="map-area"><div class="radius"></div><div class="venue-pin">📍</div><div class="user-dot" style="top:45%;left:55%"></div><div class="dist-label" style="color:#059669">📍 85m from venue ✓</div></div>
+<div class="event-bar"><div class="eb-img"></div><div class="eb-info"><div class="eb-name">Sunday Live</div><div class="eb-meta">📍 Ice N Fire, Baner · 🎤 Atharva Patil · 8:30 PM</div></div></div>
+<div class="status-card success"><div class="sic">✅</div><div class="stxt" style="color:#059669">You're within range!</div><div class="sdesc" style="color:#065F46">85 meters from Ice N Fire Sky Lounge</div></div>
+<div class="gbtn">CHECK-IN ✓</div>
+</div><div class="bnav"><div class="ni ac"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">2</span><div class="sl">Too Far — Check-in Blocked</div><div class="ss">Outside 200m radius</div>
+<div class="ph"><div class="cnt">
+<div class="map-area"><div class="radius"></div><div class="venue-pin">📍</div><div class="user-dot" style="top:20%;left:80%"></div><div class="dist-label" style="color:#DC2626">📍 2.3 km away ✕</div></div>
+<div class="event-bar"><div class="eb-img"></div><div class="eb-info"><div class="eb-name">Sunday Live</div><div class="eb-meta">📍 Ice N Fire, Baner · 🎤 Atharva Patil · 8:30 PM</div></div></div>
+<div class="status-card fail"><div class="sic">📍</div><div class="stxt" style="color:#DC2626">You're 2.3 km away</div><div class="sdesc" style="color:#991B1B">Get closer to Ice N Fire Sky Lounge to check in.<br>Check-in requires being within 200m of the venue.</div></div>
+<div class="gbtn disabled">CHECK-IN (Too Far)</div>
+<div style="text-align:center;font-size:8px;color:#2563EB;padding:4px">📍 Get Directions →</div>
+</div><div class="bnav"><div class="ni ac"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">3</span><div class="sl">GPS Disabled / Low Accuracy</div><div class="ss">Location services needed</div>
+<div class="ph"><div class="cnt">
+<div class="map-area" style="background:#F1F5F9"><div style="text-align:center;font-size:10px;color:#94A3B8">📍 Location unavailable</div></div>
+<div class="event-bar"><div class="eb-img"></div><div class="eb-info"><div class="eb-name">Sunday Live</div><div class="eb-meta">📍 Ice N Fire, Baner · 8:30 PM</div></div></div>
+<div class="status-card warn"><div class="sic">⚠️</div><div class="stxt" style="color:#D97706">Location Services Required</div><div class="sdesc" style="color:#92400E">Please enable GPS to check in. We need your location to verify you're at the venue.</div></div>
+<div style="margin:8px 12px;padding:10px;background:linear-gradient(90deg,#2563EB,#3B82F6);border-radius:20px;text-align:center;font-size:10px;font-weight:700;color:#FFF">Open Location Settings</div>
+<div class="gbtn disabled">CHECK-IN (Location Needed)</div>
+</div><div class="bnav"><div class="ni ac"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">4</span><div class="sl">Check-in Success!</div><div class="ss">Confirmed with animation</div>
+<div class="ph"><div class="cnt" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:linear-gradient(180deg,#F0FDF4,#FFFAF5);padding:20px;text-align:center">
+<div style="width:80px;height:80px;border-radius:50%;background:#D1FAE5;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:12px">🎉</div>
+<div style="font-size:18px;font-weight:800;color:#059669;margin-bottom:4px">Checked In!</div>
+<div style="font-size:10px;color:#64748B;margin-bottom:16px;line-height:1.5">You're checked into Sunday Live<br>at Ice N Fire Sky Lounge</div>
+<div style="width:100%;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:10px;font-size:9px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #F8F5F0"><span style="color:#94A3B8">Event</span><span style="color:#1E293B;font-weight:600">Sunday Live</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #F8F5F0"><span style="color:#94A3B8">Artist</span><span style="color:#1E293B;font-weight:600">Atharva Patil</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #F8F5F0"><span style="color:#94A3B8">Venue</span><span style="color:#1E293B;font-weight:600">Ice N Fire, Baner</span></div>
+<div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:#94A3B8">Check-in Time</span><span style="color:#1E293B;font-weight:600">8:42 PM</span></div>
+</div>
+<div style="display:flex;gap:6px;width:100%">
+<div style="flex:1;padding:10px;background:#FFF;border:1.5px solid #E8E0D8;border-radius:18px;font-size:10px;font-weight:700;color:#64748B">Share 📤</div>
+<div style="flex:1;padding:10px;background:linear-gradient(90deg,#E8532E,#F5A623);border-radius:18px;font-size:10px;font-weight:700;color:#FFF">View Event</div>
+</div>
+</div><div class="bnav"><div class="ni ac"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+<hr>
+<div class="nt"><strong style="color:#E94560">Mapping:</strong> Screen 1→AC1 (within 200m) · Screen 2→AC2 (too far) · Screen 3→AC3,AC4 (GPS disabled/low accuracy) · Screen 4→AC1,AC7 (success + stats update)</div>
+<div style="text-align:center;margin-top:14px;font-size:10px;color:#4A4A68">BLA-227 · Mohammad Jamal Yusuf · April 2026</div>
+</body></html>
