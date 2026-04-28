@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-86 Artist Registration — All Performer Types</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:22px;text-align:center;margin-bottom:4px}
+h2{font-size:15px;color:#E94560;text-align:center;margin:28px 0 10px}
+.sub{text-align:center;color:#7878A0;font-size:11px;margin-bottom:20px}
+.screens{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;padding:8px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:5px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#E94560;color:#FFF;border-radius:50%;font-size:9px;font-weight:700}
+.sl{font-size:10px;font-weight:700;color:#E94560;text-align:center;max-width:250px}
+.ss{font-size:7px;color:#7878A0;text-align:center;max-width:250px}
+.ph{width:250px;height:520px;background:#FFFAF5;border-radius:28px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 12px 36px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:44px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#F5A623}.bnav .ni .ic{font-size:13px;display:block}
+.cnt{height:calc(100% - 44px);overflow-y:auto}
+.hdr{background:#FFF;padding:8px 12px;display:flex;align-items:center;border-bottom:1px solid #F0EBE5}
+.hdr .back{font-size:13px;color:#1E293B}.hdr .title{flex:1;text-align:center;font-size:11px;font-weight:700;color:#1E293B}
+.steps{display:flex;gap:3px;padding:6px 12px;justify-content:center}
+.steps .s{width:45px;height:3px;border-radius:2px;background:#E8E0D8}.steps .s.done{background:#059669}.steps .s.active{background:#E8532E}
+.step-label{text-align:center;font-size:8px;color:#94A3B8;margin-bottom:6px}
+.section-title{text-align:center;padding:8px 12px 4px;font-size:12px;font-weight:700;color:#1E293B}
+.section-sub{text-align:center;font-size:9px;color:#94A3B8;margin-bottom:8px}
+.finp{margin:4px 12px;border:1.5px solid #D4C8BE;border-radius:10px;padding:7px 10px;background:#FFF}
+.finp .flb{font-size:7px;color:#94A3B8;font-weight:500;margin-bottom:1px}
+.finp .fval{font-size:10px;color:#1E293B}
+.finp .fval.ph2{color:#C4B8AE}
+.gbtn{margin:8px 12px;padding:10px;border-radius:22px;text-align:center;font-size:10px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623)}
+
+/* Member cards */
+.member-list{padding:0 12px}
+.member{display:flex;align-items:center;gap:8px;padding:8px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;margin:4px 0}
+.member .mav{width:34px;height:34px;border-radius:50%;flex-shrink:0}
+.member .minfo{flex:1;font-size:9px}
+.member .minfo .mname{font-weight:700;color:#1E293B;font-size:10px}
+.member .minfo .mrole{color:#94A3B8;font-size:7px}
+.member .maction{font-size:10px}
+.add-member{display:flex;align-items:center;gap:6px;padding:8px;border:2px dashed #E8E0D8;border-radius:10px;margin:4px 12px;justify-content:center;font-size:9px;color:#E8532E;font-weight:600}
+
+/* Role selector */
+.role-pills{display:flex;gap:3px;flex-wrap:wrap;padding:2px 12px;margin-bottom:4px}
+.rpill{padding:4px 10px;border-radius:14px;font-size:8px;font-weight:600}
+.rpill.sel{background:#E8532E;color:#FFF}
+.rpill.unsel{background:#F8F5F0;color:#94A3B8;border:1px solid #E8E0D8}
+
+/* Type card highlighted */
+.type-selected{margin:6px 12px;padding:10px;background:#FFF8F5;border:2px solid #E8532E;border-radius:12px;display:flex;align-items:center;gap:10px}
+.type-selected .ts-icon{font-size:28px}
+.type-selected .ts-info{flex:1}
+.type-selected .ts-name{font-size:12px;font-weight:800;color:#E8532E}
+.type-selected .ts-desc{font-size:8px;color:#64748B}
+
+/* Custom type input */
+.custom-type{margin:6px 12px;padding:10px;background:#FFF;border:1.5px solid #E8532E;border-radius:10px}
+.custom-type .ct-label{font-size:8px;color:#E8532E;font-weight:600;margin-bottom:4px}
+.custom-type .ct-input{font-size:10px;color:#1E293B;padding:4px 0;border-bottom:1px solid #E8E0D8}
+
+/* Info card */
+.info-card{margin:6px 12px;padding:8px;background:#EFF6FF;border-radius:8px;font-size:8px;color:#1E4694;line-height:1.5}
+
+/* Review table */
+.rv-table{margin:6px 12px;background:#FFF;border-radius:10px;border:1px solid #F0EBE5;font-size:9px}
+.rv-row{display:flex;justify-content:space-between;padding:5px 10px;border-bottom:1px solid #F8F5F0}
+.rv-row:last-child{border:none}
+.rv-row .rv-label{color:#94A3B8}
+.rv-row .rv-val{color:#1E293B;font-weight:600;text-align:right;max-width:55%}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:24px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:8px;padding:10px;font-size:10px;color:#B0B0C8;line-height:1.7;max-width:900px;margin:10px auto}
+</style>
+</head>
+<body>
+<div style="font-size:10px;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-86 (ALL TYPES)</div>
+<h1>Artist Registration — All 5 Remaining Performer Types</h1>
+<div class="sub">Solo already covered in v2 · These show the unique Step 1.5 for each type before joining shared flow</div>
+
+<!-- ==================== BAND ==================== -->
+<h2>🎸 Band — 3+ Member Group</h2>
+<div class="screens">
+
+<div class="sw"><span class="sn">1</span><div class="sl">Band Selected → Add Members</div><div class="ss">Band-specific step: add performers</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s active"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+<div class="step-label">Step 1b: Band Members</div>
+
+<div class="type-selected"><div class="ts-icon">🎸</div><div class="ts-info"><div class="ts-name">Band</div><div class="ts-desc">3+ member group</div></div></div>
+
+<div class="section-title">Band Details</div>
+<div class="finp"><div class="flb">Band Name *</div><div class="fval">Inayat The Band</div></div>
+<div class="finp"><div class="flb">Year Formed</div><div class="fval">2019</div></div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px 4px"><div style="font-size:10px;font-weight:700;color:#1E293B">Members (min 3)</div><div style="font-size:8px;color:#E8532E;font-weight:600">3 of 3 ✓</div></div>
+
+<div class="member-list">
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div class="minfo"><div class="mname">Atharva Patil</div><div class="mrole">Lead Vocalist · You (admin)</div></div><div class="maction">👑</div></div>
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#2563EB,#0F9B8E)"></div><div class="minfo"><div class="mname">Rohan Desai</div><div class="mrole">Guitarist</div></div><div class="maction">✕</div></div>
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#D97706,#EA580C)"></div><div class="minfo"><div class="mname">Priya Kulkarni</div><div class="mrole">Percussionist</div></div><div class="maction">✕</div></div>
+</div>
+<div class="add-member">+ Add Member</div>
+
+<div class="info-card">💡 Each member gets linked to this band profile. Members who are already on BeLive will receive an invite. New members can join later.</div>
+
+<div class="gbtn">Next → Categories</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">2</span><div class="sl">Add Member Modal</div><div class="ss">Search BeLive or add manually</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Add Band Member</span></div>
+
+<div style="padding:10px 12px;font-size:11px;font-weight:700;color:#1E293B">Find on BeLive</div>
+<div class="finp"><div class="flb">Search by name or phone</div><div class="fval ph2">🔍 Search BeLive users...</div></div>
+<div style="padding:4px 12px;font-size:8px;color:#94A3B8">— or add manually —</div>
+<div class="finp"><div class="flb">Member Name *</div><div class="fval ph2">Full name</div></div>
+<div class="finp"><div class="flb">Phone *</div><div class="fval ph2">+91 XXXXX XXXXX</div></div>
+
+<div style="padding:8px 12px;font-size:10px;font-weight:700;color:#1E293B">Role in Band *</div>
+<div class="role-pills">
+<span class="rpill sel">Lead Vocalist</span>
+<span class="rpill unsel">Guitarist</span>
+<span class="rpill unsel">Bassist</span>
+<span class="rpill unsel">Drummer</span>
+<span class="rpill unsel">Keyboardist</span>
+<span class="rpill unsel">Percussionist</span>
+<span class="rpill unsel">Violinist</span>
+<span class="rpill unsel">Flautist</span>
+<span class="rpill unsel">Other</span>
+</div>
+
+<div class="gbtn">Add to Band</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;padding:4px">If member is on BeLive, they'll receive an invite to join the band</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<div class="sw"><span class="sn">3</span><div class="sl">Band Review & Submit</div><div class="ss">Shows members + band details</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s done"></div><div class="s done"></div><div class="s done"></div><div class="s active"></div></div>
+<div style="padding:8px 12px;font-size:12px;font-weight:700;color:#1E293B">Review — Band</div>
+<div class="rv-table">
+<div class="rv-row"><span class="rv-label">Type</span><span class="rv-val">Band</span></div>
+<div class="rv-row"><span class="rv-label">Band Name</span><span class="rv-val">Inayat The Band</span></div>
+<div class="rv-row"><span class="rv-label">Year Formed</span><span class="rv-val">2019</span></div>
+<div class="rv-row"><span class="rv-label">Members</span><span class="rv-val">3 members</span></div>
+<div class="rv-row"><span class="rv-label">Category</span><span class="rv-val">Singer, Music Band</span></div>
+<div class="rv-row"><span class="rv-label">City</span><span class="rv-val">Pune</span></div>
+<div class="rv-row"><span class="rv-label">Phone</span><span class="rv-val">+91 98765 43210</span></div>
+<div class="rv-row"><span class="rv-label">Instagram</span><span class="rv-val" style="color:#2563EB">instagram.com/inayat...</span></div>
+</div>
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">Band Members</div>
+<div class="member-list">
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div class="minfo"><div class="mname">Atharva Patil</div><div class="mrole">Lead Vocalist · Admin</div></div><div class="maction">👑</div></div>
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#2563EB,#0F9B8E)"></div><div class="minfo"><div class="mname">Rohan Desai</div><div class="mrole">Guitarist</div></div></div>
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#D97706,#EA580C)"></div><div class="minfo"><div class="mname">Priya Kulkarni</div><div class="mrole">Percussionist</div></div></div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:6px;padding:6px 12px;font-size:8px;color:#1E293B"><div style="width:14px;height:14px;border:2px solid #059669;border-radius:3px;background:#059669;color:#FFF;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0">✓</div><div>I accept the <span style="color:#2563EB;text-decoration:underline">Terms and Conditions</span> and <span style="color:#2563EB;text-decoration:underline">Privacy Policy</span></div></div>
+<div class="gbtn">Submit Registration</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;padding:4px">Profile will be reviewed within 24-48 hours</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<!-- ==================== DUO ==================== -->
+<h2>👥 Duo — Two Performers</h2>
+<div class="screens">
+
+<div class="sw"><span class="sn">4</span><div class="sl">Duo → Add Partner</div><div class="ss">Exactly 2 members required</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s active"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+<div class="step-label">Step 1b: Duo Partner</div>
+
+<div class="type-selected"><div class="ts-icon">👥</div><div class="ts-info"><div class="ts-name">Duo</div><div class="ts-desc">Two performers</div></div></div>
+
+<div class="finp"><div class="flb">Duo / Act Name *</div><div class="fval">Atharva & Rohan</div></div>
+
+<div style="padding:8px 12px 4px;font-size:10px;font-weight:700;color:#1E293B">Members (exactly 2)</div>
+<div class="member-list">
+<div class="member"><div class="mav" style="background:linear-gradient(135deg,#E94560,#7C3AED)"></div><div class="minfo"><div class="mname">Atharva Patil</div><div class="mrole">Vocalist · You (admin)</div></div><div class="maction">👑</div></div>
+<div class="member" style="border:2px dashed #E8532E;background:#FFF8F5"><div class="mav" style="background:linear-gradient(135deg,#2563EB,#0F9B8E)"></div><div class="minfo"><div class="mname">Rohan Desai</div><div class="mrole">Guitarist · Invited ✓</div></div><div class="maction">✕</div></div>
+</div>
+
+<div class="info-card">💡 Duo requires exactly 2 members. Your partner will receive an invite to link their profile.</div>
+<div class="gbtn">Next → Categories</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<!-- ==================== TROUPE ==================== -->
+<h2>💃 Troupe — Dance / Theatre Group</h2>
+<div class="screens">
+
+<div class="sw"><span class="sn">5</span><div class="sl">Troupe → Group Details</div><div class="ss">Dance/theatre specific fields</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s active"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+<div class="step-label">Step 1b: Troupe Details</div>
+
+<div class="type-selected"><div class="ts-icon">💃</div><div class="ts-info"><div class="ts-name">Troupe</div><div class="ts-desc">Dance / theatre group</div></div></div>
+
+<div class="finp"><div class="flb">Troupe / Group Name *</div><div class="fval">Nritya Dance Academy</div></div>
+<div class="finp"><div class="flb">Year Formed</div><div class="fval">2017</div></div>
+<div class="finp"><div class="flb">Number of Members *</div><div class="fval">8 active performers</div></div>
+
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">Performance Style</div>
+<div class="role-pills">
+<span class="rpill sel">Classical Dance</span>
+<span class="rpill sel">Bollywood</span>
+<span class="rpill unsel">Contemporary</span>
+<span class="rpill unsel">Folk/Tribal</span>
+<span class="rpill unsel">Theatre/Drama</span>
+<span class="rpill unsel">Acrobatics</span>
+<span class="rpill unsel">Street/Hip-Hop</span>
+</div>
+
+<div class="finp"><div class="flb">Troupe Leader / Director *</div><div class="fval">Priya Sharma (you)</div></div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px"><div style="font-size:9px;font-weight:700;color:#1E293B">Key Members</div><div style="font-size:8px;color:#94A3B8">Optional</div></div>
+<div class="add-member">+ Add Key Members</div>
+<div style="padding:2px 12px;font-size:7px;color:#94A3B8">Unlike Band, troupes don't need to list all members — just key performers</div>
+
+<div class="gbtn">Next → Categories</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<!-- ==================== DJ ACT ==================== -->
+<h2>🎧 DJ Act — DJ Solo or DJ + MC</h2>
+<div class="screens">
+
+<div class="sw"><span class="sn">6</span><div class="sl">DJ Act → DJ Details</div><div class="ss">DJ name, genre, equipment</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s active"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+<div class="step-label">Step 1b: DJ Act Details</div>
+
+<div class="type-selected"><div class="ts-icon">🎧</div><div class="ts-info"><div class="ts-name">DJ Act</div><div class="ts-desc">DJ solo or DJ + MC</div></div></div>
+
+<div class="finp"><div class="flb">DJ / Stage Name *</div><div class="fval">DJ Ravi</div></div>
+
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">DJ Setup Type</div>
+<div class="role-pills">
+<span class="rpill sel">DJ Solo</span>
+<span class="rpill unsel">DJ + MC</span>
+<span class="rpill unsel">DJ + Live Instruments</span>
+<span class="rpill unsel">DJ Duo (B2B)</span>
+</div>
+
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">Primary Genre</div>
+<div class="role-pills">
+<span class="rpill sel">EDM</span>
+<span class="rpill sel">Bollywood</span>
+<span class="rpill unsel">House</span>
+<span class="rpill unsel">Techno</span>
+<span class="rpill unsel">Hip-Hop</span>
+<span class="rpill unsel">Commercial</span>
+<span class="rpill unsel">Trance</span>
+<span class="rpill unsel">Punjabi</span>
+</div>
+
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">Equipment</div>
+<div class="role-pills">
+<span class="rpill sel">Own Setup (CDJs)</span>
+<span class="rpill unsel">Own Controller</span>
+<span class="rpill unsel">Need Venue Setup</span>
+</div>
+
+<div class="info-card">💡 If you selected DJ + MC, you'll be able to add your MC partner on the next screen</div>
+<div class="gbtn">Next → Categories</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<!-- ==================== OTHER ==================== -->
+<h2>✨ Other — Custom Performer Type</h2>
+<div class="screens">
+
+<div class="sw"><span class="sn">7</span><div class="sl">Other → Specify Your Type</div><div class="ss">Free-text with suggestions</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Artist Registration</span></div>
+<div class="steps"><div class="s done"></div><div class="s active"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+<div class="step-label">Step 1b: Describe Your Art</div>
+
+<div class="type-selected"><div class="ts-icon">✨</div><div class="ts-info"><div class="ts-name">Other</div><div class="ts-desc">Specify your performer type</div></div></div>
+
+<div class="custom-type"><div class="ct-label">What type of performer are you? *</div><div class="ct-input">Fire Dancer</div></div>
+
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">Or select from suggestions</div>
+<div class="role-pills">
+<span class="rpill unsel">Mime Artist</span>
+<span class="rpill unsel">Puppeteer</span>
+<span class="rpill unsel">Fire Dancer</span>
+<span class="rpill unsel">Sand Artist</span>
+<span class="rpill unsel">Drag Artist</span>
+<span class="rpill unsel">Body Painter</span>
+<span class="rpill unsel">Aerialist</span>
+<span class="rpill unsel">Performance Poet</span>
+<span class="rpill unsel">Impersonator</span>
+</div>
+
+<div class="finp"><div class="flb">Describe your art form * (min 20 chars)</div><div class="fval ph2" style="min-height:24px">Tell us what makes your performance unique...</div></div>
+
+<div style="padding:6px 12px;font-size:9px;font-weight:700;color:#1E293B">Performance Setup</div>
+<div class="role-pills">
+<span class="rpill sel">Solo</span>
+<span class="rpill unsel">With Partner</span>
+<span class="rpill unsel">Group / Crew</span>
+</div>
+
+<div class="info-card">💡 New performer types help us expand BeLive's artist community. Your type may be added as a standard category in future updates!</div>
+<div class="gbtn">Next → Categories</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">What's unique about each type:</strong><br><br>
+<strong>🎸 Band (3 screens):</strong> Band name + year formed → Add Members (min 3, each with role: Lead Vocalist, Guitarist, Bassist, etc.) → Members shown in review. Each member can be found on BeLive or added manually. Admin (creator) gets 👑 icon.<br><br>
+<strong>👥 Duo (1 screen):</strong> Act name → Exactly 2 members required. Simpler than Band — just add 1 partner with their role. Partner receives invite.<br><br>
+<strong>💃 Troupe (1 screen):</strong> Troupe/group name → Number of members (count, not individual listing) → Performance style picker (Classical, Bollywood, Contemporary, etc.) → Only key members listed (optional). Theatre/dance groups don't need every performer listed.<br><br>
+<strong>🎧 DJ Act (1 screen):</strong> DJ name → Setup type (Solo, DJ+MC, DJ+Live, B2B) → Primary genre (EDM, Bollywood, House, etc.) → Equipment (Own CDJs, Own Controller, Need Venue Setup). If DJ+MC, can add MC partner.<br><br>
+<strong>✨ Other (1 screen):</strong> Free-text type input with smart suggestions (Mime, Puppeteer, Fire Dancer, etc.) → Art form description → Performance setup (Solo/Partner/Group). Enables BeLive to discover new performer types.
+<br><br>
+<strong>After Step 1b, ALL types flow into the same shared steps:</strong> Step 2 (Categories) → Step 3 (Details: DOB, photo, city, contact, socials) → Step 4 (Review) → Step 5 (Pending Verification)
+</div>
+
+<div style="text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid #2A2A3A;font-size:10px;color:#4A4A68">
+BeLive App · BLA-86 All Performer Types · Mohammad Jamal Yusuf · April 2026
+</div>
+</body>
+</html>
