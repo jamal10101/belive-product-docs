@@ -1,0 +1,173 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BLA-120 Dashboard Wireframes</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:20px}
+h1{font-size:22px;text-align:center}h2{font-size:14px;color:#E94560;text-align:center;margin:24px 0 12px}
+.sub{text-align:center;color:#7878A0;font-size:11px;margin-bottom:20px}
+.sn{display:inline-block;width:20px;height:20px;background:#E94560;color:#FFF;border-radius:50%;text-align:center;font-size:10px;font-weight:700;line-height:20px;margin-right:6px}
+.sl{font-size:11px;font-weight:700;color:#E94560;margin-bottom:6px;text-align:center}
+.frame{background:#FFFAF5;border-radius:8px;overflow:hidden;margin:0 auto 20px;box-shadow:0 10px 40px rgba(0,0,0,.4);border:2px solid #333}
+.desktop{width:900px;height:540px}.tablet{width:600px;height:480px}.mobile{width:300px;height:500px}
+.sb{background:#1E293B;color:#FFF;padding:14px 12px;height:100%;width:180px;float:left}
+.sb .logo{font-size:18px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:6px}
+.sb .logo .lb{width:24px;height:24px;background:linear-gradient(135deg,#E8532E,#F5A623);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.sb .sec{font-size:8px;color:#64748B;text-transform:uppercase;margin:10px 0 4px}
+.sb .it{padding:6px 8px;font-size:10px;border-radius:6px;margin:2px 0;display:flex;align-items:center;gap:6px;cursor:pointer}
+.sb .it.ac{background:#E8532E;color:#FFF}.sb .it:not(.ac):hover{background:rgba(255,255,255,.05)}
+.main{margin-left:180px;padding:14px;height:100%;overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.title{font-size:16px;font-weight:800;color:#1E293B}
+.user{display:flex;align-items:center;gap:6px;font-size:10px;color:#1E293B}
+.user .av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.kpi{background:#FFF;border-radius:8px;padding:10px;border:1px solid #F0EBE5}
+.kpi .lbl{font-size:8px;color:#64748B;text-transform:uppercase}
+.kpi .val{font-size:18px;font-weight:800;color:#1E293B;margin:3px 0}
+.kpi .chg{font-size:8px;font-weight:600}
+.kpi .up{color:#059669}.kpi .dn{color:#DC2626}
+.charts{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.card{background:#FFF;border-radius:8px;padding:10px;border:1px solid #F0EBE5}
+.card .ct{font-size:10px;font-weight:700;color:#1E293B;margin-bottom:8px}
+.chart-bg{height:140px;background:linear-gradient(180deg,#FFF8F5 0%,#FFF 100%);border-radius:4px;position:relative;overflow:hidden}
+.line{position:absolute;inset:0}
+.line svg{width:100%;height:100%}
+.bar{display:flex;align-items:flex-end;height:100%;padding:6px;gap:4px}
+.bar div{flex:1;background:linear-gradient(180deg,#E8532E,#F5A623);border-radius:3px 3px 0 0}
+.tbl-head{display:flex;padding:6px;background:#F8F5F0;border-radius:4px;font-size:8px;font-weight:700;color:#64748B;text-transform:uppercase}
+.tbl-row{display:flex;padding:6px;font-size:9px;color:#1E293B;border-bottom:1px solid #F8F5F0;align-items:center}
+.tbl-row:last-child{border:none}
+.badge{padding:2px 6px;border-radius:3px;font-size:7px;font-weight:700}
+.b-ok{background:#D1FAE5;color:#059669}.b-pnd{background:#FEF3C7;color:#D97706}.b-fail{background:#FEE2E2;color:#DC2626}
+.btn-s{padding:3px 8px;border-radius:4px;font-size:8px;font-weight:700;cursor:pointer}
+.btn-ap{background:#059669;color:#FFF}.btn-rj{background:#DC2626;color:#FFF}
+/* Tablet */
+.tablet .sb{width:60px;padding:10px 6px}
+.tablet .sb .logo span:last-child,.tablet .sb .sec,.tablet .sb .it span:last-child{display:none}
+.tablet .sb .it{justify-content:center}
+.tablet .main{margin-left:60px}
+.tablet .kpis{grid-template-columns:repeat(2,1fr)}
+.tablet .charts{grid-template-columns:1fr}
+/* Mobile */
+.mobile .hamb{background:#1E293B;color:#FFF;padding:10px;display:flex;justify-content:space-between;align-items:center}
+.mobile .hamb .h-logo{font-size:14px;font-weight:800}
+.mobile .mmain{padding:10px;height:calc(100% - 40px);overflow-y:auto}
+.mobile .kpis{grid-template-columns:1fr 1fr;gap:6px}
+.mobile .kpi .val{font-size:14px}
+hr{border:none;border-top:1px solid #2A2A3A;margin:24px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:8px;padding:10px;font-size:10px;color:#B0B0C8;line-height:1.7;max-width:900px;margin:10px auto}
+</style></head><body>
+<div style="font-size:10px;letter-spacing:4px;color:#E94560;text-align:center">BELIVE - BLA-120</div>
+<h1>Dashboard — Web Responsive</h1>
+<div class="sub">4 Screens · Desktop → Tablet → Mobile + KYC Queue</div>
+
+<h2>Screen 1: Desktop — Overview Dashboard</h2>
+<div class="sl"><span class="sn">1</span>Desktop 1200px+ — Full layout</div>
+<div class="frame desktop">
+<div class="sb"><div class="logo"><div class="lb">B</div><span>BeLive Admin</span></div>
+<div class="sec">Main</div>
+<div class="it ac">📊 <span>Overview</span></div>
+<div class="it">👥 <span>Users</span></div>
+<div class="it">🎤 <span>Artists</span></div>
+<div class="it">🏢 <span>Venues</span></div>
+<div class="it">🎙 <span>Studios</span></div>
+<div class="it">🎓 <span>Mentors</span></div>
+<div class="sec">Ops</div>
+<div class="it">📋 <span>Bookings</span></div>
+<div class="it">💳 <span>Transactions</span></div>
+<div class="it">🆔 <span>KYC Queue</span> <span style="background:#E94560;color:#FFF;padding:1px 5px;border-radius:8px;font-size:7px;margin-left:auto">12</span></div>
+<div class="it">🛡 <span>Moderation</span></div>
+<div class="it">⚙️ <span>Settings</span></div>
+</div>
+<div class="main">
+<div class="top"><div class="title">Overview</div><div class="user"><span style="font-size:9px;color:#64748B">📅 Last 30 days ▼</span><div class="av"></div><span>Super Admin</span></div></div>
+<div class="kpis">
+<div class="kpi"><div class="lbl">Total Users</div><div class="val">12,847</div><div class="chg up">↑ 18.4% vs last month</div></div>
+<div class="kpi"><div class="lbl">Active Artists</div><div class="val">1,234</div><div class="chg up">↑ 12.1%</div></div>
+<div class="kpi"><div class="lbl">Revenue (MTD)</div><div class="val">₹4.8L</div><div class="chg up">↑ 24.3%</div></div>
+<div class="kpi"><div class="lbl">Pending Approvals</div><div class="val" style="color:#D97706">47</div><div class="chg dn">↓ 8 since yesterday</div></div>
+</div>
+<div class="charts">
+<div class="card"><div class="ct">User Growth — Last 30 Days</div>
+<div class="chart-bg"><div class="line"><svg viewBox="0 0 400 140" preserveAspectRatio="none"><path d="M 0 110 L 40 100 L 80 85 L 120 90 L 160 70 L 200 60 L 240 50 L 280 45 L 320 35 L 360 25 L 400 18" fill="none" stroke="#E8532E" stroke-width="2.5"/><path d="M 0 110 L 40 100 L 80 85 L 120 90 L 160 70 L 200 60 L 240 50 L 280 45 L 320 35 L 360 25 L 400 18 L 400 140 L 0 140 Z" fill="url(#g1)" opacity=".2"/><defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E8532E"/><stop offset="1" stop-color="#F5A623" stop-opacity="0"/></linearGradient></defs></svg></div></div>
+</div>
+<div class="card"><div class="ct">Revenue by Category</div>
+<div class="chart-bg"><div class="bar"><div style="height:60%"></div><div style="height:85%"></div><div style="height:45%"></div><div style="height:70%"></div><div style="height:55%"></div></div></div>
+<div style="font-size:7px;color:#64748B;display:flex;justify-content:space-around;margin-top:4px"><span>Book</span><span>Studio</span><span>Mentor</span><span>Ticket</span><span>Tip</span></div>
+</div>
+</div>
+</div></div>
+
+<h2>Screen 2: Desktop — KYC Approval Queue</h2>
+<div class="sl"><span class="sn">2</span>Manages BLA-27 eKYC submissions</div>
+<div class="frame desktop">
+<div class="sb"><div class="logo"><div class="lb">B</div><span>BeLive Admin</span></div>
+<div class="sec">Main</div>
+<div class="it">📊 <span>Overview</span></div>
+<div class="it">👥 <span>Users</span></div>
+<div class="it">🎤 <span>Artists</span></div>
+<div class="sec">Ops</div>
+<div class="it">📋 <span>Bookings</span></div>
+<div class="it">💳 <span>Transactions</span></div>
+<div class="it ac">🆔 <span>KYC Queue</span> <span style="background:#FFF;color:#E8532E;padding:1px 5px;border-radius:8px;font-size:7px;margin-left:auto">12</span></div>
+<div class="it">🛡 <span>Moderation</span></div>
+</div>
+<div class="main">
+<div class="top"><div class="title">KYC Queue · 12 Pending</div><div style="display:flex;gap:6px"><span class="btn-s" style="background:#F8F5F0;color:#64748B">🔍 Search</span><span class="btn-s" style="background:#F8F5F0;color:#64748B">🎛 Filter</span></div></div>
+<div class="card" style="padding:0">
+<div class="tbl-head"><div style="flex:.8">User</div><div style="flex:1">Name</div><div style="flex:.8">Type</div><div style="flex:.7">DOB / Age</div><div style="flex:.8">Submitted</div><div style="flex:.5">Docs</div><div style="flex:.7">Status</div><div style="flex:1;text-align:right">Actions</div></div>
+<div class="tbl-row"><div style="flex:.8">#U-1847</div><div style="flex:1;font-weight:700">Atharva Patil</div><div style="flex:.8">Artist</div><div style="flex:.7">15 Jan 98 · 28</div><div style="flex:.8">2 hrs ago</div><div style="flex:.5;font-size:11px">📄 📷</div><div style="flex:.7"><span class="badge b-pnd">Pending</span></div><div style="flex:1;display:flex;gap:4px;justify-content:flex-end"><span class="btn-s" style="background:#2563EB;color:#FFF">View</span><span class="btn-s btn-ap">Approve</span><span class="btn-s btn-rj">Reject</span></div></div>
+<div class="tbl-row"><div style="flex:.8">#U-1848</div><div style="flex:1;font-weight:700">Priya Sharma</div><div style="flex:.8">Venue</div><div style="flex:.7">22 Mar 92 · 34</div><div style="flex:.8">4 hrs ago</div><div style="flex:.5">📄 📷</div><div style="flex:.7"><span class="badge b-pnd">Pending</span></div><div style="flex:1;display:flex;gap:4px;justify-content:flex-end"><span class="btn-s" style="background:#2563EB;color:#FFF">View</span><span class="btn-s btn-ap">Approve</span><span class="btn-s btn-rj">Reject</span></div></div>
+<div class="tbl-row"><div style="flex:.8">#U-1849</div><div style="flex:1;font-weight:700">Rahul Kumar</div><div style="flex:.8">Artist</div><div style="flex:.7" style="color:#DC2626">05 Jun 10 · 15 ⚠</div><div style="flex:.8">6 hrs ago</div><div style="flex:.5">📄 📷</div><div style="flex:.7"><span class="badge b-pnd">Pending</span></div><div style="flex:1;display:flex;gap:4px;justify-content:flex-end"><span class="btn-s" style="background:#2563EB;color:#FFF">View</span><span class="btn-s btn-ap">Approve</span><span class="btn-s btn-rj">Reject</span></div></div>
+<div class="tbl-row"><div style="flex:.8">#U-1850</div><div style="flex:1;font-weight:700">Meera Iyer</div><div style="flex:.8">Studio</div><div style="flex:.7">11 Sep 88 · 37</div><div style="flex:.8">1 day ago</div><div style="flex:.5">📄 📷</div><div style="flex:.7"><span class="badge b-pnd">Pending</span></div><div style="flex:1;display:flex;gap:4px;justify-content:flex-end"><span class="btn-s" style="background:#2563EB;color:#FFF">View</span><span class="btn-s btn-ap">Approve</span><span class="btn-s btn-rj">Reject</span></div></div>
+<div class="tbl-row"><div style="flex:.8">#U-1851</div><div style="flex:1;font-weight:700">Vikram Singh</div><div style="flex:.8">Mentor</div><div style="flex:.7">18 Dec 85 · 40</div><div style="flex:.8">1 day ago</div><div style="flex:.5">📄 📷</div><div style="flex:.7"><span class="badge b-pnd">Pending</span></div><div style="flex:1;display:flex;gap:4px;justify-content:flex-end"><span class="btn-s" style="background:#2563EB;color:#FFF">View</span><span class="btn-s btn-ap">Approve</span><span class="btn-s btn-rj">Reject</span></div></div>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:9px;color:#64748B"><span>Showing 1-5 of 12</span><span>‹ 1 2 3 ›</span></div>
+</div></div>
+
+<h2>Screen 3: Tablet — Collapsed Sidebar (768-1199px)</h2>
+<div class="sl"><span class="sn">3</span>Icons-only sidebar, 2-col KPIs</div>
+<div class="frame tablet">
+<div class="sb"><div class="logo"><div class="lb">B</div></div>
+<div class="it ac">📊</div><div class="it">👥</div><div class="it">🎤</div><div class="it">🏢</div><div class="it">💳</div><div class="it">🆔</div><div class="it">⚙️</div>
+</div>
+<div class="main">
+<div class="top"><div class="title">Overview</div><div class="user"><div class="av"></div></div></div>
+<div class="kpis">
+<div class="kpi"><div class="lbl">Total Users</div><div class="val">12,847</div><div class="chg up">↑ 18.4%</div></div>
+<div class="kpi"><div class="lbl">Active Artists</div><div class="val">1,234</div><div class="chg up">↑ 12.1%</div></div>
+<div class="kpi"><div class="lbl">Revenue MTD</div><div class="val">₹4.8L</div><div class="chg up">↑ 24.3%</div></div>
+<div class="kpi"><div class="lbl">Pending</div><div class="val" style="color:#D97706">47</div><div class="chg dn">↓ 8</div></div>
+</div>
+<div class="charts">
+<div class="card"><div class="ct">User Growth</div><div class="chart-bg"><div class="line"><svg viewBox="0 0 400 140" preserveAspectRatio="none"><path d="M 0 110 L 80 85 L 160 70 L 240 50 L 320 35 L 400 18" fill="none" stroke="#E8532E" stroke-width="2.5"/></svg></div></div></div>
+</div>
+</div></div>
+
+<h2>Screen 4: Mobile — Hamburger Menu (&lt;768px)</h2>
+<div class="sl"><span class="sn">4</span>Stacked KPIs, collapsed nav</div>
+<div class="frame mobile">
+<div class="hamb"><span style="font-size:18px">☰</span><div class="h-logo">BeLive Admin</div><div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#E94560,#7C3AED)"></div></div>
+<div class="mmain">
+<div style="font-size:14px;font-weight:800;color:#1E293B;margin-bottom:8px">Overview</div>
+<div class="kpis">
+<div class="kpi"><div class="lbl">Users</div><div class="val">12,847</div><div class="chg up">↑ 18.4%</div></div>
+<div class="kpi"><div class="lbl">Artists</div><div class="val">1,234</div><div class="chg up">↑ 12.1%</div></div>
+<div class="kpi"><div class="lbl">Revenue</div><div class="val">₹4.8L</div><div class="chg up">↑ 24%</div></div>
+<div class="kpi"><div class="lbl">Pending</div><div class="val" style="color:#D97706">47</div><div class="chg dn">↓ 8</div></div>
+</div>
+<div class="card" style="margin-top:10px"><div class="ct">User Growth</div><div class="chart-bg" style="height:100px"><div class="line"><svg viewBox="0 0 400 140" preserveAspectRatio="none"><path d="M 0 110 L 80 85 L 160 70 L 240 50 L 320 35 L 400 18" fill="none" stroke="#E8532E" stroke-width="3"/></svg></div></div></div>
+<div class="card" style="margin-top:8px"><div class="ct">Recent Activity</div>
+<div style="font-size:9px;color:#1E293B;padding:4px 0;border-bottom:1px solid #F8F5F0">🎤 New artist signup — Atharva P.</div>
+<div style="font-size:9px;color:#1E293B;padding:4px 0;border-bottom:1px solid #F8F5F0">💳 ₹5,295 payment — pay_MNp2q</div>
+<div style="font-size:9px;color:#1E293B;padding:4px 0">🆔 KYC pending — Priya S.</div>
+</div>
+</div></div>
+
+<hr>
+<div class="nt"><strong style="color:#E94560">Screen Mapping:</strong><br>
+Screen 1 (Desktop Overview) → US-001 AC1, AC2 (KPIs + charts)<br>
+Screen 2 (KYC Queue) → US-002 AC2, AC3, AC4 (integrates BLA-27 eKYC flow)<br>
+Screen 3 (Tablet) → US-001 AC4 (768-1199px breakpoint, collapsed sidebar)<br>
+Screen 4 (Mobile) → US-001 AC4 (&lt;768px hamburger menu, stacked layout)<br><br>
+<strong>Tech stack:</strong> React or Next.js + Tailwind + Recharts, Firebase Auth admin role check, Firestore real-time snapshots, Razorpay admin refund API, hosted on Firebase Hosting at admin.belive.app
+</div>
+<div style="text-align:center;margin-top:16px;font-size:10px;color:#4A4A68">BeLive · BLA-120 Dashboard · Mohammad Jamal Yusuf · April 2026</div>
+</body></html>
