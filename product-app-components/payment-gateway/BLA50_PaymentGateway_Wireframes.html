@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLA-50 Payment Gateway — Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#1A1A24;color:#E8E8F0;padding:30px}
+h1{font-size:24px;text-align:center;margin-bottom:4px}
+h2{font-size:16px;color:#E94560;text-align:center;margin:28px 0 12px}
+.sub{text-align:center;color:#7878A0;font-size:12px;margin-bottom:24px}
+.screens{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;padding:8px 0}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#E94560;color:#FFF;border-radius:50%;font-size:10px;font-weight:700}
+.sl{font-size:10px;font-weight:700;color:#E94560;text-align:center;max-width:260px}
+.ss{font-size:8px;color:#7878A0;text-align:center;max-width:260px}
+.ph{width:260px;height:560px;background:#FFFAF5;border-radius:30px;overflow:hidden;position:relative;box-shadow:0 0 0 3px #333,0 14px 40px rgba(0,0,0,.5)}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:48px;background:#FFF;border-top:1px solid #E8E0D8;display:flex;align-items:center;justify-content:space-around;font-size:6px;color:#B0A89E}
+.bnav .ni{text-align:center}.bnav .ni.ac{color:#F5A623}.bnav .ni .ic{font-size:14px;display:block}
+.cnt{height:calc(100% - 48px);overflow-y:auto}
+.hdr{background:linear-gradient(90deg,#E8532E,#F5A623);padding:10px 12px;display:flex;align-items:center;color:#FFF}
+.hdr .back{font-size:14px}
+.hdr .title{flex:1;text-align:center;font-size:12px;font-weight:700}
+.hdr-white{background:#FFF;color:#1E293B;border-bottom:1px solid #F0EBE5}
+
+/* Checkout item card */
+.item-card{margin:10px 12px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:10px;display:flex;gap:10px}
+.item-card .item-img{width:50px;height:50px;border-radius:8px;flex-shrink:0;background:linear-gradient(135deg,#E94560,#7C3AED)}
+.item-card .item-info{flex:1;font-size:9px}
+.item-card .item-name{font-weight:700;color:#1E293B;font-size:11px}
+.item-card .item-sub{color:#64748B;font-size:8px;margin-top:2px}
+.item-card .item-tag{display:inline-block;padding:2px 6px;background:#FFF0EB;color:#E8532E;border-radius:4px;font-size:7px;font-weight:600;margin-top:3px}
+
+/* Amount breakdown */
+.amt-box{margin:8px 12px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:10px}
+.amt-title{font-size:10px;font-weight:700;color:#1E293B;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.amt-row{display:flex;justify-content:space-between;padding:3px 0;font-size:9px}
+.amt-row .amt-label{color:#64748B}
+.amt-row .amt-val{color:#1E293B;font-weight:600}
+.amt-divider{border-top:1px dashed #E8E0D8;margin:4px 0}
+.amt-total{display:flex;justify-content:space-between;padding:4px 0;font-size:12px;font-weight:700}
+.amt-total .tl{color:#1E293B}
+.amt-total .tv{color:#E8532E}
+
+/* Payment methods */
+.pm-section{padding:6px 12px}
+.pm-title{font-size:9px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin:6px 0 4px}
+.pm-item{display:flex;align-items:center;gap:10px;padding:10px;background:#FFF;border:1.5px solid #E8E0D8;border-radius:10px;margin:4px 0}
+.pm-item.sel{border-color:#E8532E;background:#FFF8F5}
+.pm-item .pm-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;background:#F8F5F0}
+.pm-item .pm-info{flex:1}
+.pm-item .pm-name{font-size:11px;font-weight:700;color:#1E293B}
+.pm-item .pm-sub{font-size:8px;color:#94A3B8}
+.pm-item .pm-radio{width:16px;height:16px;border-radius:50%;border:2px solid #D4C8BE;display:flex;align-items:center;justify-content:center}
+.pm-item.sel .pm-radio{border-color:#E8532E;background:#E8532E}
+.pm-item.sel .pm-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#FFF}
+
+/* UPI apps grid */
+.upi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:4px 12px 8px}
+.upi-card{background:#FFF;border:1.5px solid #E8E0D8;border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer}
+.upi-card.sel{border-color:#E8532E;background:#FFF8F5}
+.upi-card .upi-logo{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:16px;color:#FFF;font-weight:800}
+.upi-card .upi-name{font-size:8px;font-weight:600;color:#1E293B}
+
+/* Card form */
+.finp{margin:6px 12px;border:1.5px solid #D4C8BE;border-radius:10px;padding:8px 10px;background:#FFF}
+.finp .flb{font-size:8px;color:#94A3B8;font-weight:500;margin-bottom:2px}
+.finp .fval{font-size:11px;color:#1E293B;letter-spacing:1px}
+.finp .fval.ph2{color:#C4B8AE;letter-spacing:0}
+.finp-row{display:flex;gap:6px;margin:0 12px}
+.finp-row .finp{flex:1;margin:6px 0}
+
+/* Button */
+.gbtn{margin:10px 12px;padding:12px;border-radius:25px;text-align:center;font-size:12px;font-weight:700;color:#FFF;background:linear-gradient(90deg,#E8532E,#F5A623);box-shadow:0 4px 12px rgba(232,83,46,.3)}
+.gbtn.small{padding:8px;font-size:10px}
+
+/* Success/Fail/Pending screens */
+.status-screen{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+.status-icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:12px}
+.status-icon.success{background:#D1FAE5;color:#059669}
+.status-icon.fail{background:#FEE2E2;color:#DC2626}
+.status-icon.pending{background:#FEF3C7;color:#D97706}
+.status-title{font-size:18px;font-weight:800;margin-bottom:4px}
+.status-title.success{color:#059669}
+.status-title.fail{color:#DC2626}
+.status-title.pending{color:#D97706}
+.status-desc{font-size:10px;color:#64748B;margin-bottom:14px;line-height:1.5}
+.txn-details{width:100%;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:10px;margin-bottom:12px;font-size:9px}
+.txn-details .tdrow{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #F8F5F0}
+.txn-details .tdrow:last-child{border:none}
+.txn-details .tdlabel{color:#94A3B8}
+.txn-details .tdval{color:#1E293B;font-weight:600}
+.status-actions{display:flex;gap:6px;width:100%}
+.status-actions .sbtn2{flex:1;padding:10px;border-radius:20px;font-size:10px;font-weight:700;text-align:center}
+.status-actions .sbtn2.primary{background:linear-gradient(90deg,#E8532E,#F5A623);color:#FFF}
+.status-actions .sbtn2.secondary{background:#FFF;color:#1E293B;border:1.5px solid #E8E0D8}
+
+/* Saved card */
+.saved-card{margin:4px 12px;background:linear-gradient(135deg,#1E293B,#475569);border-radius:10px;padding:10px;color:#FFF;display:flex;justify-content:space-between;align-items:center;font-size:9px}
+.saved-card .sc-info{flex:1}
+.saved-card .sc-brand{font-size:8px;opacity:.7;margin-bottom:2px}
+.saved-card .sc-num{font-size:11px;font-weight:700;letter-spacing:1px}
+
+/* Transaction history */
+.txn-item{margin:4px 12px;background:#FFF;border:1px solid #F0EBE5;border-radius:10px;padding:8px;display:flex;gap:8px;align-items:center}
+.txn-item .txn-icon{width:34px;height:34px;border-radius:8px;background:#F0FDF4;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.txn-item .txn-info{flex:1;font-size:9px}
+.txn-item .txn-name{font-weight:700;color:#1E293B;font-size:10px}
+.txn-item .txn-meta{color:#94A3B8;font-size:7px;margin-top:1px}
+.txn-item .txn-amt{font-size:11px;font-weight:700;color:#1E293B}
+.txn-item .txn-status{font-size:7px;padding:2px 6px;border-radius:3px;font-weight:600}
+.status-success{background:#D1FAE5;color:#059669}
+.status-refund{background:#FEF3C7;color:#D97706}
+.status-fail{background:#FEE2E2;color:#DC2626}
+
+hr{border:none;border-top:1px solid #2A2A3A;margin:30px 0}
+.nt{background:#14141C;border:1px solid #2A2A3A;border-radius:10px;padding:12px;margin:14px auto;max-width:900px;font-size:10px;color:#B0B0C8;line-height:1.8}
+</style>
+</head>
+<body>
+<div style="font-size:10px;font-weight:600;letter-spacing:4px;color:#E94560;text-align:center;margin-bottom:6px">BELIVE APP - BLA-50</div>
+<h1>Payment Gateway — Wireframes</h1>
+<div class="sub">8 Screens · Razorpay Integration · UPI + Cards + History + Refunds</div>
+
+<h2>Checkout & Payment Flow</h2>
+<div class="screens">
+
+<!-- Screen 1: Checkout -->
+<div class="sw"><span class="sn">1</span><div class="sl">Checkout Screen</div><div class="ss">Order summary with amount breakdown</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Checkout</span></div>
+<div class="item-card">
+<div class="item-img"></div>
+<div class="item-info">
+<div class="item-name">Atharva Patil</div>
+<div class="item-sub">Artist Booking · Apr 12, 2026</div>
+<div class="item-sub">Oasis Club, Baner · 8 PM – 11 PM</div>
+<span class="item-tag">🎤 Booking</span>
+</div>
+</div>
+
+<div class="amt-box">
+<div class="amt-title">Amount Details</div>
+<div class="amt-row"><span class="amt-label">Booking Amount</span><span class="amt-val">₹5,000.00</span></div>
+<div class="amt-row"><span class="amt-label">Platform Fee (5%)</span><span class="amt-val">₹250.00</span></div>
+<div class="amt-row"><span class="amt-label">GST on Fee (18%)</span><span class="amt-val">₹45.00</span></div>
+<div class="amt-divider"></div>
+<div class="amt-total"><span class="tl">Total to Pay</span><span class="tv">₹5,295.00</span></div>
+</div>
+
+<div style="margin:8px 12px;padding:8px;background:#F0FDF4;border-radius:8px;display:flex;align-items:center;gap:6px;font-size:8px;color:#059669">
+<span>🔒</span> <span>Secured by <strong>Razorpay</strong> · PCI-DSS Level 1</span>
+</div>
+
+<div class="gbtn">Select Payment Method →</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 2: Payment Methods -->
+<div class="sw"><span class="sn">2</span><div class="sl">Select Payment Method</div><div class="ss">UPI, Cards, Netbanking, Wallets</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Payment Methods</span></div>
+<div style="padding:8px 12px;font-size:10px;color:#64748B">Paying <strong style="color:#E8532E">₹5,295.00</strong></div>
+
+<div class="pm-section">
+<div class="pm-title">Saved Cards</div>
+<div class="saved-card">
+<div class="sc-info">
+<div class="sc-brand">VISA</div>
+<div class="sc-num">•••• •••• •••• 4242</div>
+</div>
+<div style="font-size:8px;opacity:.7">Expires 12/27</div>
+</div>
+
+<div class="pm-title">UPI Apps</div>
+</div>
+<div class="upi-grid">
+<div class="upi-card sel"><div class="upi-logo" style="background:#4285F4">G</div><div class="upi-name">GPay</div></div>
+<div class="upi-card"><div class="upi-logo" style="background:#5F259F">Pe</div><div class="upi-name">PhonePe</div></div>
+<div class="upi-card"><div class="upi-logo" style="background:#00BAF2">Pa</div><div class="upi-name">Paytm</div></div>
+<div class="upi-card"><div class="upi-logo" style="background:#1565C0">B</div><div class="upi-name">BHIM</div></div>
+<div class="upi-card"><div class="upi-logo" style="background:#FF9900">A</div><div class="upi-name">Amazon</div></div>
+<div class="upi-card"><div class="upi-logo" style="background:#64748B">✎</div><div class="upi-name">Other UPI</div></div>
+</div>
+
+<div class="pm-section">
+<div class="pm-title">Other Methods</div>
+<div class="pm-item"><div class="pm-icon">💳</div><div class="pm-info"><div class="pm-name">Add New Card</div><div class="pm-sub">Credit / Debit / RuPay</div></div><div class="pm-radio"></div></div>
+<div class="pm-item"><div class="pm-icon">🏦</div><div class="pm-info"><div class="pm-name">Net Banking</div><div class="pm-sub">All major banks</div></div><div class="pm-radio"></div></div>
+<div class="pm-item"><div class="pm-icon">👛</div><div class="pm-info"><div class="pm-name">Wallets</div><div class="pm-sub">Freecharge, Mobikwik, etc.</div></div><div class="pm-radio"></div></div>
+</div>
+
+<div class="gbtn">Pay ₹5,295 via GPay</div>
+<div style="height:10px"></div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 3: Card Form -->
+<div class="sw"><span class="sn">3</span><div class="sl">Add New Card</div><div class="ss">Card entry + Save for later</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Card Details</span></div>
+<div style="padding:10px 12px;text-align:center;font-size:10px;color:#64748B">Paying <strong style="color:#E8532E">₹5,295.00</strong></div>
+
+<div class="finp"><div class="flb">Card Number</div><div class="fval">4242 4242 4242 ____</div></div>
+<div style="text-align:right;padding:0 14px;font-size:8px;color:#2563EB;font-weight:600">VISA detected ✓</div>
+
+<div class="finp-row">
+<div class="finp"><div class="flb">Expiry (MM/YY)</div><div class="fval">12/27</div></div>
+<div class="finp"><div class="flb">CVV</div><div class="fval">•••</div></div>
+</div>
+
+<div class="finp"><div class="flb">Name on Card</div><div class="fval" style="letter-spacing:0;font-size:10px">Mohammad Jamal Yusuf</div></div>
+
+<div style="margin:10px 12px;padding:10px;background:#FFF;border:1.5px solid #E8E0D8;border-radius:10px;display:flex;align-items:center;gap:8px">
+<div style="width:32px;height:18px;background:#E8532E;border-radius:10px;position:relative"><div style="position:absolute;width:14px;height:14px;background:#FFF;border-radius:50%;top:2px;right:2px"></div></div>
+<div style="font-size:9px;color:#1E293B;flex:1">Save card for future payments</div>
+</div>
+<div style="padding:0 16px;font-size:7px;color:#94A3B8;margin-top:-4px">🔒 Card details tokenized by Razorpay. BeLive never stores your card number or CVV.</div>
+
+<div class="gbtn">Pay ₹5,295 Securely</div>
+<div style="text-align:center;font-size:7px;color:#94A3B8;padding:4px">Powered by Razorpay · 3D Secure Authentication</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<hr>
+<h2>Payment Status Screens</h2>
+<div class="screens">
+
+<!-- Screen 4: Success -->
+<div class="sw"><span class="sn">4</span><div class="sl">Payment Successful</div><div class="ss">Transaction confirmed</div>
+<div class="ph"><div class="cnt">
+<div class="status-screen">
+<div class="status-icon success">✓</div>
+<div class="status-title success">Payment Successful!</div>
+<div class="status-desc">Your booking has been confirmed</div>
+
+<div class="txn-details">
+<div class="tdrow"><span class="tdlabel">Amount Paid</span><span class="tdval">₹5,295.00</span></div>
+<div class="tdrow"><span class="tdlabel">Payment Method</span><span class="tdval">GPay (UPI)</span></div>
+<div class="tdrow"><span class="tdlabel">Transaction ID</span><span class="tdval" style="font-size:8px">pay_MNp2q8X9Lm</span></div>
+<div class="tdrow"><span class="tdlabel">Date & Time</span><span class="tdval">Apr 8, 2026 · 2:45 PM</span></div>
+<div class="tdrow"><span class="tdlabel">Item</span><span class="tdval">Atharva Patil Booking</span></div>
+</div>
+
+<div class="status-actions">
+<div class="sbtn2 secondary">📄 Receipt</div>
+<div class="sbtn2 primary">View Booking</div>
+</div>
+</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 5: Failed -->
+<div class="sw"><span class="sn">5</span><div class="sl">Payment Failed</div><div class="ss">Retry or change method</div>
+<div class="ph"><div class="cnt">
+<div class="status-screen">
+<div class="status-icon fail">✕</div>
+<div class="status-title fail">Payment Failed</div>
+<div class="status-desc">UPI transaction timed out.<br>Your money has not been deducted.</div>
+
+<div class="txn-details">
+<div class="tdrow"><span class="tdlabel">Attempted Amount</span><span class="tdval">₹5,295.00</span></div>
+<div class="tdrow"><span class="tdlabel">Payment Method</span><span class="tdval">GPay (UPI)</span></div>
+<div class="tdrow"><span class="tdlabel">Failure Reason</span><span class="tdval" style="color:#DC2626">UPI Timeout</span></div>
+<div class="tdrow"><span class="tdlabel">Time</span><span class="tdval">Apr 8, 2026 · 2:47 PM</span></div>
+</div>
+
+<div style="padding:8px;background:#FEF3C7;border-radius:8px;font-size:8px;color:#92400E;margin-bottom:12px;width:100%">
+⚠️ If amount was debited, it will be refunded in 5-7 business days
+</div>
+
+<div class="status-actions">
+<div class="sbtn2 secondary">Change Method</div>
+<div class="sbtn2 primary">🔄 Retry</div>
+</div>
+</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 6: Pending -->
+<div class="sw"><span class="sn">6</span><div class="sl">Payment Pending</div><div class="ss">Auto-polling status</div>
+<div class="ph"><div class="cnt">
+<div class="status-screen">
+<div class="status-icon pending" style="animation:pulse 1.5s infinite">⏳</div>
+<div class="status-title pending">Payment Processing</div>
+<div class="status-desc">Your payment is being processed.<br>You'll be notified within 2 minutes.</div>
+
+<div style="width:100%;margin-bottom:12px">
+<div style="background:#FEF3C7;height:6px;border-radius:3px;overflow:hidden">
+<div style="width:40%;height:100%;background:linear-gradient(90deg,#D97706,#F59E0B)"></div>
+</div>
+<div style="font-size:7px;color:#94A3B8;text-align:center;margin-top:4px">Checking status... (1:18 remaining)</div>
+</div>
+
+<div class="txn-details">
+<div class="tdrow"><span class="tdlabel">Amount</span><span class="tdval">₹5,295.00</span></div>
+<div class="tdrow"><span class="tdlabel">Method</span><span class="tdval">GPay (UPI Collect)</span></div>
+<div class="tdrow"><span class="tdlabel">Status</span><span class="tdval" style="color:#D97706">Processing...</span></div>
+</div>
+
+<div style="padding:8px;background:#F0F9FF;border-radius:8px;font-size:8px;color:#075985;width:100%;text-align:center">
+💡 Please don't close the app. We'll notify you via push notification once confirmed.
+</div>
+</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<hr>
+<h2>Transaction History & Refunds</h2>
+<div class="screens">
+
+<!-- Screen 7: Transaction History -->
+<div class="sw"><span class="sn">7</span><div class="sl">Transaction History</div><div class="ss">All past payments</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Transaction History</span></div>
+
+<div style="display:flex;gap:4px;padding:8px 12px;overflow-x:auto">
+<span style="padding:4px 10px;background:#E8532E;color:#FFF;border-radius:12px;font-size:8px;font-weight:600;white-space:nowrap">All</span>
+<span style="padding:4px 10px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-size:8px;font-weight:600;white-space:nowrap">Success</span>
+<span style="padding:4px 10px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-size:8px;font-weight:600;white-space:nowrap">Failed</span>
+<span style="padding:4px 10px;background:#F8F5F0;color:#94A3B8;border-radius:12px;font-size:8px;font-weight:600;white-space:nowrap">Refunded</span>
+</div>
+
+<div style="padding:0 12px 4px;font-size:8px;color:#94A3B8">APRIL 2026</div>
+
+<div class="txn-item">
+<div class="txn-icon">🎤</div>
+<div class="txn-info">
+<div class="txn-name">Atharva Patil Booking</div>
+<div class="txn-meta">Apr 8 · GPay (UPI) · pay_MNp2q8X9Lm</div>
+</div>
+<div style="text-align:right">
+<div class="txn-amt">₹5,295</div>
+<div class="txn-status status-success">✓ Success</div>
+</div>
+</div>
+
+<div class="txn-item">
+<div class="txn-icon" style="background:#F5F3FF">🎓</div>
+<div class="txn-info">
+<div class="txn-name">Mentor Session — Ravi Shankar</div>
+<div class="txn-meta">Apr 5 · PhonePe (UPI) · pay_MNk4h2R7Lm</div>
+</div>
+<div style="text-align:right">
+<div class="txn-amt">₹525</div>
+<div class="txn-status status-success">✓ Success</div>
+</div>
+</div>
+
+<div class="txn-item">
+<div class="txn-icon" style="background:#FEF3C7">🎙</div>
+<div class="txn-info">
+<div class="txn-name">SoundBox Studio — 3 hrs</div>
+<div class="txn-meta">Apr 3 · VISA ••4242 · pay_MNg9p4T2Qx</div>
+</div>
+<div style="text-align:right">
+<div class="txn-amt">₹1,575</div>
+<div class="txn-status status-refund">↻ Refunded</div>
+</div>
+</div>
+
+<div style="padding:4px 12px;font-size:8px;color:#94A3B8">MARCH 2026</div>
+
+<div class="txn-item">
+<div class="txn-icon">🎤</div>
+<div class="txn-info">
+<div class="txn-name">Inayat The Band — Tip</div>
+<div class="txn-meta">Mar 28 · GPay (UPI) · pay_MNa1b2c3D4</div>
+</div>
+<div style="text-align:right">
+<div class="txn-amt">₹100</div>
+<div class="txn-status status-success">✓ Success</div>
+</div>
+</div>
+
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+<!-- Screen 8: Refund Notification -->
+<div class="sw"><span class="sn">8</span><div class="sl">Refund Initiated</div><div class="ss">Automatic refund on cancellation</div>
+<div class="ph"><div class="cnt">
+<div class="hdr"><span class="back">←</span><span class="title">Transaction Details</span></div>
+
+<div style="margin:12px;padding:16px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:14px;text-align:center">
+<div style="font-size:36px;margin-bottom:6px">💸</div>
+<div style="font-size:13px;font-weight:700;color:#92400E">Refund Initiated</div>
+<div style="font-size:9px;color:#78350F;margin-top:4px">₹1,575 will be credited to your<br>VISA ••4242 within 5-7 business days</div>
+</div>
+
+<div class="txn-details" style="margin:0 12px">
+<div class="tdrow"><span class="tdlabel">Original Amount</span><span class="tdval">₹1,575.00</span></div>
+<div class="tdrow"><span class="tdlabel">Item</span><span class="tdval">SoundBox Studio — 3 hrs</span></div>
+<div class="tdrow"><span class="tdlabel">Original Txn ID</span><span class="tdval" style="font-size:7px">pay_MNg9p4T2Qx</span></div>
+<div class="tdrow"><span class="tdlabel">Refund ID</span><span class="tdval" style="font-size:7px">rfnd_MNh8k3L5Py</span></div>
+<div class="tdrow"><span class="tdlabel">Reason</span><span class="tdval">Cancelled by Studio</span></div>
+<div class="tdrow"><span class="tdlabel">Initiated On</span><span class="tdval">Apr 4, 2026 · 10:15 AM</span></div>
+</div>
+
+<div style="margin:10px 12px;padding:10px;background:#F0FDF4;border-radius:8px;font-size:8px;color:#059669;display:flex;align-items:center;gap:6px">
+<span>✅</span> <span>Refund successfully initiated with Razorpay. You will receive a confirmation email shortly.</span>
+</div>
+
+<div class="gbtn small">📄 Download Credit Note</div>
+</div><div class="bnav"><div class="ni"><div class="ic">🏠</div>Home</div><div class="ni"><div class="ic">🔍</div>Search</div><div class="ni"><div class="ic">🔒</div>Add</div><div class="ni ac"><div class="ic">👤</div>Profile</div></div></div></div>
+
+</div>
+
+<hr>
+<div class="nt">
+<strong style="color:#E94560">Screen to User Story Mapping:</strong><br><br>
+<strong>US-001 (UPI Payment):</strong><br>
+• Screen 1 (Checkout) → AC1 (amount breakdown with platform fee + GST)<br>
+• Screen 2 (Payment Methods) → AC2 (method selector), AC3 (UPI selection)<br>
+• Screen 4 (Success) → AC4 (confirmation with txn ID, receipt, view booking)<br>
+• Screen 5 (Failed) → AC5 (failure with retry + change method)<br>
+• Screen 6 (Pending) → AC6 (auto-polling status screen)<br><br>
+<strong>US-002 (Card Payment):</strong><br>
+• Screen 2 → AC1 (saved cards display), AC4<br>
+• Screen 3 (Card Form) → AC1 (card entry with brand detection), AC3 (save card toggle with Razorpay tokenization)<br><br>
+<strong>US-003 (Transaction History):</strong><br>
+• Screen 7 → AC1 (list with status), AC4 (filter tabs)<br><br>
+<strong>US-004 (Refund):</strong><br>
+• Screen 8 → AC1 (automatic refund), AC2 (refund confirmation with details)
+</div>
+
+<div style="text-align:center;margin-top:20px;padding-top:12px;border-top:1px solid #2A2A3A;font-size:10px;color:#4A4A68">
+BeLive App · BLA-50 Payment Gateway · Razorpay Integration · Mohammad Jamal Yusuf · April 2026
+</div>
+</body>
+</html>
